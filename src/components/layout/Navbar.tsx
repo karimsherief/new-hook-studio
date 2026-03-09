@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -13,17 +14,20 @@ export function Navbar() {
       : "text-sm font-medium text-zinc-400 hover:text-zinc-50";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-b-white shadow-lg bg-[#033C45]">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
+    <header className="sticky top-0 -z-50 border-b border-b-white shadow-lg bg-transparent">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 ">
         <Link href="/" className="text-lg font-semibold text-zinc-50">
-          Hook Studio
+          <Image src="/images/logo-2.webp" alt="logo" width="50" height="50" />
         </Link>
 
         <nav className="flex items-center gap-6">
           <Link href="/" className={`${linkClass("/")} `}>
             Home
           </Link>
-          <Link href="/book-project" className={`${linkClass("/book-project")}`}>
+          <Link
+            href="/book-project"
+            className={`${linkClass("/book-project")}`}
+          >
             Book Project
           </Link>
         </nav>

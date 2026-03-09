@@ -29,7 +29,7 @@ export function ImageSlider() {
   }, []);
 
   return (
-    <section className="relative h-[70vh] min-h-[400px] w-full overflow-hidden bg-zinc-900">
+    <section className="relative h-[70vh] min-h-100 w-full overflow-hidden bg-zinc-900">
       {SLIDES.map((slide, i) => (
         <div
           key={slide.src}
