@@ -20,10 +20,13 @@ export function Navbar() {
         </Link>
 
         <nav className="flex items-center gap-6">
-          <Link href="/" className={`${linkClass("/")} `}>
+          <Link href="/" className={linkClass("/")}>
             Home
           </Link>
-          <Link href="/book-project" className={`${linkClass("/book-project")}`}>
+          <Link href="/services" className={linkClass("/services")}>
+            Services
+          </Link>
+          <Link href="/book-project" className={linkClass("/book-project")}>
             Book Project
           </Link>
         </nav>

@@ -48,38 +48,50 @@ const SOCIAL = [
   },
 ];
 
+const FOOTER_LINKS = [
+  { heading: "ABOUT US", href: "/about" },
+  { heading: "SERVICES", href: "/services" },
+  { heading: "SUPPORT", href: "/support" },
+];
+
 export function Footer() {
   return (
-    <footer className="border-t border-t-white bg-[#033C45] py-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row">
-        <div className="flex flex-col items-center gap-4 sm:items-start">
-          <Link
-            href="/"
-            className="text-lg font-semibold text-zinc-900 dark:text-zinc-50"
-          >
-            Hook Studio
-          </Link>
-          <p className="text-sm text-zinc-300">
-            Content production · Reels · Podcasts · Video editing
+    <footer className="border-t border-white bg-[#033C45] py-12">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="flex max-w-md flex-col gap-4">
+          <p className="text-sm leading-relaxed text-zinc-300">
+            Elevating your travel experience through seamless booking and
+            user-centric insights. The world is yours to explore.
           </p>
+          <nav className="flex items-center gap-3" aria-label="Social links">
+            {SOCIAL.filter((s) => ["Instagram", "Twitter", "Facebook"].includes(s.name)).map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg p-2 text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
+                aria-label={item.name}
+              >
+                {item.icon}
+              </a>
+            ))}
+          </nav>
         </div>
-        <nav className="flex items-center gap-4" aria-label="Social links">
-          {SOCIAL.map((item) => (
-            <a
-              key={item.name}
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg p-2 text-zinc-300 transition-colors hover:bg-zinc-200 hover:text-zinc-900 "
-              aria-label={item.name}
+        <nav className="flex flex-wrap gap-8 lg:gap-12" aria-label="Footer navigation">
+          {FOOTER_LINKS.map(({ heading, href }) => (
+            <Link
+              key={heading}
+              href={href}
+              className="text-sm font-medium uppercase tracking-wider text-zinc-300 hover:text-white"
             >
-              {item.icon}
-            </a>
+              {heading}
+            </Link>
           ))}
         </nav>
       </div>
-      <div className="mx-auto mt-8 max-w-6xl border-t border-white px-4 pt-8 ">
-        <p className="text-center text-sm text-zinc-300">
+      <div className="mx-auto mt-8 max-w-6xl border-t border-white/20 px-4 pt-8">
+        <p className="text-center text-sm text-zinc-400">
           © {new Date().getFullYear()} Hook Studio. All rights reserved.
         </p>
       </div>

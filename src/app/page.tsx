@@ -1,3 +1,4 @@
+import React from "react";
 import { ImageSlider } from "@/components/home/ImageSlider";
 import { AboutUs } from "@/components/home/AboutUs";
 import { Services } from "@/components/home/Services";
