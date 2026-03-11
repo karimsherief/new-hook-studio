@@ -1,6 +1,5 @@
 import { ServicesHero } from "@/components/services/ServicesHero";
 import { SelectStudioForm } from "@/components/services/SelectStudioForm";
-import { StudioGrid } from "@/components/services/StudioGrid";
 import { ContactCards } from "@/components/services/ContactCards";
 
 export default function ServicesPage() {
@@ -13,7 +12,6 @@ export default function ServicesPage() {
             Select Your Studio
           </h2>
           <SelectStudioForm />
-          <StudioGrid />
         </section>
         <ContactCards />
       </main>

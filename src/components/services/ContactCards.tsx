@@ -25,7 +25,7 @@ const CARDS = [
   },
   {
     title: "Email Us",
-    value: "0115847984",
+    value: "01114967266",
     description:
       "Flexible booking options, indoor and outdoor settings, and a luxurious atmosphere.",
     icon: (

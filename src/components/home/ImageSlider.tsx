@@ -1,86 +1,175 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import Link from "next/link";
 
-const SLIDES = [
+const slides = [
   {
-    src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=80",
-    alt: "Studio production",
+    id: 1,
+    src: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1600&q=80",
+    title: "Creative Media Production",
+    subtitle:
+      "Cinematic visuals, premium storytelling, and modern production for brands that want to stand out.",
   },
   {
-    src: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&q=80",
-    alt: "Content creation",
+    id: 2,
+    src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
+    title: "Professional Studio Experience",
+    subtitle:
+      "From planning to final delivery, every detail is designed with clarity, emotion, and visual impact.",
   },
   {
-    src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&q=80",
-    alt: "Recording session",
+    id: 3,
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+    title: "Visual Content That Builds Brands",
+    subtitle:
+      "Photography, video, editing, and creative direction for a refined digital presence.",
   },
 ];
 
-export function ImageSlider() {
+export default function ImageSlider() {
   const [index, setIndex] = useState(0);
 
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   useEffect(() => {
-    const id = setInterval(() => {
-      setIndex((i) => (i + 1) % SLIDES.length);
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % slides.length);
     }, 5000);
-    return () => clearInterval(id);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="relative h-[70vh] min-h-[400px] w-full overflow-hidden bg-zinc-900">
-      {SLIDES.map((slide, i) => (
-        <div
-          key={slide.src}
-          className={`absolute inset-0 transition-opacity duration-700 ${
-            i === index ? "opacity-100 z-10" : "opacity-0 z-0"
-          }`}
-        >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority={i === 0}
-          />
-          <div className="absolute inset-0 bg-black/40" />
+    <section className="relative w-full">
+      <div className="relative h-[78vh] min-h-[520px] w-full overflow-hidden">
+        {slides.map((slide, i) => {
+          const active = i === index;
+
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-all duration-1000 ease-out ${
+                active
+                  ? "z-10 opacity-100"
+                  : "pointer-events-none z-0 opacity-0"
+              }`}
+            >
+              <Image
+                src={slide.src}
+                alt={slide.title}
+                fill
+                priority={i === 0}
+                unoptimized
+                className={`object-cover transition-transform duration-[3000ms] ease-out ${
+                  active ? "scale-100" : "scale-110"
+                }`}
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0F3E47]/85 via-[#0F3E47]/50 to-black/30" />
+
+              <div className="absolute inset-0 flex items-center">
+                <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
+                  <div className="max-w-2xl text-white">
+                    <span
+                      className={`mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm backdrop-blur-md transition-all duration-700 ${
+                        active
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-6 opacity-0"
+                      }`}
+                    >
+                      Hook Studio
+                    </span>
+
+                    <h1
+                      className={`mt-4 text-4xl font-bold leading-tight md:text-6xl transition-all duration-700 delay-100 ${
+                        active
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
+                      {slide.title}
+                    </h1>
+
+                    <p
+                      className={`mt-4 max-w-xl text-base leading-7 text-white/85 md:text-lg transition-all duration-700 delay-200 ${
+                        active
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
+                      {slide.subtitle}
+                    </p>
+
+                    <div
+                      className={`mt-8 flex flex-wrap gap-4 transition-all duration-700 delay-300 ${
+                        active
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-8 opacity-0"
+                      }`}
+                    >
+                      <div
+                        className={`mt-8 flex flex-wrap gap-4 transition-all duration-700 delay-300 ${
+                          active ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                        }`}
+                      >
+                        <Link
+                          href="/book-project"
+                          className="group inline-flex items-center gap-3 rounded-full bg-[#EAD8B7] px-7 py-3.5 text-sm font-semibold text-[#0F3E47] shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
+                        >
+                          <span>Book Service</span>
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0F3E47] text-xs text-white transition-transform duration-300 group-hover:translate-x-1">
+                            →
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+      
+
+
+
+        <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-3">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`relative h-3 rounded-full transition-all duration-300 ${
+                i === index ? "w-10 bg-white/30" : "w-3 bg-white/40"
+              }`}
+            >
+              {i === index && (
+                <span className="absolute inset-0 rounded-full bg-[#EAD8B7] animate-[progress_5s_linear]" />
+              )}
+            </button>
+          ))}
         </div>
-      ))}
-      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => setIndex(i)}
-            className={`h-2 rounded-full transition-all ${
-              i === index ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/70"
-            }`}
-          />
-        ))}
       </div>
-      <button
-        type="button"
-        aria-label="Previous slide"
-        onClick={() => setIndex((i) => (i - 1 + SLIDES.length) % SLIDES.length)}
-        className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/20 p-2 text-white backdrop-blur hover:bg-white/30"
-      >
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button
-        type="button"
-        aria-label="Next slide"
-        onClick={() => setIndex((i) => (i + 1) % SLIDES.length)}
-        className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/20 p-2 text-white backdrop-blur hover:bg-white/30"
-      >
-        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+
+      <style jsx>{`
+        @keyframes progress {
+          from {
+            width: 0%;
+          }
+          to {
+            width: 100%;
+          }
+        }
+      `}</style>
     </section>
   );
 }
