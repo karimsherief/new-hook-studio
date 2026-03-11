@@ -1,6 +1,7 @@
-import { ImageSlider } from "@/components/home/ImageSlider";
-import { AboutUs } from "@/components/home/AboutUs";
-import { Services } from "@/components/home/Services";
+import React from "react";
+import ImageSlider from "@/components/home/ImageSlider";
+import AboutUs from "@/components/home/AboutUs";
+import Services from "@/components/home/Services";
 
 export default function HomePage() {
   return (
@@ -8,6 +9,8 @@ export default function HomePage() {
       <ImageSlider />
       <AboutUs />
       <Services />
+      
+      
     </div>
   );
 }
