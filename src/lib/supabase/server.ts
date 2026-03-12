@@ -25,9 +25,10 @@ export async function createClient() {
         },
       },
       from() {
-        return {
+        const chain: any = {
           select() {
-            return { data: [], error: null } as any;
+            // Allow chaining: supabase.from(...).select(...).order(...)
+            return chain;
           },
           order() {
             return { data: [], error: null } as any;
@@ -39,6 +40,7 @@ export async function createClient() {
             } as any;
           },
         };
+        return chain;
       },
     } as any;
   }
