@@ -6,11 +6,9 @@ export default function ServicesPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <ServicesHero />
-      <main className="flex-1 bg-white">
+      <main className="flex-1 bg-[#F7F4EE]">
         <section className="mx-auto max-w-5xl px-4 py-12 sm:py-16">
-          <h2 className="text-center text-2xl font-semibold text-zinc-800 sm:text-3xl">
-            Select Your Studio
-          </h2>
+          
           <SelectStudioForm />
         </section>
         <ContactCards />
