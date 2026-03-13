@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Booking } from "@/types/database";
+import Image from "next/image";
 
 const LOCATIONS = ["indoor", "outdoor"] as const;
 const FORMATS = ["reels", "podcast", "video editing"] as const;
@@ -13,6 +14,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editValues, setEditValues] = useState<Partial<Booking>>({});
+  const [selectedRow, setSelectedRow] = useState<Booking | null>(null);
 
   const startEdit = (booking: Booking) => {
     setEditingId(booking.id);
@@ -78,10 +80,12 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
     if (!confirm("Delete this booking?")) return;
     setDeletingId(id);
     setError(null);
+
     try {
       const res = await fetch(`/api/bookings/${id}`, {
         method: "DELETE",
       });
+
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error ?? "Failed to delete booking");
@@ -99,49 +103,48 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
 
   return (
     <div className="space-y-3">
-      {error && (
-        <p className="px-4 pt-3 text-sm text-red-600 dark:text-red-400">
-          {error}
-        </p>
-      )}
-      <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
+      {error && <p className="px-4 pt-3 text-sm text-red-600 ">{error}</p>}
+      <table className="min-w-full divide-y divide-zinc-200 ">
         <thead>
           <tr>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Date
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               First name
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Last name
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Phone
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Content type
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Account link
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Location
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Format
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+              Images
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-zinc-200 dark:divide-zinc-700">
+        <tbody className="divide-y divide-zinc-200 ">
           {rows.length === 0 ? (
             <tr>
               <td
                 colSpan={9}
-                className="px-4 py-8 text-center text-sm text-zinc-500 dark:text-zinc-400"
+                className="px-4 py-8 text-center text-sm text-zinc-500 "
               >
                 No bookings yet.
               </td>
@@ -150,11 +153,11 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
             rows.map((b) => {
               const isEditing = b.id === editingId;
               return (
-                <tr key={b.id} className="bg-white dark:bg-zinc-800">
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                <tr key={b.id} className="bg-white ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
                     {new Date(b.created_at).toLocaleString()}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-900 ">
                     {isEditing ? (
                       <input
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
@@ -164,10 +167,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                         }
                       />
                     ) : (
-                      b.first_name ?? "—"
+                      (b.first_name ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-900 dark:text-zinc-100">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-900 ">
                     {isEditing ? (
                       <input
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
@@ -177,23 +180,21 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                         }
                       />
                     ) : (
-                      b.last_name ?? "—"
+                      (b.last_name ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
                     {isEditing ? (
                       <input
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
                         value={editValues.phone ?? ""}
-                        onChange={(e) =>
-                          handleChange("phone", e.target.value)
-                        }
+                        onChange={(e) => handleChange("phone", e.target.value)}
                       />
                     ) : (
-                      b.phone ?? "—"
+                      (b.phone ?? "—")
                     )}
                   </td>
-                  <td className="max-w-40 px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  <td className="max-w-40 px-4 py-3 text-sm text-zinc-600 ">
                     {isEditing ? (
                       <input
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
@@ -208,7 +209,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       </span>
                     )}
                   </td>
-                  <td className="max-w-48 px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  <td className="max-w-48 px-4 py-3 text-sm text-zinc-600 ">
                     {isEditing ? (
                       <input
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
@@ -222,7 +223,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                         href={b.account_link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block truncate text-violet-600 hover:underline dark:text-violet-400"
+                        className="block truncate text-violet-600 hover:underline "
                       >
                         {b.account_link}
                       </a>
@@ -230,7 +231,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       "—"
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
                     {isEditing ? (
                       <select
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
@@ -247,10 +248,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                         ))}
                       </select>
                     ) : (
-                      b.location ?? "—"
+                      (b.location ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
                     {isEditing ? (
                       <select
                         className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
@@ -267,10 +268,37 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                         ))}
                       </select>
                     ) : (
-                      b.content_format ?? "—"
+                      (b.content_format ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 dark:text-zinc-400">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                    <button onClick={() => setSelectedRow(b)}>View</button>
+                    {selectedRow && (
+                      <div
+                        className="fixed flex items-center justify-center top-1/2 left-1/2 z-50 w-full h-full bg-[rgba(0,0,0,.5)] -translate-x-1/2 -translate-y-1/2"
+                        onClick={() => setSelectedRow(null)}
+                      >
+                        <div className="bg-[#f8f6f2] relative p-5 rounded-md shadow-[0_12px_40px_rgba(15,62,71,0.08)] grid items-center justify-center content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                          <span
+                            className="absolute text-red-500 font-bold text-2xl bg-white/55 cursor-pointer px-3 py-1 rounded-md -right-10 -top-10"
+                            onClick={() => setSelectedRow(null)}
+                          >
+                            X
+                          </span>
+                          {selectedRow.images?.map((img, index) => (
+                            <Image
+                              key={index}
+                              width={250}
+                              height={250}
+                              alt="studio"
+                              src={img}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
                     {isEditing ? (
                       <div className="flex gap-2">
                         <button
@@ -318,4 +346,3 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
     </div>
   );
 }
-

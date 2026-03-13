@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
+import { getUser } from "@/lib/auth/get-user";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +25,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
- 
+  const user = await getUser();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar  />
+        <Navbar user={user} />
         {children}
         <Footer />
       </body>

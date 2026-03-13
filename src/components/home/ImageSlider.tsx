@@ -49,7 +49,7 @@ export default function ImageSlider() {
 
   return (
     <section className="relative w-full">
-      <div className="relative h-[78vh] min-h-[520px] w-full overflow-hidden">
+      <div className="relative h-[78vh] min-h-130 w-full overflow-hidden">
         {slides.map((slide, i) => {
           const active = i === index;
 
@@ -68,12 +68,12 @@ export default function ImageSlider() {
                 fill
                 priority={i === 0}
                 unoptimized
-                className={`object-cover transition-transform duration-[3000ms] ease-out ${
+                className={`object-cover transition-transform duration-3000 ease-out ${
                   active ? "scale-100" : "scale-110"
                 }`}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0F3E47]/85 via-[#0F3E47]/50 to-black/30" />
+              <div className="absolute inset-0 bg-linear-to-r from-[#0F3E47]/85 via-[#0F3E47]/50 to-black/30" />
 
               <div className="absolute inset-0 flex items-center">
                 <div className="mx-auto w-full max-w-7xl px-6 lg:px-10">
@@ -117,11 +117,13 @@ export default function ImageSlider() {
                     >
                       <div
                         className={`mt-8 flex flex-wrap gap-4 transition-all duration-700 delay-300 ${
-                          active ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                          active
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-8 opacity-0"
                         }`}
                       >
                         <Link
-                          href="/book-project"
+                          href="/book-studio"
                           className="group inline-flex items-center gap-3 rounded-full bg-[#EAD8B7] px-7 py-3.5 text-sm font-semibold text-[#0F3E47] shadow-[0_12px_30px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)]"
                         >
                           <span>Book Service</span>
@@ -137,10 +139,6 @@ export default function ImageSlider() {
             </div>
           );
         })}
-
-      
-
-
 
         <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-3">
           {slides.map((_, i) => (

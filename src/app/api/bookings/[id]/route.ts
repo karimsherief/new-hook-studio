@@ -1,14 +1,10 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
 
-export async function PATCH(request: Request, { params }: Params) {
-  const { id } = params;
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
   if (!id) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
   }
@@ -56,8 +52,9 @@ export async function PATCH(request: Request, { params }: Params) {
   return NextResponse.json(data);
 }
 
-export async function DELETE(_request: Request, { params }: Params) {
-  const { id } = params;
+export async function DELETE(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
   if (!id) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
   }

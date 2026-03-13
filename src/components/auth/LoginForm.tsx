@@ -52,11 +52,17 @@ export function LoginForm({ next }: { next?: string }) {
       {error && (
         <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
       )}
-      <Button type="submit" className="w-full" disabled={loading}>
+      <button
+        type="submit"
+        className={`text-white font-bold py-2 px-10 rounded-md mx-auto block ${!loading ? "bg-[#033c45] cursor-pointer" : "bg-[#033c459f] cursor-not-allowed"}`}
+        disabled={loading}
+      >
         {loading ? "Signing in…" : "Sign in"}
-      </Button>
+      </button>
       <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">
-        <a href="/" className="underline hover:no-underline">Back to home</a>
+        <a href="/" className="underline hover:no-underline">
+          Back to home
+        </a>
       </p>
     </form>
   );

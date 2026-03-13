@@ -10,6 +10,7 @@ export async function POST(request: Request) {
     account_link?: string | null;
     location?: string | null;
     content_format?: string | null;
+    images?: string[] | null
   };
   try {
     body = await request.json();
@@ -26,6 +27,7 @@ export async function POST(request: Request) {
     account_link: body.account_link ?? null,
     location: body.location ?? null,
     content_format: body.content_format ?? null,
+    images: body.images ?? null
   });
 
   if (error) {

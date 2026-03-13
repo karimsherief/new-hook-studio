@@ -10,5 +10,6 @@ export interface Booking {
   account_link: string | null;
   location: BookingLocation | null;
   content_format: BookingContentFormat | null;
+  images: string[] | null
   created_at: string;
 }

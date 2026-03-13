@@ -1,7 +1,7 @@
-export function ServicesHero() {
+export function BookStudioHero() {
   return (
     <section
-      className="relative flex min-h-[220px] items-center justify-center bg-zinc-800 bg-cover bg-center bg-no-repeat sm:min-h-[280px]"
+      className="relative flex min-h-55 items-center justify-center bg-zinc-800 bg-cover bg-center bg-no-repeat sm:min-h-70"
       style={{
         backgroundImage: `url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80")`,
       }}
