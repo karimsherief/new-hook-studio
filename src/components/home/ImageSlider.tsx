@@ -146,7 +146,7 @@ export default function ImageSlider() {
               key={i}
               onClick={() => setIndex(i)}
               aria-label={`Go to slide ${i + 1}`}
-              className={`relative h-3 rounded-full transition-all duration-300 ${
+              className={`relative h-3 rounded-full transition-all duration-300 overflow-hidden ${
                 i === index ? "w-10 bg-white/30" : "w-3 bg-white/40"
               }`}
             >
@@ -157,17 +157,6 @@ export default function ImageSlider() {
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes progress {
-          from {
-            width: 0%;
-          }
-          to {
-            width: 100%;
-          }
-        }
-      `}</style>
     </section>
   );
 }

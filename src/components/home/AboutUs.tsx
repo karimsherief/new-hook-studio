@@ -1,41 +1,55 @@
 "use client";
 
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-
-import { useEffect, useRef, useState } from "react";
-
+const aboutContentVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -50,
+    transition: {
+      duration: 0.5,
+      ease: "easeIn",
+    },
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+const aboutImageVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 50,
+    transition: {
+      duration: 0.5,
+      ease: "easeIn",
+    },
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
 export default function AboutUs() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#F8F6F2] py-12 transition-all duration-700 ease-out"
-    >
-      <div className={`mx-auto grid max-w-7xl items-center gap-10 px-6 md:grid-cols-2 lg:px-10 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}>
+    <section className="bg-[#F8F6F2] py-12 transition-all duration-700 ease-out">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 md:grid-cols-2 lg:px-10 ">
         {/* Text Content */}
-        <div className="relative rounded-[28px] border border-[#0F3E47]/8 bg-white p-8 shadow-[0_12px_40px_rgba(15,62,71,0.08)] md:p-10">
+        <motion.div
+          variants={aboutContentVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          className="relative rounded-[28px] border border-[#0F3E47]/8 bg-white p-8 shadow-[0_12px_40px_rgba(15,62,71,0.08)] md:p-10"
+        >
           <div className="mb-5 inline-flex rounded-full bg-[#EAD8B7]/40 px-4 py-1.5 text-sm font-semibold tracking-wide text-[#0F3E47]">
             About Hook Studio
           </div>
@@ -67,10 +81,16 @@ export default function AboutUs() {
               Brand Storytelling
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Image */}
-        <div className="group relative h-[360px] overflow-hidden rounded-[28px] shadow-[0_14px_45px_rgba(15,62,71,0.12)] md:h-[500px]">
+        <motion.div
+          variants={aboutImageVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.2 }}
+          className="group relative h-90 overflow-hidden rounded-[28px] shadow-[0_14px_45px_rgba(15,62,71,0.12)] md:h-125"
+        >
           <Image
             src="https://images.unsplash.com/photo-1590608897129-79da98d15969?q=80&w=1400&auto=format&fit=crop"
             alt="Studio setup"
@@ -79,7 +99,7 @@ export default function AboutUs() {
             className="object-cover transition duration-700 group-hover:scale-105"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F3E47]/55 via-[#0F3E47]/15 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#0F3E47]/55 via-[#0F3E47]/15 to-transparent" />
 
           <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
             <div className="max-w-md rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-md">
@@ -90,12 +110,12 @@ export default function AboutUs() {
                 Designed for premium content production
               </h3>
               <p className="mt-2 text-sm leading-6 text-white/80 md:text-base">
-                A modern setup that helps your brand look professional, polished,
-                and visually memorable.
+                A modern setup that helps your brand look professional,
+                polished, and visually memorable.
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

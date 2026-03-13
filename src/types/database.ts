@@ -13,3 +13,12 @@ export interface Booking {
   images: string[] | null
   created_at: string;
 }
+
+
+export interface User {
+  id: string,
+  email: string,
+  user_metadata: {
+    display_name: string
+  }
+}

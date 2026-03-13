@@ -11,7 +11,7 @@ export async function getUser() {
   if (error || !user) {
     return null;
   }
-
+  
   return user;
 }
 

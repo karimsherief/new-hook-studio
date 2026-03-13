@@ -3,8 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { User } from "@/types/database";
 
-export default function Navbar(user: { user: any }) {
+export default function Navbar({ user }: { user: User | null }) {
   const pathname = usePathname();
 
   const isActive = (path: string) =>
@@ -58,13 +59,26 @@ export default function Navbar(user: { user: any }) {
           >
             Book Studio
           </Link>
-          {user.user && (
-            <button
-              className="underline cursor-pointer"
-              onClick={handleSignout}
-            >
-              Sign Out
-            </button>
+          {user != null && (
+            <>
+              <Link
+                href="/admin"
+                className={`relative pb-1 text-sm font-medium transition md:text-base ${
+                  isActive("/")
+                    ? "text-[#0F3E47]"
+                    : "text-[#0F3E47]/70 hover:text-[#0F3E47]"
+                }`}
+              >
+                Dashboard
+              </Link>
+              <span>{user?.user_metadata.display_name}</span>
+              <button
+                className="underline cursor-pointer"
+                onClick={handleSignout}
+              >
+                Sign Out
+              </button>
+            </>
           )}
         </nav>
       </div>
