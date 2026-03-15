@@ -12,10 +12,11 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Navbar({ user }: { user: User | null }) {
   const pathname = usePathname();
+  const prevPathnameRef = useRef(pathname);
   const [isAsideOpen, setAsideOpen] = useState(false);
 
   const isActive = (path: string) =>
@@ -25,9 +26,13 @@ export default function Navbar({ user }: { user: User | null }) {
     await fetch("/api/auth/signout", {
       method: "POST",
     });
-    window.location.href = "/login";
+    window.location.reload();
   };
 
+  if (prevPathnameRef.current !== pathname) {
+    prevPathnameRef.current = pathname;
+    setAsideOpen(false);
+  }
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#0F3E47]/10 bg-[#F8F6F2]/95 backdrop-blur supports-backdrop-filter:bg-[#F8F6F2]/80 ">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">

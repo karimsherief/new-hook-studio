@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { StudioGrid } from "./StudioGrid";
@@ -15,6 +14,18 @@ export function SelectStudioForm() {
   const [selectedStudios, setSelectedStudios] = useState<string[]>([]);
   const [locationType, setLocationType] = useState("");
 
+  // const getImages = async () => {
+  //   const supabase = createClient();
+  //   const { data, error: reelsError } = await supabase.storage
+  //     .from("booking-images")
+  //     .list("podcast");
+
+    
+
+  //   return [];
+  // };
+
+  // const media = getImages();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
@@ -75,6 +86,7 @@ export function SelectStudioForm() {
     setSelectedService("");
     setLocationType("");
   };
+
   const handleImages = async (files: string[]) => {
     const urls = [];
     const supabase = createClient();
@@ -372,11 +384,18 @@ export function SelectStudioForm() {
                         <select
                           id="location"
                           name="location"
-                          onChange={(e) => setLocationType(e.target.value)}
+                          onChange={(e) => {
+                            setLocationType(e.target.value);
+                            setSelectedStudios([]);
+                            setSelectedService("");
+                          }}
                           className={inputClass}
+                          defaultValue={locationType}
                           required
                         >
-                          <option value="">Select location type</option>
+                          <option selected disabled>
+                            --- Select location type ---
+                          </option>
                           <option value="indoor">Indoor</option>
                           <option value="outdoor">Outdoor</option>
                         </select>
@@ -393,12 +412,16 @@ export function SelectStudioForm() {
                           <select
                             id="service"
                             name="service"
-                            onChange={(e) => setSelectedService(e.target.value)}
+                            onChange={(e) => {
+                              setSelectedService(e.target.value);
+                              setSelectedStudios([]);
+                            }}
                             className={inputClass}
+                            defaultValue={selectedService}
                             required
                           >
-                            <option value="">
-                              Choose from available services
+                            <option value="" selected disabled>
+                              --- Choose from available services ---
                             </option>
                             <option value="reels">Reels</option>
                             <option value="podcast">Podcast</option>
@@ -460,13 +483,13 @@ export function SelectStudioForm() {
                     </div>
                   )}
 
-                  <Button
+                  <button
                     type="submit"
                     disabled={loading}
-                    className="h-14 w-full rounded-[18px] bg-[#0F3E47] text-sm font-semibold text-white shadow-[0_14px_30px_rgba(15,62,71,0.14)] transition hover:bg-[#0c3740] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="h-14 w-full cursor-pointer rounded-[18px] bg-[#0F3E47] text-sm font-semibold text-white shadow-[0_14px_30px_rgba(15,62,71,0.14)] transition hover:bg-[#0c3740] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {loading ? "Submitting..." : "Book Service"}
-                  </Button>
+                  </button>
                 </div>
               </div>
             </div>
