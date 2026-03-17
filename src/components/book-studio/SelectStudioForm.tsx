@@ -88,13 +88,14 @@ export function SelectStudioForm() {
   };
 
   const handleImages = async (files: string[]) => {
-    const urls = [];
+    const urls: string[] = [];
     const supabase = createClient();
 
     for (const file of files) {
       const { data: publicUrl } = supabase.storage
         .from("booking-images")
         .getPublicUrl(file);
+
       urls.push(publicUrl.publicUrl);
     }
 
@@ -102,45 +103,56 @@ export function SelectStudioForm() {
   };
 
   const shellClass =
-    "rounded-[32px] border border-[#0F3E47]/8 bg-white/95 shadow-[0_20px_60px_rgba(15,62,71,0.08)]";
+    "rounded-[32px] border border-[#1F4E52]/10 bg-white/80 shadow-[0_24px_70px_rgba(31,78,82,0.08)] backdrop-blur-xl";
+
   const sectionClass =
-    "rounded-[24px] border border-[#0F3E47]/8 bg-[#FCFBF8] p-5 md:p-6";
+    "rounded-[26px] border border-[#1F4E52]/10 bg-[#FFFEFC] p-5 md:p-6 shadow-[0_10px_30px_rgba(31,78,82,0.04)]";
+
   const inputClass =
-    "h-12 w-full rounded-[16px] border border-[#0F3E47]/10 bg-white px-4 text-sm text-[#0F3E47] outline-none transition-all duration-200 placeholder:text-zinc-400 focus:border-[#0F3E47]/25 focus:ring-4 focus:ring-[#EAD8B7]/25";
+    "h-12 w-full rounded-[16px] border border-[#1F4E52]/12 bg-[#F8F7F3] px-4 text-sm text-[#163E42] outline-none transition-all duration-200 placeholder:text-[#1F4E52]/35 focus:border-[#1F4E52]/30 focus:bg-white focus:ring-4 focus:ring-[#E8CFA4]/20";
+
   const badgeClass =
-    "flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#0F3E47] text-[11px] font-semibold text-white";
-  const stepClass = "rounded-[18px] border border-[#0F3E47]/8 bg-white p-4";
+    "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#1F4E52] text-[11px] font-semibold text-white shadow-[0_10px_20px_rgba(31,78,82,0.18)]";
+
+  const stepClass =
+    "rounded-[22px] border border-[#1F4E52]/10 bg-white/85 p-4 shadow-[0_10px_30px_rgba(31,78,82,0.05)] backdrop-blur-xl";
+
+  const infoCardClass =
+    "rounded-[20px] border border-white/10 bg-white/5 p-4 backdrop-blur-md";
 
   return (
-    <section className="bg-[#F7F4EE] py-10 md:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-[#F6F3ED] py-12 md:py-20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(31,78,82,0.08),transparent_28%),radial-gradient(circle_at_85%_15%,rgba(232,207,164,0.18),transparent_22%),linear-gradient(180deg,#F6F3ED_0%,#F3F0E9_100%)]" />
+      <div className="absolute inset-0 opacity-[0.05] [background-image:radial-gradient(#1F4E52_1px,transparent_1px)] [background-size:22px_22px]" />
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto mb-10 max-w-3xl text-center">
-          <span className="inline-flex rounded-full border border-[#0F3E47]/10 bg-white px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C9A66B]">
+          <span className="inline-flex rounded-full border border-[#E8CFA4]/70 bg-white/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#B99458]">
             Studio Booking
           </span>
 
-          <h1 className="mt-4 text-3xl font-semibold tracking-tight text-[#0F3E47] md:text-5xl">
-            Select Your Studio
+          <h1 className="mt-4 text-3xl font-semibold tracking-tight text-[#143B3F] md:text-5xl">
+            Build your perfect studio setup
           </h1>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#0F3E47]/65 md:text-base">
-            A modern booking flow designed to feel simple, premium, and easy to
-            complete.
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#1F4E52]/70 md:text-base">
+            A refined booking experience designed for brands and creators who
+            want a clear, premium, and modern production flow.
           </p>
         </div>
 
         <div className="mb-6 grid gap-4 md:grid-cols-3">
           <div className={stepClass}>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F3E47] text-xs font-semibold text-white">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1F4E52] text-xs font-semibold text-white">
                 01
               </div>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A66B]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C3A067]">
                   Personal
                 </p>
-                <p className="mt-1 text-sm font-medium text-[#0F3E47]">
-                  Add contact details
+                <p className="mt-1 text-sm font-medium text-[#143B3F]">
+                  Add your contact details
                 </p>
               </div>
             </div>
@@ -148,15 +160,15 @@ export function SelectStudioForm() {
 
           <div className={stepClass}>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F3E47] text-xs font-semibold text-white">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1F4E52] text-xs font-semibold text-white">
                 02
               </div>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A66B]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C3A067]">
                   Content
                 </p>
-                <p className="mt-1 text-sm font-medium text-[#0F3E47]">
-                  Choose service type
+                <p className="mt-1 text-sm font-medium text-[#143B3F]">
+                  Select content and account info
                 </p>
               </div>
             </div>
@@ -164,15 +176,15 @@ export function SelectStudioForm() {
 
           <div className={stepClass}>
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F3E47] text-xs font-semibold text-white">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1F4E52] text-xs font-semibold text-white">
                 03
               </div>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9A66B]">
-                  Booking
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C3A067]">
+                  Setup
                 </p>
-                <p className="mt-1 text-sm font-medium text-[#0F3E47]">
-                  Confirm your setup
+                <p className="mt-1 text-sm font-medium text-[#143B3F]">
+                  Confirm location and service
                 </p>
               </div>
             </div>
@@ -180,48 +192,55 @@ export function SelectStudioForm() {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
-            <aside className="rounded-4xl bg-[#0F3E47] p-6 text-white shadow-[0_20px_60px_rgba(15,62,71,0.14)] md:p-8">
-              <span className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-medium text-white/90">
-                Booking Guide
-              </span>
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+            <aside className="relative overflow-hidden rounded-[34px] bg-[linear-gradient(180deg,#123E43_0%,#0E3236_100%)] p-6 text-white shadow-[0_22px_70px_rgba(31,78,82,0.18)] md:p-8">
+              <div className="absolute -right-10 top-0 h-40 w-40 rounded-full bg-[#E8CFA4]/10 blur-3xl" />
+              <div className="absolute -left-8 bottom-0 h-44 w-44 rounded-full bg-white/5 blur-3xl" />
 
-              <h2 className="mt-5 text-[30px] font-semibold leading-[1.08] tracking-tight md:text-[38px]">
-                Book your studio with a clean and modern flow
-              </h2>
+              <div className="relative">
+                <span className="inline-flex rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-medium text-[#E8CFA4]">
+                  Booking Guide
+                </span>
 
-              <p className="mt-4 text-sm leading-7 text-white/74">
-                Tell us about your content, choose your service, and select the
-                studio setup that fits your production goals.
-              </p>
+                <h2 className="mt-5 text-[30px] font-semibold leading-[1.08] tracking-tight md:text-[40px]">
+                  Shape your booking in a way that fits your content goals
+                </h2>
 
-              <div className="mt-8 space-y-3">
-                <div className="rounded-[20px] border border-white/12 bg-white/10 p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F4E2C3]">
-                    Personal Details
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-white/82">
-                    Add your name and phone number so we can contact you.
-                  </p>
-                </div>
+                <p className="mt-4 text-sm leading-7 text-white/74">
+                  Tell us about your project, choose your service, and select
+                  the studio style that matches your production direction.
+                </p>
 
-                <div className="rounded-[20px] border border-white/12 bg-white/10 p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F4E2C3]">
-                    Content Information
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-white/82">
-                    Share your content type, brand link, and preferred service.
-                  </p>
-                </div>
+                <div className="mt-8 space-y-3">
+                  <div className={infoCardClass}>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]">
+                      Personal Details
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-white/82">
+                      Add your basic information so our team can contact you and
+                      confirm your request.
+                    </p>
+                  </div>
 
-                <div className="rounded-[20px] border border-white/12 bg-white/10 p-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#F4E2C3]">
-                    Studio Selection
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-white/82">
-                    Choose the location and the studio setup that matches your
-                    content.
-                  </p>
+                  <div className={infoCardClass}>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]">
+                      Content Brief
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-white/82">
+                      Share your content type, brand link, and preferred service
+                      so we understand your production needs.
+                    </p>
+                  </div>
+
+                  <div className={infoCardClass}>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]">
+                      Studio Match
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-white/82">
+                      Choose the location and studio setup that best fits the
+                      style of your content.
+                    </p>
+                  </div>
                 </div>
               </div>
             </aside>
@@ -231,10 +250,10 @@ export function SelectStudioForm() {
                 <div className={sectionClass}>
                   <div className="mb-5 flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A66B]">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
                         Personal Information
                       </p>
-                      <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#0F3E47]">
+                      <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
                         Basic contact details
                       </h3>
                     </div>
@@ -245,7 +264,7 @@ export function SelectStudioForm() {
                     <div>
                       <Label
                         htmlFor="first_name"
-                        className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                        className="mb-2 block text-sm font-medium text-[#143B3F]"
                       >
                         First Name
                       </Label>
@@ -261,7 +280,7 @@ export function SelectStudioForm() {
                     <div>
                       <Label
                         htmlFor="last_name"
-                        className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                        className="mb-2 block text-sm font-medium text-[#143B3F]"
                       >
                         Last Name
                       </Label>
@@ -277,7 +296,7 @@ export function SelectStudioForm() {
                     <div className="md:col-span-2">
                       <Label
                         htmlFor="phone"
-                        className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                        className="mb-2 block text-sm font-medium text-[#143B3F]"
                       >
                         Phone Number
                       </Label>
@@ -290,10 +309,7 @@ export function SelectStudioForm() {
                         placeholder="Phone number"
                         maxLength={11}
                         onChange={(e) => {
-                          e.target.value = e.target.value.replace(
-                            /[^0-9]/g,
-                            "",
-                          );
+                          e.target.value = e.target.value.replace(/[^0-9]/g, "");
                         }}
                         className={inputClass}
                         required
@@ -305,10 +321,10 @@ export function SelectStudioForm() {
                 <div className={sectionClass}>
                   <div className="mb-5 flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A66B]">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
                         Account Details
                       </p>
-                      <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#0F3E47]">
+                      <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
                         Brand and content information
                       </h3>
                     </div>
@@ -319,7 +335,7 @@ export function SelectStudioForm() {
                     <div>
                       <Label
                         htmlFor="contact_type"
-                        className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                        className="mb-2 block text-sm font-medium text-[#143B3F]"
                       >
                         Content Type
                       </Label>
@@ -328,8 +344,11 @@ export function SelectStudioForm() {
                         name="contact_type"
                         className={inputClass}
                         required
+                        defaultValue=""
                       >
-                        <option value="">Select content type</option>
+                        <option value="" disabled>
+                          Select content type
+                        </option>
                         <option value="products">Products</option>
                         <option value="education">Education</option>
                         <option value="others">Others</option>
@@ -339,7 +358,7 @@ export function SelectStudioForm() {
                     <div>
                       <Label
                         htmlFor="account_link"
-                        className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                        className="mb-2 block text-sm font-medium text-[#143B3F]"
                       >
                         Account Link
                       </Label>
@@ -358,26 +377,26 @@ export function SelectStudioForm() {
             </div>
 
             <div className="lg:col-span-2">
-              <div className={`${shellClass} p-4 md:p-4`}>
+              <div className={`${shellClass} p-4 md:p-5`}>
                 <div className="space-y-5">
                   <div className={sectionClass}>
                     <div className="mb-5 flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A66B]">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
                           Booking Setup
                         </p>
-                        <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#0F3E47]">
+                        <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
                           Choose location and service
                         </h3>
                       </div>
                       <div className={badgeClass}>03</div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-4">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                       <div>
                         <Label
                           htmlFor="location"
-                          className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                          className="mb-2 block text-sm font-medium text-[#143B3F]"
                         >
                           Location Type
                         </Label>
@@ -390,11 +409,11 @@ export function SelectStudioForm() {
                             setSelectedService("");
                           }}
                           className={inputClass}
-                          defaultValue={locationType}
+                          value={locationType}
                           required
                         >
-                          <option selected disabled>
-                            --- Select location type ---
+                          <option value="" disabled>
+                            Select location type
                           </option>
                           <option value="indoor">Indoor</option>
                           <option value="outdoor">Outdoor</option>
@@ -405,7 +424,7 @@ export function SelectStudioForm() {
                         <div>
                           <Label
                             htmlFor="service"
-                            className="mb-2 block text-sm font-medium text-[#0F3E47]"
+                            className="mb-2 block text-sm font-medium text-[#143B3F]"
                           >
                             Select Service
                           </Label>
@@ -417,11 +436,11 @@ export function SelectStudioForm() {
                               setSelectedStudios([]);
                             }}
                             className={inputClass}
-                            defaultValue={selectedService}
+                            value={selectedService}
                             required
                           >
-                            <option value="" selected disabled>
-                              --- Choose from available services ---
+                            <option value="" disabled>
+                              Choose from available services
                             </option>
                             <option value="reels">Reels</option>
                             <option value="podcast">Podcast</option>
@@ -439,15 +458,15 @@ export function SelectStudioForm() {
                       <div className={sectionClass}>
                         <div className="mb-5 flex items-start justify-between gap-4">
                           <div>
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C9A66B]">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
                               Studio Selection
                             </p>
-                            <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#0F3E47]">
+                            <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
                               Choose your preferred studio setup
                             </h3>
-                            <p className="mt-2 text-sm leading-6 text-[#0F3E47]/60">
-                              Select one or more studios that match your content
-                              style and production needs.
+                            <p className="mt-2 text-sm leading-6 text-[#1F4E52]/65">
+                              Select one or more studios that align with your
+                              content style and production direction.
                             </p>
                           </div>
                           <div className={badgeClass}>04</div>
@@ -460,14 +479,12 @@ export function SelectStudioForm() {
                             setSelectedStudios={setSelectedStudios}
                           />
                         </div>
-                        {locationType === "indoor" &&
-                          (selectedService === "reels" ||
-                            selectedService === "podcast") &&
-                          selectedStudios.length === 0 && (
-                            <p className="mt-3 text-sm text-red-600">
-                              Please select at least one studio.
-                            </p>
-                          )}
+
+                        {selectedStudios.length === 0 && (
+                          <p className="mt-3 text-sm font-medium text-red-600">
+                            Please select at least one studio.
+                          </p>
+                        )}
                       </div>
                     )}
 
@@ -486,7 +503,7 @@ export function SelectStudioForm() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="h-14 w-full cursor-pointer rounded-[18px] bg-[#0F3E47] text-sm font-semibold text-white shadow-[0_14px_30px_rgba(15,62,71,0.14)] transition hover:bg-[#0c3740] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="h-14 w-full cursor-pointer rounded-[18px] bg-[linear-gradient(135deg,#1F4E52_0%,#285F64_100%)] text-sm font-semibold text-white shadow-[0_14px_30px_rgba(31,78,82,0.16)] transition hover:scale-[1.01] hover:shadow-[0_18px_35px_rgba(31,78,82,0.2)] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {loading ? "Submitting..." : "Book Service"}
                   </button>

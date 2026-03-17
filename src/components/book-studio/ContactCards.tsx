@@ -39,7 +39,7 @@ const CARDS = [
 
 export function ContactCards() {
   return (
-    <section className="border-t border-zinc-200 bg-zinc-50/50 py-12">
+    <section className="border-t border-white/10 bg-[#0c1120] py-12 text-white">
       <div className="mx-auto max-w-5xl px-4">
         <div className="grid gap-6 sm:grid-cols-3">
           {CARDS.map((card) => (
