@@ -112,7 +112,7 @@ export default function HookStudioHero() {
               className="mt-10 flex animate-[fadeUp_1.2s_ease] flex-wrap gap-4"
             >
               <Link
-                href="#"
+                href="/book-studio"
                 className="group inline-flex items-center gap-3 rounded-full bg-[linear-gradient(135deg,#166774_0%,#0E4B57_100%)] px-8 py-4 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(14,75,87,0.35)] transition hover:-translate-y-1"
               >
                 <span>Book Studio</span>
@@ -122,10 +122,10 @@ export default function HookStudioHero() {
               </Link>
 
               <Link
-                href="#"
+                href="#services"
                 className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-transparent px-8 py-4 text-sm font-semibold text-white/90 transition hover:bg-white/5"
               >
-                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-white/25 text-[10px]">
+                <span className="flex h-6 w-6 pl-0.5 pt-0.5 items-center justify-center rounded-full border border-white/25 text-[10px]">
                   ▶
                 </span>
                 <span>Explore Services</span>

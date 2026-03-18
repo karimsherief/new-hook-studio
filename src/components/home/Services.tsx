@@ -135,7 +135,7 @@ export default function Services() {
   const [current, setCurrent] = useState(0);
 
   return (
-    <section className="relative overflow-hidden py-20 text-white md:py-28">
+    <section className="relative overflow-hidden py-20 text-white md:py-28" id="services">
       {/* Background */}
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">

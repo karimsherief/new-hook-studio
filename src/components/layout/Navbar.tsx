@@ -42,10 +42,10 @@ export default function Navbar({ user }: { user: User | null }) {
           className="flex shrink-0 items-center transition hover:opacity-90"
         >
           <Image
-            src="/images/logo/1.webp"
+            src="/images/logo/4.webp"
             alt="Hook Studio Logo"
             priority
-            width={200}
+            width={50}
             height={50}
             objectFit="cover"
             className="max-md:hidden"

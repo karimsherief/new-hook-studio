@@ -6,9 +6,20 @@ import { Label } from "@/components/ui/Label";
 import { StudioGrid } from "./StudioGrid";
 import { createClient } from "@/lib/supabase/client";
 import { useSearchParams } from "next/navigation";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  User,
+  Link as LinkIcon,
+  Layers3,
+  Clapperboard,
+  Send,
+} from "lucide-react";
 
 export function SelectStudioForm() {
   const searchParams = useSearchParams();
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -19,19 +30,11 @@ export function SelectStudioForm() {
   const [locationType, setLocationType] = useState(
     searchParams.get("location") || "",
   );
-  
-  // const getImages = async () => {
-  //   const supabase = createClient();
-  //   const { data, error: reelsError } = await supabase.storage
-  //     .from("booking-images")
-  //     .list("podcast");
+  const [submitted, setSubmitted] = useState(false);
 
-  //   return [];
-  // };
-
-  // const media = getImages();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitted(true);
     setError("");
     setSuccess(false);
 
@@ -68,7 +71,7 @@ export function SelectStudioForm() {
         first_name: formData.get("first_name") ?? null,
         last_name: formData.get("last_name") ?? null,
         phone: formData.get("phone") ?? null,
-        content_type: formData.get("contact_type") ?? null,
+        content_type: formData.get("content_type") ?? null,
         account_link: formData.get("account_link") ?? null,
         content_format: formData.get("service") ?? null,
         location: formData.get("location") ?? null,
@@ -89,6 +92,7 @@ export function SelectStudioForm() {
     setSelectedStudios([]);
     setSelectedService("");
     setLocationType("");
+    setSubmitted(false);
   };
 
   const handleImages = async (files: string[]) => {
@@ -106,419 +110,286 @@ export function SelectStudioForm() {
     return urls;
   };
 
-  const shellClass =
-    "rounded-[32px] border border-[#1F4E52]/10 bg-white/80 shadow-[0_24px_70px_rgba(31,78,82,0.08)] backdrop-blur-xl";
-
-  const sectionClass =
-    "rounded-[26px] border border-[#1F4E52]/10 bg-[#FFFEFC] p-5 md:p-6 shadow-[0_10px_30px_rgba(31,78,82,0.04)]";
-
   const inputClass =
-    "h-12 w-full rounded-[16px] border border-[#1F4E52]/12 bg-[#F8F7F3] px-4 text-sm text-[#163E42] outline-none transition-all duration-200 placeholder:text-[#1F4E52]/35 focus:border-[#1F4E52]/30 focus:bg-white focus:ring-4 focus:ring-[#E8CFA4]/20";
+    "h-14 w-full rounded-2xl border border-white/12 bg-white/8 pl-11 pr-4 text-sm text-white placeholder:text-white/45 outline-none backdrop-blur-md transition-all duration-200 focus:border-[#E8CFA4]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#E8CFA4]/10";
+
+  const selectClass =
+    "h-14 w-full appearance-none rounded-2xl border border-white/12 bg-white/8 pl-11 pr-10 text-sm text-white outline-none backdrop-blur-md transition-all duration-200 focus:border-[#E8CFA4]/50 focus:bg-white/10 focus:ring-4 focus:ring-[#E8CFA4]/10";
+
+  const cardClass =
+    "rounded-[28px] border border-white/10 bg-white/[0.04]  backdrop-blur-2xl";
 
   const badgeClass =
-    "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#1F4E52] text-[11px] font-semibold text-white shadow-[0_10px_20px_rgba(31,78,82,0.18)]";
-
-  const stepClass =
-    "rounded-[22px] border border-[#1F4E52]/10 bg-white/85 p-4 shadow-[0_10px_30px_rgba(31,78,82,0.05)] backdrop-blur-xl";
-
-  const infoCardClass =
-    "rounded-[20px] border border-white/10 bg-white/5 p-4 backdrop-blur-md";
+    "inline-flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,#B99458_0%,#E8CFA4_100%)] px-4 py-2 text-sm font-semibold text-[#143B3F] shadow-[0_12px_30px_rgba(185,148,88,0.28)]";
 
   return (
-    <section className="relative overflow-hidden bg-[#F6F3ED] py-12 md:py-20">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(31,78,82,0.08),transparent_28%),radial-gradient(circle_at_85%_15%,rgba(232,207,164,0.18),transparent_22%),linear-gradient(180deg,#F6F3ED_0%,#F3F0E9_100%)]" />
-      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#1F4E52_1px,transparent_1px)] bg-size-[22px_22px]" />
+    <section className="relative overflow-hidden">
+      <div className={`${cardClass} overflow-hidden`}>
+        <div className="">
+          <div className="p-6 md:p-10 lg:p-12">
+            <div className="max-w-2xl">
+              <span className={badgeClass}>
+                <Mail className="h-4 w-4" />
+                Studio Booking
+              </span>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-10 max-w-3xl text-center">
-          <span className="inline-flex rounded-full border border-[#E8CFA4]/70 bg-white/80 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#B99458]">
-            Studio Booking
-          </span>
+              <h1 className="mt-6 text-3xl font-semibold tracking-tight text-[#F8F5EF] md:text-5xl">
+                Build your perfect studio setup
+              </h1>
 
-          <h1 className="mt-4 text-3xl font-semibold tracking-tight text-[#143B3F] md:text-5xl">
-            Build your perfect studio setup
-          </h1>
-
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[#1F4E52]/70 md:text-base">
-            A refined booking experience designed for brands and creators who
-            want a clear, premium, and modern production flow.
-          </p>
-        </div>
-
-        <div className="mb-6 grid gap-4 md:grid-cols-3">
-          <div className={stepClass}>
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1F4E52] text-xs font-semibold text-white">
-                01
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C3A067]">
-                  Personal
-                </p>
-                <p className="mt-1 text-sm font-medium text-[#143B3F]">
-                  Add your contact details
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className={stepClass}>
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1F4E52] text-xs font-semibold text-white">
-                02
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C3A067]">
-                  Content
-                </p>
-                <p className="mt-1 text-sm font-medium text-[#143B3F]">
-                  Select content and account info
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className={stepClass}>
-            <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#1F4E52] text-xs font-semibold text-white">
-                03
-              </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C3A067]">
-                  Setup
-                </p>
-                <p className="mt-1 text-sm font-medium text-[#143B3F]">
-                  Confirm location and service
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-            <aside className="relative overflow-hidden rounded-[34px] bg-[linear-gradient(180deg,#123E43_0%,#0E3236_100%)] p-6 text-white shadow-[0_22px_70px_rgba(31,78,82,0.18)] md:p-8">
-              <div className="absolute -right-10 top-0 h-40 w-40 rounded-full bg-[#E8CFA4]/10 blur-3xl" />
-              <div className="absolute -left-8 bottom-0 h-44 w-44 rounded-full bg-white/5 blur-3xl" />
-
-              <div className="relative">
-                <span className="inline-flex rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-medium text-[#E8CFA4]">
-                  Booking Guide
-                </span>
-
-                <h2 className="mt-5 text-[30px] font-semibold leading-[1.08] tracking-tight md:text-[40px]">
-                  Shape your booking in a way that fits your content goals
-                </h2>
-
-                <p className="mt-4 text-sm leading-7 text-white/74">
-                  Tell us about your project, choose your service, and select
-                  the studio style that matches your production direction.
-                </p>
-
-                <div className="mt-8 space-y-3">
-                  <div className={infoCardClass}>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]">
-                      Personal Details
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-white/82">
-                      Add your basic information so our team can contact you and
-                      confirm your request.
-                    </p>
-                  </div>
-
-                  <div className={infoCardClass}>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]">
-                      Content Brief
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-white/82">
-                      Share your content type, brand link, and preferred service
-                      so we understand your production needs.
-                    </p>
-                  </div>
-
-                  <div className={infoCardClass}>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]">
-                      Studio Match
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-white/82">
-                      Choose the location and studio setup that best fits the
-                      style of your content.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </aside>
-
-            <div className={`${shellClass} p-4 md:p-6`}>
-              <div className="space-y-5">
-                <div className={sectionClass}>
-                  <div className="mb-5 flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
-                        Personal Information
-                      </p>
-                      <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
-                        Basic contact details
-                      </h3>
-                    </div>
-                    <div className={badgeClass}>01</div>
-                  </div>
-
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div>
-                      <Label
-                        htmlFor="first_name"
-                        className="mb-2 block text-sm font-medium text-[#143B3F]"
-                      >
-                        First Name
-                      </Label>
-                      <Input
-                        id="first_name"
-                        name="first_name"
-                        placeholder="Enter first name"
-                        className={inputClass}
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <Label
-                        htmlFor="last_name"
-                        className="mb-2 block text-sm font-medium text-[#143B3F]"
-                      >
-                        Last Name
-                      </Label>
-                      <Input
-                        id="last_name"
-                        name="last_name"
-                        placeholder="Enter last name"
-                        className={inputClass}
-                        required
-                      />
-                    </div>
-
-                    <div className="md:col-span-2">
-                      <Label
-                        htmlFor="phone"
-                        className="mb-2 block text-sm font-medium text-[#143B3F]"
-                      >
-                        Phone Number
-                      </Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        placeholder="Phone number"
-                        maxLength={11}
-                        onChange={(e) => {
-                          e.target.value = e.target.value.replace(
-                            /[^0-9]/g,
-                            "",
-                          );
-                        }}
-                        className={inputClass}
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className={sectionClass}>
-                  <div className="mb-5 flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
-                        Account Details
-                      </p>
-                      <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
-                        Brand and content information
-                      </h3>
-                    </div>
-                    <div className={badgeClass}>02</div>
-                  </div>
-
-                  <div className="grid gap-4">
-                    <div>
-                      <Label
-                        htmlFor="contact_type"
-                        className="mb-2 block text-sm font-medium text-[#143B3F]"
-                      >
-                        Content Type
-                      </Label>
-                      <select
-                        id="contact_type"
-                        name="contact_type"
-                        className={inputClass}
-                        required
-                        defaultValue=""
-                      >
-                        <option value="" disabled>
-                          Select content type
-                        </option>
-                        <option value="products">Products</option>
-                        <option value="education">Education</option>
-                        <option value="others">Others</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <Label
-                        htmlFor="account_link"
-                        className="mb-2 block text-sm font-medium text-[#143B3F]"
-                      >
-                        Account Link
-                      </Label>
-                      <Input
-                        id="account_link"
-                        name="account_link"
-                        type="url"
-                        placeholder="https://"
-                        className={inputClass}
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-[#F6F1E8]/68 md:text-base">
+                A premium booking experience for creators and brands who want a
+                modern, elegant, and frictionless production flow.
+              </p>
             </div>
 
-            <div className="lg:col-span-2">
-              <div className={`${shellClass} p-4 md:p-5`}>
-                <div className="space-y-5">
-                  <div className={sectionClass}>
-                    <div className="mb-5 flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
-                          Booking Setup
-                        </p>
-                        <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
-                          Choose location and service
-                        </h3>
-                      </div>
-                      <div className={badgeClass}>03</div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                      <div>
-                        <Label
-                          htmlFor="location"
-                          className="mb-2 block text-sm font-medium text-[#143B3F]"
-                        >
-                          Location Type
-                        </Label>
-                        <select
-                          id="location"
-                          name="location"
-                          onChange={(e) => {
-                            setLocationType(e.target.value);
-                            setSelectedStudios([]);
-                            setSelectedService("");
-                          }}
-                          className={inputClass}
-                          value={locationType}
-                          required
-                        >
-                          <option value="" disabled>
-                            Select location type
-                          </option>
-                          <option value="indoor">Indoor</option>
-                          <option value="outdoor">Outdoor</option>
-                        </select>
-                      </div>
-
-                      {locationType === "indoor" && (
-                        <div>
-                          <Label
-                            htmlFor="service"
-                            className="mb-2 block text-sm font-medium text-[#143B3F]"
-                          >
-                            Select Service
-                          </Label>
-                          <select
-                            id="service"
-                            name="service"
-                            onChange={(e) => {
-                              setSelectedService(e.target.value);
-                              setSelectedStudios([]);
-                            }}
-                            className={inputClass}
-                            value={selectedService}
-                            required
-                          >
-                            <option value="" disabled>
-                              Choose from available services
-                            </option>
-                            <option value="reels">Reels</option>
-                            <option value="podcast">Podcast</option>
-                            <option value="video-editing">Video editing</option>
-                            <option value="photo-shoot">Photo shoot</option>
-                          </select>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {locationType === "indoor" &&
-                    (selectedService === "reels" ||
-                      selectedService === "podcast") && (
-                      <div className={sectionClass}>
-                        <div className="mb-5 flex items-start justify-between gap-4">
-                          <div>
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#C3A067]">
-                              Studio Selection
-                            </p>
-                            <h3 className="mt-1 text-[22px] font-semibold tracking-tight text-[#143B3F]">
-                              Choose your preferred studio setup
-                            </h3>
-                            <p className="mt-2 text-sm leading-6 text-[#1F4E52]/65">
-                              Select one or more studios that align with your
-                              content style and production direction.
-                            </p>
-                          </div>
-                          <div className={badgeClass}>04</div>
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-4">
-                          <StudioGrid
-                            selectedService={selectedService}
-                            selectedStudios={selectedStudios}
-                            setSelectedStudios={setSelectedStudios}
-                          />
-                        </div>
-
-                        {selectedStudios.length === 0 && (
-                          <p className="mt-3 text-sm font-medium text-red-600">
-                            Please select at least one studio.
-                          </p>
-                        )}
-                      </div>
-                    )}
-
-                  {error && (
-                    <div className="rounded-[18px] border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
-                      {error}
-                    </div>
-                  )}
-
-                  {success && (
-                    <div className="rounded-[18px] border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
-                      Thank you. Your booking has been submitted.
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="h-14 w-full cursor-pointer rounded-[18px] bg-[linear-gradient(135deg,#1F4E52_0%,#285F64_100%)] text-sm font-semibold text-white shadow-[0_14px_30px_rgba(31,78,82,0.16)] transition hover:scale-[1.01] hover:shadow-[0_18px_35px_rgba(31,78,82,0.2)] disabled:cursor-not-allowed disabled:opacity-70"
+            <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <Label
+                    htmlFor="first_name"
+                    className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                   >
-                    {loading ? "Submitting..." : "Book Service"}
-                  </button>
+                    First Name*
+                  </Label>
+                  <div className="relative">
+                    <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                    <Input
+                      id="first_name"
+                      name="first_name"
+                      placeholder="Enter first name"
+                      className={inputClass}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label
+                    htmlFor="last_name"
+                    className="mb-2 block text-sm font-medium text-[#F8F5EF]"
+                  >
+                    Last Name*
+                  </Label>
+                  <div className="relative">
+                    <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                    <Input
+                      id="last_name"
+                      name="last_name"
+                      placeholder="Enter last name"
+                      className={inputClass}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
+
+              <div>
+                <Label
+                  htmlFor="phone"
+                  className="mb-2 block text-sm font-medium text-[#F8F5EF]"
+                >
+                  Phone Number*
+                </Label>
+                <div className="relative">
+                  <Phone className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="Phone number"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label
+                  htmlFor="content_type"
+                  className="mb-2 block text-sm font-medium text-[#F8F5EF]"
+                >
+                  Content Type*
+                </Label>
+                <div className="relative">
+                  <Layers3 className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                  <select
+                    id="content_type"
+                    name="content_type"
+                    className={selectClass}
+                    required
+                    defaultValue=""
+                  >
+                    <option value="" disabled className="text-black">
+                      Select content type
+                    </option>
+                    <option value="products" className="text-black">
+                      Products
+                    </option>
+                    <option value="education" className="text-black">
+                      Education
+                    </option>
+                    <option value="others" className="text-black">
+                      Others
+                    </option>
+                  </select>
+                  <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
+                </div>
+              </div>
+
+              <div>
+                <Label
+                  htmlFor="account_link"
+                  className="mb-2 block text-sm font-medium text-[#F8F5EF]"
+                >
+                  Account Link*
+                </Label>
+                <div className="relative">
+                  <LinkIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                  <Input
+                    id="account_link"
+                    name="account_link"
+                    type="url"
+                    placeholder="https://"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <Label
+                    htmlFor="location"
+                    className="mb-2 block text-sm font-medium text-[#F8F5EF]"
+                  >
+                    Location Type*
+                  </Label>
+                  <div className="relative">
+                    <MapPin className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                    <select
+                      id="location"
+                      name="location"
+                      value={locationType}
+                      onChange={(e) => {
+                        setLocationType(e.target.value);
+                        setSelectedStudios([]);
+                        setSelectedService("");
+                      }}
+                      className={selectClass}
+                      required
+                    >
+                      <option value="" disabled className="text-black">
+                        Select location type
+                      </option>
+                      <option value="indoor" className="text-black">
+                        Indoor
+                      </option>
+                      <option value="outdoor" className="text-black">
+                        Outdoor
+                      </option>
+                    </select>
+                    <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
+                  </div>
+                </div>
+
+                {locationType === "indoor" && (
+                  <div>
+                    <Label
+                      htmlFor="service"
+                      className="mb-2 block text-sm font-medium text-[#F8F5EF]"
+                    >
+                      Select Service*
+                    </Label>
+                    <div className="relative">
+                      <Clapperboard className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
+                      <select
+                        id="service"
+                        name="service"
+                        value={selectedService}
+                        onChange={(e) => {
+                          setSelectedService(e.target.value);
+                          setSelectedStudios([]);
+                        }}
+                        className={selectClass}
+                        required
+                      >
+                        <option value="" disabled className="text-black">
+                          Choose a service
+                        </option>
+                        <option value="reels" className="text-black">
+                          Reels
+                        </option>
+                        <option value="podcast" className="text-black">
+                          Podcast
+                        </option>
+                        <option value="video-editing" className="text-black">
+                          Video editing
+                        </option>
+                        <option value="photo-shoot" className="text-black">
+                          Photo shoot
+                        </option>
+                      </select>
+                      <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {locationType === "indoor" &&
+                (selectedService === "reels" ||
+                  selectedService === "podcast") && (
+                  <div className="rounded-[24px] border border-white/10 bg-white/[0.05] p-4 md:p-5">
+                    <div className="mb-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#E8CFA4]">
+                        Studio Selection
+                      </p>
+                      <h3 className="mt-2 text-xl font-semibold text-[#F8F5EF]">
+                        Choose your preferred studio setup
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-[#F6F1E8]/65">
+                        Select one or more studios that match your content style
+                        and production direction.
+                      </p>
+                    </div>
+
+                    <StudioGrid
+                      selectedService={selectedService}
+                      selectedStudios={selectedStudios}
+                      setSelectedStudios={setSelectedStudios}
+                    />
+
+                    {submitted && selectedStudios.length === 0 && (
+                      <p className="mt-3 text-sm font-medium text-red-300">
+                        Please select at least one studio.
+                      </p>
+                    )}
+                  </div>
+                )}
+
+              {error && (
+                <div className="rounded-2xl border border-red-400/25 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-200">
+                  {error}
+                </div>
+              )}
+
+              {success && (
+                <div className="rounded-2xl border border-emerald-400/25 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-200">
+                  Thank you. Your booking has been submitted.
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#B99458_0%,#D7BA84_100%)] px-6 text-sm font-semibold text-[#143B3F] shadow-[0_16px_40px_rgba(185,148,88,0.28)] transition duration-200 hover:translate-y-[-1px] hover:shadow-[0_22px_45px_rgba(185,148,88,0.34)] disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                <Send className="h-4 w-4" />
+                {loading ? "Submitting..." : "Book Service"}
+              </button>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </section>
   );
