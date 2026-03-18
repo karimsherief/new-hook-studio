@@ -3,6 +3,7 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const services = [
   {
@@ -27,6 +28,47 @@ const services = [
   },
 ];
 
+const slides = [
+  {
+    id: 1,
+    badge: "PREMIUM CREATIVE STUDIO",
+    titleTop: "We create content",
+    titleAccent: "that stands out",
+    desc: "Join modern brands and creators who trust Hook Studio to shape polished visuals and refined production experiences.",
+    subDesc:
+      "A studio environment designed to make every frame feel premium, intentional, and memorable.",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
+    imageLabel: "VISUAL CONTENT",
+    count: "01",
+  },
+  {
+    id: 2,
+    badge: "MODERN MEDIA PRODUCTION",
+    titleTop: "Premium setups for",
+    titleAccent: "ambitious brands",
+    desc: "We build visual experiences that help your content look sharper, more professional, and aligned with your brand identity.",
+    subDesc:
+      "From studio shoots to branded campaigns, every detail is handled with clarity and style.",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+    imageLabel: "BRAND SHOOTS",
+    count: "02",
+  },
+  {
+    id: 3,
+    badge: "HOOK STUDIO EXPERIENCE",
+    titleTop: "Create stronger visuals",
+    titleAccent: "with confidence",
+    desc: "Our production workflow is crafted for podcasts, photography, social content, and cinematic storytelling that leaves a lasting impression.",
+    subDesc:
+      "A refined content space where quality, creativity, and modern aesthetics come together.",
+    image:
+      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1600&q=80",
+    imageLabel: "STUDIO EXPERIENCE",
+    count: "03",
+  },
+];
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -82,6 +124,8 @@ const fadeRight: Variants = {
 };
 
 export default function Services() {
+  const [current, setCurrent] = useState(0);
+
   return (
     <section className="relative overflow-hidden py-20 text-white md:py-28">
       {/* Background */}
@@ -127,74 +171,107 @@ export default function Services() {
         {/* Top grid */}
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
           {/* Left visual */}
+
           <motion.div
             variants={fadeLeft}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="group relative min-h-[580px] overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+            viewport={{ once: false, amount: 0.2 }}
+            className="relative  rounded-4xl border border-white/10 bg-white/4 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl"
           >
-            <div className="relative h-full overflow-hidden rounded-[28px] border border-white/8">
-              <Image
-                src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80"
-                alt="Modern studio workspace"
-                fill
-                unoptimized
-                className="object-cover transition duration-700 group-hover:scale-105"
-              />
+            {slides.map((slide, index) => {
+              const isActive = index === current;
+              return (
+                <motion.div
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeIn",
+                      },
+                    },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeIn",
+                      },
+                    },
+                  }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.2 }}
+                  className={`group inset-3 absolute  overflow-hidden  rounded-3xl
+                  ${!isActive && "hidden"}
+                `}
+                >
+                  <div className="overflow-hidden rounded-[28px] border border-white/8">
+                    <Image
+                      src={slide.image}
+                      alt="Modern studio workspace"
+                      fill
+                      unoptimized
+                      objectFit="cover"
+                      className=" transition duration-700 group-hover:scale-105"
+                    />
 
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,19,22,0.10)_0%,rgba(4,19,22,0.22)_38%,rgba(4,19,22,0.94)_100%)]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,19,22,0.10)_0%,rgba(4,19,22,0.22)_38%,rgba(4,19,22,0.94)_100%)]" />
 
-              <div className="absolute left-0 right-0 top-0 flex items-start justify-between p-6 md:p-8">
-                <div className="inline-flex rounded-full border border-white/15 bg-[#06171B]/75 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md">
-                  Hook Studio
-                </div>
+                    <div className="absolute left-0 right-0 top-0 flex items-start justify-between p-6 md:p-8">
+                      <div className="inline-flex rounded-full border border-white/15 bg-[#06171B]/75 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md">
+                        Hook Studio
+                      </div>
 
-                <div className="hidden rounded-full border border-white/10 bg-[#E0C28F]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#E8CCA0] backdrop-blur-md md:inline-flex">
-                  Premium Production
-                </div>
-              </div>
+                      <div className="hidden rounded-full border border-white/10 bg-[#E0C28F]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#E8CCA0] backdrop-blur-md md:inline-flex">
+                        Premium Production
+                      </div>
+                    </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <div className="max-w-xl rounded-[28px] border border-white/15 bg-white/10 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-md md:p-6">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#F4E2C3]">
-                    Creative Studio
-                  </p>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                      <div className="max-w-xl rounded-[28px] border border-white/15 bg-white/10 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-md md:p-6">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#F4E2C3]">
+                          Creative Studio
+                        </p>
 
-                  <h3 className="mt-3 text-2xl font-semibold leading-tight text-white md:text-3xl">
-                    A premium environment built for standout content experiences
-                  </h3>
+                        <h3 className="mt-3 text-2xl font-semibold leading-tight text-white md:text-3xl">
+                          A premium environment built for standout content
+                          experiences
+                        </h3>
 
-                  <p className="mt-3 text-sm leading-7 text-white/78 md:text-base">
-                    Crafted for podcasts, videos, social content, and
-                    photography with modern styling, visual clarity, and a
-                    strong branded presence.
-                  </p>
+                        <p className="mt-3 text-sm leading-7 text-white/78 md:text-base">
+                          Crafted for podcasts, videos, social content, and
+                          photography with modern styling, visual clarity, and a
+                          strong branded presence.
+                        </p>
 
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {["Podcast", "Video", "Photography"].map((item) => (
-                      <span
-                        key={item}
-                        className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur-md"
-                      >
-                        {item}
-                      </span>
-                    ))}
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          {["Podcast", "Video", "Photography"].map((item) => (
+                            <span
+                              key={item}
+                              className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur-md"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* floating mini card */}
+                    <div className="absolute bottom-8 right-8 hidden w-44 rounded-2xl border border-white/12 bg-[#0B2126]/80 p-4 shadow-[0_12px_24px_rgba(0,0,0,0.20)] backdrop-blur-xl lg:block">
+                      <p className="text-xs uppercase tracking-[0.18em] text-[#F4E2C3]">
+                        Studio Mood
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-white/80">
+                        Clean lighting, elegant styling, and a brand-first
+                        production feel.
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </div>
-
-              {/* floating mini card */}
-              <div className="absolute bottom-8 right-8 hidden w-44 rounded-2xl border border-white/12 bg-[#0B2126]/80 p-4 shadow-[0_12px_24px_rgba(0,0,0,0.20)] backdrop-blur-xl lg:block">
-                <p className="text-xs uppercase tracking-[0.18em] text-[#F4E2C3]">
-                  Studio Mood
-                </p>
-                <p className="mt-2 text-sm leading-6 text-white/80">
-                  Clean lighting, elegant styling, and a brand-first production
-                  feel.
-                </p>
-              </div>
-            </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {/* Right content */}
@@ -203,7 +280,7 @@ export default function Services() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8 shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-xl md:p-10"
+            className="rounded-4xl border border-white/10 bg-white/5 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-xl md:p-10"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E0C28F]">
               What We Offer
@@ -221,16 +298,20 @@ export default function Services() {
               viewport={{ once: true, amount: 0.2 }}
               className="mt-8 grid gap-4"
             >
-              {services.map((service) => (
-                <motion.div
+              {services.map((service, index) => (
+                <motion.button
                   key={service.title}
                   variants={fadeUp}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  transition={{ duration: 0.25 }}
-                  className="group rounded-[24px] border border-white/8 bg-white/[0.04] p-5 shadow-[0_8px_20px_rgba(0,0,0,0.10)] backdrop-blur-md"
+                  className={`group text-left cursor-pointer rounded-3xl border transition duration-300 bg-white/4 p-5 shadow-[0_8px_20px_rgba(0,0,0,0.10)] backdrop-blur-md
+                  ${
+                    current === index
+                      ? "border-white -translate-y-1 scale-[1.01]"
+                      : "border-white/8 hover:border-white hover:-translate-y-1 hover:scale-[1.01]"
+                  }`}
+                  onClick={() => setCurrent(index)}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#E0C28F]/18 text-xl shadow-sm transition group-hover:scale-105">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#E0C28F]/18 text-xl shadow-sm transition">
                       {service.icon}
                     </div>
 
@@ -243,7 +324,7 @@ export default function Services() {
                       </p>
                     </div>
                   </div>
-                </motion.div>
+                </motion.button>
               ))}
             </motion.div>
 

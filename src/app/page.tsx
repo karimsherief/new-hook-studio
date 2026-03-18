@@ -24,7 +24,7 @@ const heroVariants: Variants = {
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col overflow-hidden ">
+    <main className="flex min-h-screen flex-col">
       <motion.section
         variants={heroVariants}
         initial="hidden"

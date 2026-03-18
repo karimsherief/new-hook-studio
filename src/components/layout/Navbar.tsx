@@ -121,9 +121,9 @@ export default function Navbar({ user }: { user: User | null }) {
         )}
 
         <aside
-          className={`fixed  transition duration-300 p-5 w-50 right-0 top-0 h-screen z-20 flex flex-col
+          className={`fixed transition duration-300 p-5 w-50 right-0 top-0 h-screen flex flex-col
             bg-[#0F3E47]/30 backdrop-blur-lg border-l border-[#0F3E47]-500/20 shadow-2xl
-          ${isAsideOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}
+          ${isAsideOpen ? "z-50 opacity-100" : "-z-50 opacity-0"}`}
         >
           <div className="self-end">
             <button
@@ -142,6 +142,7 @@ export default function Navbar({ user }: { user: User | null }) {
                     ? "text-white"
                     : "text-white/70 hover:text-white"
                 }`}
+                onClick={() => setAsideOpen(false)}
               >
                 <House /> Home
               </Link>
@@ -153,6 +154,7 @@ export default function Navbar({ user }: { user: User | null }) {
                     ? "text-white"
                     : "text-white/70 hover:text-white"
                 }`}
+                onClick={() => setAsideOpen(false)}
               >
                 <Clapperboard /> Book Studio
               </Link>
@@ -164,6 +166,7 @@ export default function Navbar({ user }: { user: User | null }) {
                       ? "text-white"
                       : "text-white/70 hover:text-white"
                   }`}
+                  onClick={() => setAsideOpen(false)}
                 >
                   <LayoutDashboard /> Dashboard
                 </Link>
@@ -172,7 +175,10 @@ export default function Navbar({ user }: { user: User | null }) {
             {user != null && (
               <button
                 className="flex items-center gap-2 cursor-pointer bg-[#0F3E47] px-5 py-3 rounded-full shadow-lg text-white text-left"
-                onClick={handleSignout}
+                onClick={() => {
+                  handleSignout();
+                  setAsideOpen(false);
+                }}
               >
                 <LogOut />
                 Logout

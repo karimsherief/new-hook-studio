@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="fixed inset-0 bg-[linear-gradient(180deg,#031114_0%,#06191d_45%,#082126_100%)] -z-10" />
         <div className="fixed inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[22px_22px] -z-10" />
