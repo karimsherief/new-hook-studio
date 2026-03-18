@@ -34,7 +34,7 @@ export default function Navbar({ user }: { user: User | null }) {
     setAsideOpen(false);
   }
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#0F3E47]/10 bg-[#F8F6F2]/95 backdrop-blur supports-backdrop-filter:bg-[#F8F6F2]/80 ">
+    <header className="sticky inset-0 z-50 bg-[#0F3E47]-900/95 backdrop-blur-lg border-b border-[#0F3E47]-500/20 shadow-2xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
         {/* LOGO */}
         <Link
@@ -51,7 +51,7 @@ export default function Navbar({ user }: { user: User | null }) {
             className="max-md:hidden"
           />
           <Image
-            src="/images/logo/5.webp"
+            src="/images/logo/4.webp"
             alt="Hook Studio Logo"
             priority
             width={50}
@@ -67,9 +67,7 @@ export default function Navbar({ user }: { user: User | null }) {
             <Link
               href="/"
               className={`relative pb-1 text-sm font-medium transition md:text-base ${
-                isActive("/")
-                  ? "text-[#0F3E47]"
-                  : "text-[#0F3E47]/70 hover:text-[#0F3E47]"
+                isActive("/") ? "text-white" : "text-white/70 hover:text-white"
               }`}
             >
               Home
@@ -92,24 +90,24 @@ export default function Navbar({ user }: { user: User | null }) {
                   href="/admin"
                   className={`relative pb-1 text-sm font-medium transition md:text-base ${
                     isActive("/")
-                      ? "text-[#0F3E47]"
-                      : "text-[#0F3E47]/70 hover:text-[#0F3E47]"
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
                   }`}
                 >
                   Dashboard
                 </Link>
 
                 <button
-                  className="underline cursor-pointer"
+                  className="underline cursor-pointer text-white"
                   onClick={handleSignout}
                 >
-                  Sign Out
+                  Logout
                 </button>
               </>
             )}
           </div>
           <button
-            className="cursor-pointer md:hidden"
+            className="cursor-pointer md:hidden text-white"
             onClick={() => setAsideOpen(true)}
           >
             <Menu />
@@ -123,13 +121,14 @@ export default function Navbar({ user }: { user: User | null }) {
         )}
 
         <aside
-          className={`fixed bg-white transition duration-300 p-5 w-50 right-0 top-0 h-screen z-20 flex flex-col
+          className={`fixed  transition duration-300 p-5 w-50 right-0 top-0 h-screen z-20 flex flex-col
+            bg-[#0F3E47]/30 backdrop-blur-lg border-l border-[#0F3E47]-500/20 shadow-2xl
           ${isAsideOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"}`}
         >
           <div className="self-end">
             <button
               onClick={() => setAsideOpen(false)}
-              className="text-red-500 font-bold cursor-pointer"
+              className="text-[#EAD8B7] font-bold cursor-pointer"
             >
               <X />
             </button>
@@ -140,8 +139,8 @@ export default function Navbar({ user }: { user: User | null }) {
                 href="/"
                 className={`pb-1 text-sm flex items-center gap-2 font-medium transition md:text-base ${
                   isActive("/")
-                    ? "text-[#0F3E47]"
-                    : "text-[#0F3E47]/70 hover:text-[#0f3e47]"
+                    ? "text-white"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
                 <House /> Home
@@ -151,8 +150,8 @@ export default function Navbar({ user }: { user: User | null }) {
                 href="/book-studio"
                 className={`pb-1 text-sm flex items-center gap-2 font-medium transition md:text-base ${
                   isActive("/book-studio")
-                    ? "text-[#0F3E47]"
-                    : "text-[#0F3E47]/70 hover:text-[#0f3e47]"
+                    ? "text-white"
+                    : "text-white/70 hover:text-white"
                 }`}
               >
                 <Clapperboard /> Book Studio
@@ -162,8 +161,8 @@ export default function Navbar({ user }: { user: User | null }) {
                   href="/admin"
                   className={`pb-1 text-sm flex items-center gap-2 font-medium transition md:text-base ${
                     isActive("/admin")
-                      ? "text-[#0F3E47]"
-                      : "text-[#0F3E47]/70 hover:text-[#0f3e47]"
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
                   }`}
                 >
                   <LayoutDashboard /> Dashboard
@@ -172,7 +171,7 @@ export default function Navbar({ user }: { user: User | null }) {
             </div>
             {user != null && (
               <button
-                className="flex items-center gap-2 cursor-pointer bg-[#0F3E47] py-2 px-1 rounded-md shadow-lg text-white text-left"
+                className="flex items-center gap-2 cursor-pointer bg-[#0F3E47] px-5 py-3 rounded-full shadow-lg text-white text-left"
                 onClick={handleSignout}
               >
                 <LogOut />

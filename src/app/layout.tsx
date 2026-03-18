@@ -32,6 +32,9 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
+        <div className="fixed inset-0 bg-[linear-gradient(180deg,#031114_0%,#06191d_45%,#082126_100%)] -z-10" />
+        <div className="fixed inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[22px_22px] -z-10" />
+        <div className="fixed inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[72px_72px] opacity-[0.05] -z-10" />
         <Navbar user={user} />
         {children}
         <Footer />

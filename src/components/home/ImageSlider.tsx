@@ -68,15 +68,8 @@ export default function HookStudioHero() {
   const activeSlide = slides[current];
 
   return (
-    <section className="relative overflow-hidden bg-[#0B3F49] text-white">
+    <section className="relative overflow-hidden  text-white">
       {/* background بنفس روح لون اللوجو */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_50%,rgba(22,103,116,0.24),transparent_24%),radial-gradient(circle_at_82%_78%,rgba(6,26,31,0.22),transparent_26%),linear-gradient(90deg,#072A31_0%,#0B3F49_45%,#0E4B57_100%)]" />
-      <div className="absolute inset-0 opacity-[0.045] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
-
-      {/* glows */}
-      <div className="absolute left-[45%] top-[58%] h-24 w-24 rounded-full bg-[#166774]/25 blur-2xl" />
-      <div className="absolute right-[7%] top-[44%] h-24 w-24 rounded-full bg-[#1D6C79]/25 blur-xl" />
-      <div className="absolute bottom-[10%] left-[47%] h-28 w-28 rounded-full bg-[#114E59]/25 blur-xl" />
 
       <div className="relative mx-auto min-h-screen max-w-7xl px-6 lg:px-10">
         <div className="grid min-h-screen items-center gap-12 py-12 lg:grid-cols-[0.95fr_1.05fr]">

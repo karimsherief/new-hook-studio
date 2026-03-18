@@ -83,16 +83,8 @@ const fadeRight: Variants = {
 
 export default function Services() {
   return (
-    <section className="relative overflow-hidden bg-[#041316] py-20 text-white md:py-28">
+    <section className="relative overflow-hidden py-20 text-white md:py-28">
       {/* Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#031114_0%,#06191d_45%,#082126_100%)]" />
-      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:72px_72px] opacity-[0.05]" />
-
-      {/* Glows */}
-      <div className="pointer-events-none absolute -left-24 top-8 h-[280px] w-[280px] rounded-full bg-[#0DA9B3]/15 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-80px] top-20 h-[340px] w-[340px] rounded-full bg-[#E0C28F]/10 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-[-100px] left-1/3 h-[320px] w-[320px] rounded-full bg-[#0A5E64]/15 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Heading */}

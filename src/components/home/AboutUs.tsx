@@ -31,39 +31,7 @@ export default function AboutUs() {
   return (
     <section className="relative overflow-hidden  py-20 text-white md:py-28">
       {/* Background */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,#031114_0%,#06191d_45%,#082126_100%)]" />
-      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:72px_72px] opacity-[0.05]" />
-
-      <motion.div
-        aria-hidden
-        className="absolute -left-20 top-20 h-64 w-64 rounded-full bg-[#166774]/25 blur-3xl"
-        animate={{
-          x: [0, 20, 0],
-          y: [0, 30, 0],
-          scale: [1, 1.08, 1],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        aria-hidden
-        className="absolute -bottom-10 right-[5%] h-72 w-72 rounded-full bg-[#D8B277]/10 blur-3xl"
-        animate={{
-          x: [0, -25, 0],
-          y: [0, -20, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div
