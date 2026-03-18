@@ -5,22 +5,26 @@ import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { StudioGrid } from "./StudioGrid";
 import { createClient } from "@/lib/supabase/client";
+import { useSearchParams } from "next/navigation";
 
 export function SelectStudioForm() {
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const [selectedService, setSelectedService] = useState("");
   const [selectedStudios, setSelectedStudios] = useState<string[]>([]);
-  const [locationType, setLocationType] = useState("");
-
+  const [selectedService, setSelectedService] = useState(
+    searchParams.get("service") || "",
+  );
+  const [locationType, setLocationType] = useState(
+    searchParams.get("location") || "",
+  );
+  
   // const getImages = async () => {
   //   const supabase = createClient();
   //   const { data, error: reelsError } = await supabase.storage
   //     .from("booking-images")
   //     .list("podcast");
-
-    
 
   //   return [];
   // };
@@ -309,7 +313,10 @@ export function SelectStudioForm() {
                         placeholder="Phone number"
                         maxLength={11}
                         onChange={(e) => {
-                          e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                          e.target.value = e.target.value.replace(
+                            /[^0-9]/g,
+                            "",
+                          );
                         }}
                         className={inputClass}
                         required

@@ -3,28 +3,36 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const services = [
   {
     title: "Professional podcast recording",
     desc: "Crystal-clear audio capture with a studio environment designed for polished conversations and premium episodes.",
     icon: "🎙️",
+    location: "",
+    services: "",
   },
   {
     title: "Video production",
     desc: "Modern visual setups, cinematic framing, and branded execution for content that feels elevated and intentional.",
     icon: "🎥",
+    location: "indoor",
+    services: "video-editing",
   },
   {
     title: "Social media content creation",
     desc: "Short-form content built to look sharp, consistent, and ready for platforms that demand fast visual impact.",
     icon: "📱",
+    location: "",
+    services: "",
   },
   {
     title: "Photography sessions",
     desc: "Clean, stylish photography experiences for personal branding, campaigns, products, and creative concepts.",
     icon: "📸",
+    location: "",
+    services: "",
   },
 ];
 
@@ -299,7 +307,7 @@ export default function Services() {
               className="mt-8 grid gap-4"
             >
               {services.map((service, index) => (
-                <motion.button
+                <motion.div
                   key={service.title}
                   variants={fadeUp}
                   className={`group text-left cursor-pointer rounded-3xl border transition duration-300 bg-white/4 p-5 shadow-[0_8px_20px_rgba(0,0,0,0.10)] backdrop-blur-md
@@ -308,9 +316,12 @@ export default function Services() {
                       ? "border-white -translate-y-1 scale-[1.01]"
                       : "border-white/8 hover:border-white hover:-translate-y-1 hover:scale-[1.01]"
                   }`}
-                  onClick={() => setCurrent(index)}
+                  onMouseEnter={() => setCurrent(index)}
                 >
-                  <div className="flex items-start gap-4">
+                  <Link
+                    href={`/book-studio?location=${service.location}&service=${service.services}`}
+                    className="flex items-start gap-4"
+                  >
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#E0C28F]/18 text-xl shadow-sm transition">
                       {service.icon}
                     </div>
@@ -323,8 +334,8 @@ export default function Services() {
                         {service.desc}
                       </p>
                     </div>
-                  </div>
-                </motion.button>
+                  </Link>
+                </motion.div>
               ))}
             </motion.div>
 
@@ -415,7 +426,7 @@ export default function Services() {
                 </p>
               </div>
 
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-[24px] border border-white/15 bg-white/10 text-3xl text-white shadow-inner backdrop-blur-md">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-3xl border border-white/15 bg-white/10 text-3xl text-white shadow-inner backdrop-blur-md">
                 ✨
               </div>
             </div>
