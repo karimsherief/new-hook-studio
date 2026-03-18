@@ -177,7 +177,7 @@ export default function Services() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.2 }}
-            className="relative  rounded-4xl border border-white/10 bg-white/4 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+            className="relative max-lg:h-125 rounded-4xl border border-white/10 bg-white/4 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl"
           >
             {slides.map((slide, index) => {
               const isActive = index === current;
@@ -202,7 +202,7 @@ export default function Services() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.2 }}
-                  className={`group inset-3 absolute  overflow-hidden  rounded-3xl
+                  className={`group inset-3  absolute  overflow-hidden  rounded-3xl
                   ${!isActive && "hidden"}
                 `}
                 >
