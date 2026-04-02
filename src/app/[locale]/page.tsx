@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import ImageSlider from "@/components/home/ImageSlider";
 import AboutUs from "@/components/home/AboutUs";
@@ -23,6 +23,12 @@ const heroVariants: Variants = {
 };
 
 export default function HomePage() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const scrollToSection = () => {
+    sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <main className="flex min-h-screen flex-col">
       <motion.section
@@ -31,10 +37,10 @@ export default function HomePage() {
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
       >
-        <ImageSlider />
+        <ImageSlider scrollToSection={scrollToSection} />
       </motion.section>
       <AboutUs />
-      <Services />
+      <Services sectionRef={sectionRef} />
     </main>
   );
 }

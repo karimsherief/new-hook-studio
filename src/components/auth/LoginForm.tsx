@@ -58,7 +58,7 @@ export function LoginForm({ next }: { next?: string }) {
       >
         {loading ? "Signing in…" : "Sign in"}
       </button>
-      <p className="text-center text-sm text-zinc-500 dark:text-zinc-400">
+      <p className="text-center text-sm text-zinc-300">
         <a href="/" className="underline hover:no-underline">
           Back to home
         </a>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { User } from "@/types/database";
 import {
   Clapperboard,
@@ -13,6 +13,8 @@ import {
   X,
 } from "lucide-react";
 import { useRef, useState } from "react";
+
+import { useLocale } from "next-intl";
 
 export default function Navbar({ user }: { user: User | null }) {
   const pathname = usePathname();
@@ -37,12 +39,13 @@ export default function Navbar({ user }: { user: User | null }) {
     <header className="sticky inset-0 z-50 bg-[#0F3E47]-900/95 backdrop-blur-lg border-b border-[#0F3E47]-500/20 shadow-2xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
         {/* LOGO */}
+        <LocaleSwitcher />
         <Link
           href="/"
           className="flex shrink-0 items-center transition hover:opacity-90"
         >
           <Image
-            src="/images/logo/4.webp"
+            src="/logos/4.webp"
             alt="Hook Studio Logo"
             priority
             width={50}
@@ -51,7 +54,7 @@ export default function Navbar({ user }: { user: User | null }) {
             className="max-md:hidden"
           />
           <Image
-            src="/images/logo/4.webp"
+            src="/logos/4.webp"
             alt="Hook Studio Logo"
             priority
             width={50}
@@ -188,5 +191,28 @@ export default function Navbar({ user }: { user: User | null }) {
         </aside>
       </div>
     </header>
+  );
+}
+
+function LocaleSwitcher() {
+  const router = useRouter();
+  const pathName = usePathname();
+  const currentLocale = useLocale();
+
+  const changeLanguage = (newLocale: string) => {
+    const newPathname = pathName.replace(`/${currentLocale}`, `/${newLocale}`);
+
+    router.push(newPathname);
+  };
+
+  return (
+    <select
+      className="bg-white rounded px-2 py-1 text-black font-medium"
+      onChange={(e) => changeLanguage(e.target.value)}
+      value={currentLocale}
+    >
+      <option value="en">us English</option>
+      <option value="ar">ar Arabic</option>
+    </select>
   );
 }

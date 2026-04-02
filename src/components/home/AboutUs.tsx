@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 const containerVariants: Variants = {
@@ -28,10 +29,11 @@ const itemVariants: Variants = {
 };
 
 export default function AboutUs() {
+  const t = useTranslations("About");
+
   return (
     <section className="relative overflow-hidden  py-20 text-white md:py-28">
       {/* Background */}
-      
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div
@@ -45,20 +47,21 @@ export default function AboutUs() {
           <div>
             <motion.div
               variants={itemVariants}
-              className="mb-5 inline-flex rounded-full border border-[#D8B277]/20 bg-[#D8B277]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#E8CFA4]"
+              className="mb-5 inline-flex rounded-full border border-[#D8B277]/20 bg-[#D8B277]/10 px-4 py-2 text-xs font-semibold uppercase  text-[#E8CFA4]"
             >
-              About Hook Studio
+              {t("AboutHookStudio")}
             </motion.div>
 
             <motion.h2
               variants={itemVariants}
-              className="max-w-2xl text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl xl:text-6xl"
+              className="max-w-2xl text-2xl font-bold  tracking-tight text-white md:text-3xl xl:text-4xl mb-3"
             >
-              We create content spaces that feel{" "}
+              {/* We create content spaces that feel{" "}
               <span className="text-[#D8B277]">premium</span>, modern, and built
-              for ambitious brands.
+              for ambitious brands. */}
+              {t("title")}
             </motion.h2>
-
+            {/* 
             <motion.p
               variants={itemVariants}
               className="mt-6 max-w-xl text-base leading-8 text-white/72 md:text-lg"
@@ -76,13 +79,13 @@ export default function AboutUs() {
               From podcasts and interviews to video production and branded
               storytelling, every setup is crafted to help your ideas look more
               refined, professional, and memorable.
-            </motion.p>
+            </motion.p> */}
 
             <motion.div
               variants={itemVariants}
-              className="mt-8 flex flex-wrap gap-3"
+              className="flex flex-wrap gap-3"
             >
-              {["Podcast Sets", "Video Production", "Brand Content"].map(
+              {[t("PodcastSets"), t("VideoProduction"), t("BrandContent")].map(
                 (item) => (
                   <span
                     key={item}
@@ -94,28 +97,15 @@ export default function AboutUs() {
               )}
             </motion.div>
 
-            <motion.div
-              variants={itemVariants}
-              className="mt-10 flex flex-wrap gap-4"
-            >
-              <button className="rounded-full bg-[linear-gradient(135deg,#166774_0%,#0E4B57_100%)] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_rgba(14,75,87,0.35)] transition hover:scale-[1.02] hover:brightness-110">
-                Book Studio
-              </button>
-
-              <button className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-[#D8B277]/30 hover:bg-white/10">
-                Explore Services
-              </button>
-            </motion.div>
-
             {/* Stats */}
             <motion.div
               variants={itemVariants}
               className="mt-12 grid gap-4 sm:grid-cols-3"
             >
               {[
-                { value: "4K+", label: "Premium-ready visuals" },
-                { value: "360°", label: "Creative production support" },
-                { value: "24/7", label: "Brand-focused flexibility" },
+                { value: "4K+", label: t("Premium-readyVisuals") },
+                { value: "360°", label: t("CreativeProductionSupport") },
+                { value: "24/7", label: t("Brand-focusedFlexibility") },
               ].map((stat) => (
                 <div
                   key={stat.label}
@@ -137,7 +127,7 @@ export default function AboutUs() {
             <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl">
               <div className="relative h-[520px] overflow-hidden rounded-[26px]">
                 <Image
-                  src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1400&auto=format&fit=crop"
+                  src="/images/about-us.webp"
                   alt="Hook Studio creative production space"
                   fill
                   unoptimized
@@ -152,52 +142,19 @@ export default function AboutUs() {
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <div className="max-w-lg">
-                    <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#E8CFA4]">
-                      Studio Experience
+                    <p className="font-semibold uppercase  text-[#E8CFA4]">
+                      {t("ImageSubTitle")}
                     </p>
                     <h3 className="mt-3 text-2xl font-semibold leading-snug text-white md:text-3xl">
-                      A refined environment for standout visual content
+                      {t("ImageTitle")}
                     </h3>
                     <p className="mt-3 max-w-md text-sm leading-6 text-white/75 md:text-base">
-                      Designed to support podcasts, branded shoots, and social
-                      media production with a modern, professional feel.
+                      {t("ImageDesc")}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Floating cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.25, duration: 0.6 }}
-              className="absolute -left-4 bottom-10 hidden w-52 rounded-2xl border border-white/10 bg-[#0A343C]/85 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.28)] backdrop-blur-xl md:block"
-            >
-              <p className="text-xs uppercase tracking-[0.18em] text-[#E8CFA4]">
-                Premium Setup
-              </p>
-              <p className="mt-2 text-sm leading-6 text-white/80">
-                Styled spaces, clean lighting, and a polished production mood.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.35, duration: 0.6 }}
-              className="absolute -right-3 top-10 hidden w-48 rounded-2xl border border-[#D8B277]/15 bg-[#D8B277]/10 p-4 shadow-[0_12px_30px_rgba(0,0,0,0.18)] backdrop-blur-xl md:block"
-            >
-              <p className="text-sm font-semibold text-[#E8CFA4]">
-                Brand-first production
-              </p>
-              <p className="mt-2 text-sm leading-6 text-white/75">
-                Every frame is shaped to look intentional and memorable.
-              </p>
-            </motion.div>
-
             <div className="absolute right-10 top-10 h-20 w-20 rounded-full bg-[#166774]/28 blur-2xl" />
           </motion.div>
         </motion.div>

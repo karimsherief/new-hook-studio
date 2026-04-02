@@ -3,34 +3,48 @@
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { RefObject, useState } from "react";
 
 const services = [
   {
     title: "Professional podcast recording",
-    desc: "Crystal-clear audio capture with a studio environment designed for polished conversations and premium episodes.",
+    desc: "Record in a fully equipped studio with high-end audio clarity and controlled acoustics — ensuring every conversation sounds polished and professional.",
     icon: "🎙️",
     location: "",
     services: "",
   },
   {
     title: "Video production",
-    desc: "Modern visual setups, cinematic framing, and branded execution for content that feels elevated and intentional.",
+    desc: "End-to-end video production using modern setups, cinematic framing, and precise execution — delivering content that looks refined and on-brand.",
     icon: "🎥",
     location: "indoor",
     services: "video-editing",
   },
   {
+    title: "Creative Direction",
+    desc: "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market.",
+    icon: "🎬",
+    location: "indoor",
+    services: "video-editing",
+  },
+  {
     title: "Social media content creation",
-    desc: "Short-form content built to look sharp, consistent, and ready for platforms that demand fast visual impact.",
+    desc: "Short-form content tailored for each platform — visually sharp, consistent, and designed to drive engagement.",
     icon: "📱",
     location: "",
     services: "",
   },
   {
     title: "Photography sessions",
-    desc: "Clean, stylish photography experiences for personal branding, campaigns, products, and creative concepts.",
+    desc: "Professional photography for brands, products, and campaigns — focused on clean visuals, balanced lighting, and a polished finish.",
     icon: "📸",
+    location: "",
+    services: "",
+  },
+  {
+    title: "Video Editing",
+    desc: "We transform raw footage into polished, cohesive videos through precise editing, color grading, and sound design — ensuring a smooth and professional final result.",
+    icon: "🎥",
     location: "",
     services: "",
   },
@@ -45,8 +59,7 @@ const slides = [
     desc: "Join modern brands and creators who trust Hook Studio to shape polished visuals and refined production experiences.",
     subDesc:
       "A studio environment designed to make every frame feel premium, intentional, and memorable.",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/content-creation-service.webp",
     imageLabel: "VISUAL CONTENT",
     count: "01",
   },
@@ -58,8 +71,7 @@ const slides = [
     desc: "We build visual experiences that help your content look sharper, more professional, and aligned with your brand identity.",
     subDesc:
       "From studio shoots to branded campaigns, every detail is handled with clarity and style.",
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/creative-direction.webp",
     imageLabel: "BRAND SHOOTS",
     count: "02",
   },
@@ -71,10 +83,21 @@ const slides = [
     desc: "Our production workflow is crafted for podcasts, photography, social content, and cinematic storytelling that leaves a lasting impression.",
     subDesc:
       "A refined content space where quality, creativity, and modern aesthetics come together.",
-    image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1600&q=80",
+    image: "/images/video-editing.webp",
     imageLabel: "STUDIO EXPERIENCE",
     count: "03",
+  },
+  {
+    id: 4,
+    badge: "HOOK STUDIO EXPERIENCE",
+    titleTop: "Create stronger visuals",
+    titleAccent: "with confidence",
+    desc: "Our production workflow is crafted for podcasts, photography, social content, and cinematic storytelling that leaves a lasting impression.",
+    subDesc:
+      "A refined content space where quality, creativity, and modern aesthetics come together.",
+    image: "/images/photography-sessions.webp",
+    imageLabel: "STUDIO EXPERIENCE",
+    count: "04",
   },
 ];
 const containerVariants: Variants = {
@@ -131,11 +154,18 @@ const fadeRight: Variants = {
   },
 };
 
-export default function Services() {
+export default function Services({
+  sectionRef,
+}: {
+  sectionRef: RefObject<HTMLElement | null>;
+}) {
   const [current, setCurrent] = useState(0);
 
   return (
-    <section className="relative overflow-hidden py-20 text-white md:py-28" id="services">
+    <section
+      className="relative overflow-hidden py-20 text-white md:py-28"
+      ref={sectionRef}
+    >
       {/* Background */}
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
@@ -154,26 +184,6 @@ export default function Services() {
             <span className="h-2 w-2 rounded-full bg-[#E0C28F]" />
             Our Services
           </motion.div>
-
-          <motion.h2
-            variants={fadeUp}
-            className="mt-5 text-3xl font-semibold tracking-tight text-white md:text-5xl md:leading-[1.06]"
-          >
-            Premium media services designed to make your content feel{" "}
-            <span className="bg-[linear-gradient(180deg,#F1DEB7_0%,#D8B274_100%)] bg-clip-text text-transparent">
-              modern, refined
-            </span>{" "}
-            and brand-ready
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            className="mt-5 max-w-2xl text-base leading-8 text-white/72 md:text-lg"
-          >
-            We combine studio quality, creative direction, and polished
-            execution to help creators and brands produce content that feels
-            elevated from the first frame to the final delivery.
-          </motion.p>
         </motion.div>
 
         {/* Top grid */}
@@ -219,7 +229,7 @@ export default function Services() {
                       src={slide.image}
                       alt="Modern studio workspace"
                       fill
-                      unoptimized
+                      quality={100}
                       objectFit="cover"
                       className=" transition duration-700 group-hover:scale-105"
                     />
@@ -264,17 +274,6 @@ export default function Services() {
                           ))}
                         </div>
                       </div>
-                    </div>
-
-                    {/* floating mini card */}
-                    <div className="absolute bottom-8 right-8 hidden w-44 rounded-2xl border border-white/12 bg-[#0B2126]/80 p-4 shadow-[0_12px_24px_rgba(0,0,0,0.20)] backdrop-blur-xl lg:block">
-                      <p className="text-xs uppercase tracking-[0.18em] text-[#F4E2C3]">
-                        Studio Mood
-                      </p>
-                      <p className="mt-2 text-sm leading-6 text-white/80">
-                        Clean lighting, elegant styling, and a brand-first
-                        production feel.
-                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -354,7 +353,7 @@ export default function Services() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm font-medium text-white/85 shadow-sm transition hover:-translate-y-0.5 hover:border-[#E0C28F]/25 hover:bg-white/[0.07]"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/85 shadow-sm transition hover:-translate-y-0.5 hover:border-[#E0C28F]/25 hover:bg-white/[0.07]"
                 >
                   <span className="h-2 w-2 rounded-full bg-[#E0C28F]" />
                   {item}
@@ -380,7 +379,7 @@ export default function Services() {
             <motion.div
               key={item.label}
               variants={fadeUp}
-              className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_14px_34px_rgba(0,0,0,0.14)] backdrop-blur-xl"
+              className="rounded-[28px] border border-white/10 bg-white/4 p-6 shadow-[0_14px_34px_rgba(0,0,0,0.14)] backdrop-blur-xl"
             >
               <div className="text-3xl font-bold text-[#F1DEB7]">
                 {item.value}
@@ -435,7 +434,7 @@ export default function Services() {
           {/* CTA */}
           <motion.div
             variants={fadeUp}
-            className="rounded-[32px] border border-white/10 bg-white/[0.05] p-8 shadow-[0_18px_50px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-10"
+            className="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-[0_18px_50px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-10"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E0C28F]">
               Let’s Work Together

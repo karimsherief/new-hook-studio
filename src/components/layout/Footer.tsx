@@ -9,7 +9,7 @@ export function Footer() {
         <div className="flex justify-between items-center w-full">
           <div>
             <Image
-              src="/images/logo/3.webp"
+              src="/logos/3.webp"
               alt="logo"
               width={100}
               height={100}

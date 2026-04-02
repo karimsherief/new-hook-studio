@@ -102,39 +102,39 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 ">
       {error && <p className="px-4 pt-3 text-sm text-red-600 ">{error}</p>}
-      <table className="min-w-full divide-y divide-zinc-200 ">
+      <table className="min-w-full divide-y divide-zinc-200">
         <thead>
           <tr>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Date
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               First name
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Last name
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Phone
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Content type
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Account link
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Location
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Format
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Images
             </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-zinc-500 ">
+            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
               Actions
             </th>
           </tr>
@@ -144,7 +144,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
             <tr>
               <td
                 colSpan={9}
-                className="px-4 py-8 text-center text-sm text-zinc-500 "
+                className="px-4 py-8 text-center text-sm text-white "
               >
                 No bookings yet.
               </td>
@@ -153,14 +153,14 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
             rows.map((b) => {
               const isEditing = b.id === editingId;
               return (
-                <tr key={b.id} className="bg-white ">
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                <tr key={b.id}>
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {new Date(b.created_at).toLocaleString()}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-900 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.first_name ?? ""}
                         onChange={(e) =>
                           handleChange("first_name", e.target.value)
@@ -170,10 +170,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.first_name ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-900 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.last_name ?? ""}
                         onChange={(e) =>
                           handleChange("last_name", e.target.value)
@@ -183,10 +183,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.last_name ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.phone ?? ""}
                         onChange={(e) => handleChange("phone", e.target.value)}
                       />
@@ -194,10 +194,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.phone ?? "—")
                     )}
                   </td>
-                  <td className="max-w-40 px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="max-w-40 px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.content_type ?? ""}
                         onChange={(e) =>
                           handleChange("content_type", e.target.value)
@@ -209,10 +209,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       </span>
                     )}
                   </td>
-                  <td className="max-w-48 px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="max-w-48 px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.account_link ?? ""}
                         onChange={(e) =>
                           handleChange("account_link", e.target.value)
@@ -231,10 +231,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       "—"
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <select
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.location ?? ""}
                         onChange={(e) =>
                           handleChange("location", e.target.value)
@@ -251,10 +251,10 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.location ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <select
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-zinc-900"
+                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
                         value={editValues.content_format ?? ""}
                         onChange={(e) =>
                           handleChange("content_format", e.target.value)
@@ -271,7 +271,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.content_format ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     <button onClick={() => setSelectedRow(b)}>View</button>
                     {selectedRow && (
                       <div
@@ -298,7 +298,7 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       </div>
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-zinc-600 ">
+                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
                     {isEditing ? (
                       <div className="flex gap-2">
                         <button

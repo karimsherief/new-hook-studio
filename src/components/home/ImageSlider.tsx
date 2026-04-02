@@ -3,51 +3,68 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { CirclePlay, MoveLeft, MoveRight } from "lucide-react";
 
-const slides = [
-  {
-    id: 1,
-    badge: "PREMIUM CREATIVE STUDIO",
-    titleTop: "We create content",
-    titleAccent: "that stands out",
-    desc: "Join modern brands and creators who trust Hook Studio to shape polished visuals and refined production experiences.",
-    subDesc:
-      "A studio environment designed to make every frame feel premium, intentional, and memorable.",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
-    imageLabel: "VISUAL CONTENT",
-    count: "01",
-  },
-  {
-    id: 2,
-    badge: "MODERN MEDIA PRODUCTION",
-    titleTop: "Premium setups for",
-    titleAccent: "ambitious brands",
-    desc: "We build visual experiences that help your content look sharper, more professional, and aligned with your brand identity.",
-    subDesc:
-      "From studio shoots to branded campaigns, every detail is handled with clarity and style.",
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80",
-    imageLabel: "BRAND SHOOTS",
-    count: "02",
-  },
-  {
-    id: 3,
-    badge: "HOOK STUDIO EXPERIENCE",
-    titleTop: "Create stronger visuals",
-    titleAccent: "with confidence",
-    desc: "Our production workflow is crafted for podcasts, photography, social content, and cinematic storytelling that leaves a lasting impression.",
-    subDesc:
-      "A refined content space where quality, creativity, and modern aesthetics come together.",
-    image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1600&q=80",
-    imageLabel: "STUDIO EXPERIENCE",
-    count: "03",
-  },
-];
-
-export default function HookStudioHero() {
+export default function HookStudioHero({
+  scrollToSection,
+}: {
+  scrollToSection: () => void;
+}) {
   const [current, setCurrent] = useState(0);
+  const locale = useLocale();
+  const t = useTranslations();
+
+  const slides = [
+    {
+      id: 1,
+      badge: "PREMIUM CREATIVE STUDIO",
+      title: t("ImageSlider.ProfessionalPodcastRecording.title"),
+      desc: t("ImageSlider.ProfessionalPodcastRecording.description"),
+      image: "/images/content-creation-service.webp",
+      count: "01",
+    },
+    {
+      id: 2,
+      badge: "MODERN MEDIA PRODUCTION",
+      title: t("ImageSlider.VideoProduction.title"),
+      desc: t("ImageSlider.VideoProduction.description"),
+      image: "/images/creative-direction.webp",
+      count: "02",
+    },
+    {
+      id: 3,
+      badge: "HOOK STUDIO EXPERIENCE",
+      title: t("ImageSlider.CreativeDirection.title"),
+      desc: t("ImageSlider.CreativeDirection.description"),
+      image: "/images/photography-sessions.webp",
+      count: "03",
+    },
+    {
+      id: 4,
+      badge: "HOOK STUDIO EXPERIENCE",
+      title: t("ImageSlider.SocialMediaContent.title"),
+      desc: t("ImageSlider.SocialMediaContent.description"),
+      image: "/images/video-editing.webp",
+      count: "04",
+    },
+    {
+      id: 5,
+      badge: "HOOK STUDIO EXPERIENCE",
+      title: t("ImageSlider.PhotographySessions.title"),
+      desc: t("ImageSlider.PhotographySessions.description"),
+      image: "/images/video-editing.webp",
+      count: "05",
+    },
+    {
+      id: 6,
+      badge: "HOOK STUDIO EXPERIENCE",
+      title: t("ImageSlider.VideoEditing.title"),
+      desc: t("ImageSlider.VideoEditing.description"),
+      image: "/images/video-editing.webp",
+      count: "06",
+    },
+  ];
 
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -75,61 +92,62 @@ export default function HookStudioHero() {
         <div className="grid min-h-screen items-center gap-12 py-12 lg:grid-cols-[0.95fr_1.05fr]">
           {/* left side */}
           <div className="max-w-xl">
-            <div
+            {/* <div
               key={`badge-${activeSlide.id}`}
               className="inline-flex animate-[fadeUp_.7s_ease] items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-semibold text-white/78 backdrop-blur-md"
             >
               <span className="h-2 w-2 rounded-full bg-[#D8B277]" />
               {activeSlide.badge}
-            </div>
+            </div> */}
 
-            <h1
-              key={`title-${activeSlide.id}`}
-              className="mt-6 animate-[fadeUp_.85s_ease] text-5xl font-bold leading-[0.96] tracking-tight md:text-7xl"
-            >
-              <span className="block">{activeSlide.titleTop}</span>
-              <span className="mt-2 block text-[#D8B277]">
+            <article>
+              <h1
+                key={`title-${activeSlide.id}`}
+                className="mb-3 animate-[fadeUp_.85s_ease] text-5xl font-bold leading-[0.96] tracking-tight md:text-7xl"
+              >
+                {activeSlide.title}
+                {/* <span className="block "></span> */}
+                {/* <span className="mt-2 block text-[#D8B277]">
                 {activeSlide.titleAccent}
-              </span>
-            </h1>
+              </span> */}
+              </h1>
 
-            <p
-              key={`desc-${activeSlide.id}`}
-              className="mt-8 animate-[fadeUp_1s_ease] text-xl leading-9 text-white/80"
-            >
-              {activeSlide.desc}
-            </p>
+              <p
+                key={`desc-${activeSlide.id}`}
+                className="animate-[fadeUp_1s_ease] text-xl leading-7 text-white/80"
+              >
+                {activeSlide.desc}
+              </p>
+            </article>
 
-            <p
+            {/* <p
               key={`sub-${activeSlide.id}`}
               className="mt-3 animate-[fadeUp_1.1s_ease] text-lg leading-8 text-[#A8D0D6]"
             >
               {activeSlide.subDesc}
-            </p>
+            </p> */}
 
             <div
               key={`actions-${activeSlide.id}`}
-              className="mt-10 flex animate-[fadeUp_1.2s_ease] flex-wrap gap-4"
+              className="mt-5 flex animate-[fadeUp_1.2s_ease] flex-wrap gap-4"
             >
               <Link
                 href="/book-studio"
                 className="group inline-flex items-center gap-3 rounded-full bg-[linear-gradient(135deg,#166774_0%,#0E4B57_100%)] px-8 py-4 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(14,75,87,0.35)] transition hover:-translate-y-1"
               >
-                <span>Book Studio</span>
+                <span>{t("BookNow")}</span>
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
+                  {locale === "ar" ? <MoveLeft /> : <MoveRight />}
                 </span>
               </Link>
 
-              <Link
-                href="#services"
-                className="group inline-flex items-center gap-3 rounded-full border border-white/15 bg-transparent px-8 py-4 text-sm font-semibold text-white/90 transition hover:bg-white/5"
+              <button
+                onClick={scrollToSection}
+                className="group inline-flex cursor-pointer  items-center gap-3 rounded-full border border-white/15 bg-transparent px-8 py-4 text-sm font-semibold text-white/90 transition hover:bg-white/5"
               >
-                <span className="flex h-6 w-6 pl-0.5 pt-0.5 items-center justify-center rounded-full border border-white/25 text-[10px]">
-                  ▶
-                </span>
-                <span>Explore Services</span>
-              </Link>
+                <CirclePlay />
+                <span>{t("ExploreServices")}</span>
+              </button>
             </div>
 
             {/* slider controls */}
@@ -153,14 +171,14 @@ export default function HookStudioHero() {
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/85 backdrop-blur-md transition hover:bg-white/15"
                   aria-label="Previous slide"
                 >
-                  ←
+                  {locale === "en" ? <MoveLeft /> : <MoveRight />}
                 </button>
                 <button
                   onClick={nextSlide}
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white/85 backdrop-blur-md transition hover:bg-white/15"
                   aria-label="Next slide"
                 >
-                  →
+                  {locale === "ar" ? <MoveLeft /> : <MoveRight />}
                 </button>
               </div>
             </div>
@@ -188,11 +206,11 @@ export default function HookStudioHero() {
                       >
                         <Image
                           src={slide.image}
-                          alt={slide.titleTop}
+                          alt={slide.title}
                           fill
                           priority={i === 0}
                           unoptimized
-                          className={`object-cover transition-transform duration-[2200ms] ease-out ${
+                          className={`object-cover transition-transform duration-2200 ease-out ${
                             isActive ? "scale-100" : "scale-110"
                           }`}
                         />
@@ -204,32 +222,8 @@ export default function HookStudioHero() {
                   <div className="absolute bottom-8 right-8 rounded-full border border-white/10 bg-[#0D3A43]/78 px-4 py-3 text-lg font-bold text-white shadow-[0_10px_25px_rgba(0,0,0,0.2)] backdrop-blur-md">
                     {activeSlide.count}
                   </div>
-
-                  <div className="absolute bottom-10 left-10">
-                    <div className="text-3xl font-bold leading-none text-white/92">
-                      {activeSlide.imageLabel.split(" ")[0]}
-                    </div>
-                    <div className="mt-1 text-2xl leading-none text-white/58">
-                      {activeSlide.imageLabel.split(" ").slice(1).join(" ")}
-                    </div>
-                  </div>
                 </div>
               </div>
-
-              {/* top floating stat */}
-              <div className="absolute right-[-8px] top-[-18px] rounded-[18px] border border-white/12 bg-white/10 px-5 py-4 shadow-[0_14px_30px_rgba(0,0,0,0.24)] backdrop-blur-xl">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#166774_0%,#0E4B57_100%)] text-sm font-bold text-white">
-                    ↗
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-white">98%</div>
-                    <div className="text-xs text-white/70">Success Rate</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* extra glow circle */}
               <div className="absolute right-[-60px] top-[44%] h-18 w-18 rounded-full bg-[#2A7280]/30" />
             </div>
           </div>
