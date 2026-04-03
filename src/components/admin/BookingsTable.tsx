@@ -90,10 +90,9 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error ?? "Failed to delete booking");
       }
+
       setRows((prev) => prev.filter((b) => b.id !== id));
-      if (editingId === id) {
-        cancelEdit();
-      }
+      if (editingId === id) cancelEdit();
     } catch (e: any) {
       setError(e.message ?? "Failed to delete booking");
     } finally {
@@ -102,65 +101,52 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
   };
 
   return (
-    <div className="space-y-3 ">
-      {error && <p className="px-4 pt-3 text-sm text-red-600 ">{error}</p>}
+    <div className="overflow-x-auto">
+      {error && <p className="px-4 pt-3 text-sm text-red-600">{error}</p>}
+
       <table className="min-w-full divide-y divide-zinc-200">
         <thead>
           <tr>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Date
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              First name
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Last name
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Phone
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Content type
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Account link
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Location
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Format
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Images
-            </th>
-            <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-white ">
-              Actions
-            </th>
+            {[
+              "Date",
+              "First name",
+              "Last name",
+              "Phone",
+              "Content type",
+              "Account link",
+              "Location",
+              "Format",
+              "Images",
+              "Actions",
+            ].map((h) => (
+              <th key={h} className="px-4 py-3 text-left text-xs text-white">
+                {h}
+              </th>
+            ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-zinc-200 ">
+
+        <tbody className="divide-y divide-zinc-200">
           {rows.length === 0 ? (
             <tr>
-              <td
-                colSpan={9}
-                className="px-4 py-8 text-center text-sm text-white "
-              >
+              <td colSpan={10} className="px-4 py-8 text-center text-white">
                 No bookings yet.
               </td>
             </tr>
           ) : (
             rows.map((b) => {
               const isEditing = b.id === editingId;
+
               return (
                 <tr key={b.id}>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
+                  <td className="px-4 py-3 text-white">
                     {new Date(b.created_at).toLocaleString()}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
+
+                  <td className="px-4 py-3 text-white">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
+                        className="w-full rounded border px-2 py-1 text-black"
                         value={editValues.first_name ?? ""}
                         onChange={(e) =>
                           handleChange("first_name", e.target.value)
@@ -170,10 +156,11 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.first_name ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
+
+                  <td className="px-4 py-3 text-white">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
+                        className="w-full rounded border px-2 py-1 text-black"
                         value={editValues.last_name ?? ""}
                         onChange={(e) =>
                           handleChange("last_name", e.target.value)
@@ -183,10 +170,11 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.last_name ?? "—")
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
+
+                  <td className="px-4 py-3 text-white">
                     {isEditing ? (
                       <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
+                        className="w-full rounded border px-2 py-1 text-black"
                         value={editValues.phone ?? ""}
                         onChange={(e) => handleChange("phone", e.target.value)}
                       />
@@ -194,145 +182,61 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
                       (b.phone ?? "—")
                     )}
                   </td>
-                  <td className="max-w-40 px-4 py-3 text-sm text-white ">
-                    {isEditing ? (
-                      <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
-                        value={editValues.content_type ?? ""}
-                        onChange={(e) =>
-                          handleChange("content_type", e.target.value)
-                        }
-                      />
-                    ) : (
-                      <span className="block truncate">
-                        {b.content_type ?? "—"}
-                      </span>
-                    )}
+
+                  <td className="px-4 py-3 text-white">
+                    {b.content_type ?? "—"}
                   </td>
-                  <td className="max-w-48 px-4 py-3 text-sm text-white ">
-                    {isEditing ? (
-                      <input
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
-                        value={editValues.account_link ?? ""}
-                        onChange={(e) =>
-                          handleChange("account_link", e.target.value)
-                        }
-                      />
-                    ) : b.account_link ? (
+
+                  <td className="px-4 py-3 text-white">
+                    {b.account_link ? (
                       <a
                         href={b.account_link}
                         target="_blank"
-                        rel="noopener noreferrer"
-                        className="block truncate text-violet-600 hover:underline "
+                        className="text-blue-400 underline"
                       >
-                        {b.account_link}
+                        Link
                       </a>
                     ) : (
                       "—"
                     )}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
-                    {isEditing ? (
-                      <select
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
-                        value={editValues.location ?? ""}
-                        onChange={(e) =>
-                          handleChange("location", e.target.value)
-                        }
-                      >
-                        <option value="">Select…</option>
-                        {LOCATIONS.map((loc) => (
-                          <option key={loc} value={loc}>
-                            {loc}
-                          </option>
-                        ))}
-                      </select>
-                    ) : (
-                      (b.location ?? "—")
-                    )}
+
+                  <td className="px-4 py-3 text-white">{b.location ?? "—"}</td>
+
+                  <td className="px-4 py-3 text-white">
+                    {b.content_format ?? "—"}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
-                    {isEditing ? (
-                      <select
-                        className="w-full rounded border border-zinc-300 bg-white px-2 py-1 text-sm text-white"
-                        value={editValues.content_format ?? ""}
-                        onChange={(e) =>
-                          handleChange("content_format", e.target.value)
-                        }
-                      >
-                        <option value="">Select…</option>
-                        {FORMATS.map((fmt) => (
-                          <option key={fmt} value={fmt}>
-                            {fmt}
-                          </option>
-                        ))}
-                      </select>
-                    ) : (
-                      (b.content_format ?? "—")
-                    )}
+
+                  <td className="px-4 py-3">
+                    <button
+                      onClick={() => setSelectedRow(b)}
+                      className="text-blue-400 underline"
+                    >
+                      View
+                    </button>
                   </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
-                    <button onClick={() => setSelectedRow(b)}>View</button>
-                    {selectedRow && (
-                      <div
-                        className="fixed flex items-center justify-center top-1/2 left-1/2 z-50 w-full h-full bg-[rgba(0,0,0,.5)] -translate-x-1/2 -translate-y-1/2"
-                        onClick={() => setSelectedRow(null)}
-                      >
-                        <div className="bg-[#f8f6f2] relative p-5 rounded-md shadow-[0_12px_40px_rgba(15,62,71,0.08)] grid items-center justify-center content-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                          <span
-                            className="absolute text-red-500 font-bold text-2xl bg-white/55 cursor-pointer px-3 py-1 rounded-md -right-10 -top-10"
-                            onClick={() => setSelectedRow(null)}
-                          >
-                            X
-                          </span>
-                          {selectedRow.images?.map((img, index) => (
-                            <Image
-                              key={index}
-                              width={250}
-                              height={250}
-                              alt="studio"
-                              src={img}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </td>
-                  <td className="whitespace-nowrap px-4 py-3 text-sm text-white ">
+
+                  <td className="px-4 py-3">
                     {isEditing ? (
                       <div className="flex gap-2">
                         <button
-                          type="button"
                           onClick={() => handleSave(b.id)}
-                          disabled={saving}
-                          className="rounded bg-emerald-600 px-3 py-1 text-xs font-medium text-white hover:bg-emerald-700 disabled:opacity-60"
+                          className="bg-emerald-600 px-3 py-1 text-white rounded"
                         >
-                          {saving ? "Saving…" : "Save"}
+                          Save
                         </button>
                         <button
-                          type="button"
                           onClick={cancelEdit}
-                          className="rounded bg-zinc-200 px-3 py-1 text-xs font-medium text-zinc-800 hover:bg-zinc-300"
+                          className="bg-gray-300 px-3 py-1 rounded"
                         >
                           Cancel
                         </button>
                       </div>
                     ) : (
                       <div className="flex gap-2">
-                        <button
-                          type="button"
-                          onClick={() => startEdit(b)}
-                          className="rounded bg-zinc-200 px-3 py-1 text-xs font-medium text-zinc-800 hover:bg-zinc-300"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleDelete(b.id)}
-                          disabled={deletingId === b.id}
-                          className="rounded bg-red-600 px-3 py-1 text-xs font-medium text-white hover:bg-red-700 disabled:opacity-60"
-                        >
-                          {deletingId === b.id ? "Deleting…" : "Delete"}
+                        <button onClick={() => startEdit(b)}>Edit</button>
+                        <button onClick={() => handleDelete(b.id)}>
+                          Delete
                         </button>
                       </div>
                     )}
@@ -343,6 +247,45 @@ export function BookingsTable({ bookings }: { bookings: Booking[] }) {
           )}
         </tbody>
       </table>
+
+      {/* ✅ Modal */}
+      {selectedRow && (
+        <>
+          {/* <div
+            className="fixed inset-0 z-40 bg-black/60"
+            onClick={() => setSelectedRow(null)}
+          /> */}
+          <div
+            className="fixed bg-[#f8f6f2]  rounded-xl shadow-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl w-full p-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 z-50"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="absolute -top-3 -right-3 bg-white text-red-500 rounded-full w-8 h-8 flex items-center justify-center shadow"
+              onClick={() => setSelectedRow(null)}
+            >
+              ✕
+            </button>
+
+            {selectedRow.images && selectedRow.images.length > 0 ? (
+              selectedRow.images.map((img, index) => (
+                <div key={index} className="relative w-full h-[200px]">
+                  <Image
+                    src={img}
+                    alt="studio"
+                    fill
+                    className="object-cover rounded-lg"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-500 col-span-full text-center">
+                No images available
+              </p>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

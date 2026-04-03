@@ -8,7 +8,7 @@ export default async function AdminLayout({
   await requireAdmin();
 
   return (
-    <div className="min-h-screen">
+    <div>
       <main className="p-6">{children}</main>
     </div>
   );

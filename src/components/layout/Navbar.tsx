@@ -39,7 +39,7 @@ export default function Navbar({ user }: { user: User | null }) {
     <header className="sticky inset-0 z-50 bg-[#0F3E47]-900/95 backdrop-blur-lg border-b border-[#0F3E47]-500/20 shadow-2xl">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
         {/* LOGO */}
-        <LocaleSwitcher />
+
         <Link
           href="/"
           className="flex shrink-0 items-center transition hover:opacity-90"
@@ -65,7 +65,7 @@ export default function Navbar({ user }: { user: User | null }) {
         </Link>
 
         {/* NAVIGATION */}
-        <nav>
+        <nav className="flex items-center gap-3">
           <div className="flex items-center gap-4 md:gap-8 max-md:hidden">
             <Link
               href="/"
@@ -115,7 +115,9 @@ export default function Navbar({ user }: { user: User | null }) {
           >
             <Menu />
           </button>
+          <LocaleSwitcher />
         </nav>
+
         {isAsideOpen && (
           <div
             className="fixed h-screen inset-0 bg-black/50 z-10"
@@ -126,7 +128,7 @@ export default function Navbar({ user }: { user: User | null }) {
         <aside
           className={`fixed transition duration-300 p-5 w-50 right-0 top-0 h-screen flex flex-col
             bg-[#0F3E47]/30 backdrop-blur-lg border-l border-[#0F3E47]-500/20 shadow-2xl
-          ${isAsideOpen ? "z-50 opacity-100" : "-z-50 opacity-0"}`}
+          ${isAsideOpen ? "z-50 opacity-100" : "-z-50 opacity-0 hidden"}`}
         >
           <div className="self-end">
             <button
@@ -207,12 +209,12 @@ function LocaleSwitcher() {
 
   return (
     <select
-      className="bg-white rounded px-2 py-1 text-black font-medium"
+      className="rounded px-2 py-1 text-white font-medium"
       onChange={(e) => changeLanguage(e.target.value)}
       value={currentLocale}
     >
-      <option value="en">us English</option>
-      <option value="ar">ar Arabic</option>
+      <option value="en">EN</option>
+      <option value="ar">AR</option>
     </select>
   );
 }
