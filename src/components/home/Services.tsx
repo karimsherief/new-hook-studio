@@ -1,105 +1,12 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { RefObject, useState } from "react";
 
-const services = [
-  {
-    title: "Professional podcast recording",
-    desc: "Record in a fully equipped studio with high-end audio clarity and controlled acoustics — ensuring every conversation sounds polished and professional.",
-    icon: "🎙️",
-    location: "",
-    services: "",
-  },
-  {
-    title: "Video production",
-    desc: "End-to-end video production using modern setups, cinematic framing, and precise execution — delivering content that looks refined and on-brand.",
-    icon: "🎥",
-    location: "indoor",
-    services: "video-editing",
-  },
-  {
-    title: "Creative Direction",
-    desc: "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market.",
-    icon: "🎬",
-    location: "indoor",
-    services: "video-editing",
-  },
-  {
-    title: "Social media content creation",
-    desc: "Short-form content tailored for each platform — visually sharp, consistent, and designed to drive engagement.",
-    icon: "📱",
-    location: "",
-    services: "",
-  },
-  {
-    title: "Photography sessions",
-    desc: "Professional photography for brands, products, and campaigns — focused on clean visuals, balanced lighting, and a polished finish.",
-    icon: "📸",
-    location: "",
-    services: "",
-  },
-  {
-    title: "Video Editing",
-    desc: "We transform raw footage into polished, cohesive videos through precise editing, color grading, and sound design — ensuring a smooth and professional final result.",
-    icon: "🎥",
-    location: "",
-    services: "",
-  },
-];
 
-const slides = [
-  {
-    id: 1,
-    badge: "PREMIUM CREATIVE STUDIO",
-    titleTop: "We create content",
-    titleAccent: "that stands out",
-    desc: "Join modern brands and creators who trust Hook Studio to shape polished visuals and refined production experiences.",
-    subDesc:
-      "A studio environment designed to make every frame feel premium, intentional, and memorable.",
-    image: "/images/content-creation-service.webp",
-    imageLabel: "VISUAL CONTENT",
-    count: "01",
-  },
-  {
-    id: 2,
-    badge: "MODERN MEDIA PRODUCTION",
-    titleTop: "Premium setups for",
-    titleAccent: "ambitious brands",
-    desc: "We build visual experiences that help your content look sharper, more professional, and aligned with your brand identity.",
-    subDesc:
-      "From studio shoots to branded campaigns, every detail is handled with clarity and style.",
-    image: "/images/creative-direction.webp",
-    imageLabel: "BRAND SHOOTS",
-    count: "02",
-  },
-  {
-    id: 3,
-    badge: "HOOK STUDIO EXPERIENCE",
-    titleTop: "Create stronger visuals",
-    titleAccent: "with confidence",
-    desc: "Our production workflow is crafted for podcasts, photography, social content, and cinematic storytelling that leaves a lasting impression.",
-    subDesc:
-      "A refined content space where quality, creativity, and modern aesthetics come together.",
-    image: "/images/video-editing.webp",
-    imageLabel: "STUDIO EXPERIENCE",
-    count: "03",
-  },
-  {
-    id: 4,
-    badge: "HOOK STUDIO EXPERIENCE",
-    titleTop: "Create stronger visuals",
-    titleAccent: "with confidence",
-    desc: "Our production workflow is crafted for podcasts, photography, social content, and cinematic storytelling that leaves a lasting impression.",
-    subDesc:
-      "A refined content space where quality, creativity, and modern aesthetics come together.",
-    image: "/images/photography-sessions.webp",
-    imageLabel: "STUDIO EXPERIENCE",
-    count: "04",
-  },
-];
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -160,7 +67,74 @@ export default function Services({
   sectionRef: RefObject<HTMLElement | null>;
 }) {
   const [current, setCurrent] = useState(0);
+  const t = useTranslations("Services");  
+const services = [
+  {
+    title: t("List.Podcast.title"),
+    desc: t("List.Podcast.desc"),
+    icon: "🎙️",
+    location: "",
+    services: "",
+  },
+  {
+    title: t("List.VideoProduction.title"),
+    desc: t("List.VideoProduction.desc"),
+    icon: "🎥",
+    location: "indoor",
+    services: "video-editing",
+  },
+  {
+    title: t("List.CreativeDirection.title"),
+    desc: t("List.CreativeDirection.desc"),
+    icon: "🎬",
+    location: "indoor",
+    services: "video-editing",
+  },
+  {
+    title: t("List.SocialMedia.title"),
+    desc: t("List.SocialMedia.desc"),
+    icon: "📱",
+    location: "",
+    services: "",
+  },
+  {
+    title: t("List.Photography.title"),
+    desc: t("List.Photography.desc"),
+    icon: "📸",
+    location: "",
+    services: "",
+  },
+  {
+    title: t("List.VideoEditing.title"),
+    desc: t("List.VideoEditing.desc"),
+    icon: "🎥",
+    location: "",
+    services: "",
+  },
+];
 
+const slides = [
+  {
+    id: 1,
+    image: "/images/content-creation-service.webp",
+    count: "01",
+  },
+  {
+    id: 2,    
+    image: "/images/creative-direction.webp",
+    count: "02",
+  },
+  {
+    id: 3,
+    image: "/images/video-editing.webp",
+    count: "03",
+  },
+  {
+    id: 4,
+    image: "/images/photography-sessions.webp",
+    count: "04",
+  },
+];
   return (
     <section
       className="relative overflow-hidden py-20 text-white md:py-28"
@@ -182,7 +156,7 @@ export default function Services({
             className="inline-flex items-center gap-2 rounded-full border border-[#E0C28F]/20 bg-[#E0C28F]/8 px-4 py-2 text-sm font-semibold text-[#E0C28F] backdrop-blur-md"
           >
             <span className="h-2 w-2 rounded-full bg-[#E0C28F]" />
-            Our Services
+            {t("OurServicesBadge")}
           </motion.div>
         </motion.div>
 
@@ -238,33 +212,30 @@ export default function Services({
 
                     <div className="absolute left-0 right-0 top-0 flex items-start justify-between p-6 md:p-8">
                       <div className="inline-flex rounded-full border border-white/15 bg-[#06171B]/75 px-4 py-2 text-sm font-medium text-white/90 backdrop-blur-md">
-                        Hook Studio
+                        {t("Slider.Badge1")}
                       </div>
 
                       <div className="hidden rounded-full border border-white/10 bg-[#E0C28F]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#E8CCA0] backdrop-blur-md md:inline-flex">
-                        Premium Production
+                        {t("Slider.Badge2")}
                       </div>
                     </div>
 
                     <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                       <div className="max-w-xl rounded-[28px] border border-white/15 bg-white/10 p-5 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-md md:p-6">
                         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#F4E2C3]">
-                          Creative Studio
+                          {t("Slider.CreativeStudio")}
                         </p>
 
                         <h3 className="mt-3 text-xl font-semibold leading-tight text-white md:text-3xl">
-                          A premium environment built for standout content
-                          experiences
+                          {t("Slider.Title")}
                         </h3>
 
                         <p className="mt-3 text-sm leading-5 md:leading-7 text-white/78 md:text-base">
-                          Crafted for podcasts, videos, social content, and
-                          photography with modern styling, visual clarity, and a
-                          strong branded presence.
+                          {t("Slider.Desc")}
                         </p>
 
                         <div className="mt-5 flex flex-wrap gap-3">
-                          {["Podcast", "Video", "Photography"].map((item) => (
+                          {[t("Slider.Tags.Podcast"), t("Slider.Tags.Video"), t("Slider.Tags.Photography")].map((item) => (
                             <span
                               key={item}
                               className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur-md"
@@ -290,12 +261,11 @@ export default function Services({
             className="rounded-4xl border border-white/10 bg-white/5 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-xl md:p-10"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E0C28F]">
-              What We Offer
+              {t("WhatWeOffer")}
             </p>
 
             <h3 className="mt-3 text-2xl font-semibold leading-tight text-white md:text-3xl">
-              Services thoughtfully shaped to make every piece of content feel
-              polished and professional
+              {t("ServicesSubtitle")}
             </h3>
 
             <motion.div
@@ -339,17 +309,15 @@ export default function Services({
             </motion.div>
 
             <p className="mt-8 text-base leading-8 text-white/68">
-              Our studio experience brings together lighting, audio, visual
-              styling, and smooth production flow so your final content feels
-              intentional, cohesive, and visually strong from start to finish.
+              {t("StudioExperienceText")}
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               {[
-                "Podcast Setup",
-                "Video Editing",
-                "Brand Content",
-                "Creative Direction",
+                t("Tags.PodcastSetup"),
+                t("Tags.VideoEditing"),
+                t("Tags.BrandContent"),
+                t("Tags.CreativeDirection"),
               ].map((item) => (
                 <span
                   key={item}
@@ -372,9 +340,9 @@ export default function Services({
           className="mt-8 grid gap-4 md:grid-cols-3"
         >
           {[
-            { value: "4K+", label: "Premium-ready visual quality" },
-            { value: "360°", label: "Creative production support" },
-            { value: "24/7", label: "Flexible brand-focused workflow" },
+            { value: t("Stats.4K.value"), label: t("Stats.4K.label") },
+            { value: t("Stats.360.value"), label: t("Stats.360.label") },
+            { value: t("Stats.247.value"), label: t("Stats.247.label") },
           ].map((item) => (
             <motion.div
               key={item.label}
@@ -410,18 +378,15 @@ export default function Services({
             <div className="relative z-10 flex h-full flex-col justify-between gap-8 md:flex-row md:items-end">
               <div className="max-w-2xl">
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#EAD8B7]">
-                  Studio Experience
+                  {t("Experience.Title")}
                 </p>
 
                 <h3 className="mt-3 text-2xl font-semibold leading-tight text-white md:text-4xl md:leading-[1.1]">
-                  From concept to final delivery, every detail is handled with
-                  style, clarity, and intention
+                  {t("Experience.Heading")}
                 </h3>
 
                 <p className="mt-4 text-base leading-8 text-white/72">
-                  We create a smooth production flow that helps your content
-                  feel more confident, visually aligned, and ready to perform
-                  across digital platforms.
+                  {t("Experience.Desc")}
                 </p>
               </div>
 
@@ -437,24 +402,22 @@ export default function Services({
             className="rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-[0_18px_50px_rgba(0,0,0,0.16)] backdrop-blur-xl md:p-10"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E0C28F]">
-              Let’s Work Together
+              {t("CTA.Title")}
             </p>
 
             <h3 className="mt-3 text-2xl font-semibold leading-tight text-white">
-              Ready to create media content that looks sharper, stronger, and
-              more premium?
+              {t("CTA.Heading")}
             </h3>
 
             <p className="mt-4 text-base leading-8 text-white/68">
-              Start your next project with a studio experience designed for
-              quality, modern aesthetics, and meaningful brand impact.
+              {t("CTA.Desc")}
             </p>
 
             <div className="mt-8 space-y-3">
               {[
-                "Book your recording session",
-                "Plan a branded shoot",
-                "Explore custom production packages",
+                t("CTA.Check1"),
+                t("CTA.Check2"),
+                t("CTA.Check3"),
               ].map((item) => (
                 <div
                   key={item}
@@ -472,7 +435,7 @@ export default function Services({
               href="/services"
               className="group mt-8 inline-flex items-center gap-3 rounded-full bg-[linear-gradient(135deg,#0DA9B3_0%,#0A7E86_100%)] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(13,169,179,0.22)] transition hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(13,169,179,0.28)]"
             >
-              <span>Book Service</span>
+              <span>{t("CTA.Button")}</span>
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-base transition group-hover:translate-x-1">
                 →
               </span>

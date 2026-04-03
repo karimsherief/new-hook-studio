@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 import { useState } from "react";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -18,6 +20,7 @@ import {
 } from "lucide-react";
 
 export function SelectStudioForm() {
+  const t = useTranslations("BookingForm");
   const searchParams = useSearchParams();
 
   const [loading, setLoading] = useState(false);
@@ -39,12 +42,12 @@ export function SelectStudioForm() {
     setSuccess(false);
 
     if (!locationType) {
-      setError("Please select a location type.");
+      setError(t("ErrorNoLocation"));
       return;
     }
 
     if (locationType === "indoor" && !selectedService) {
-      setError("Please select a service.");
+      setError(t("ErrorNoService"));
       return;
     }
 
@@ -53,7 +56,7 @@ export function SelectStudioForm() {
       (selectedService === "reels" || selectedService === "podcast") &&
       selectedStudios.length === 0
     ) {
-      setError("Please select at least one studio.");
+      setError(t("ErrorNoStudio"));
       return;
     }
 
@@ -83,7 +86,7 @@ export function SelectStudioForm() {
     setLoading(false);
 
     if (!res.ok) {
-      setError(data.error ?? "Failed to submit");
+      setError(data.error ?? t("FailedToSubmit"));
       return;
     }
 
@@ -130,16 +133,15 @@ export function SelectStudioForm() {
             <div className="max-w-2xl">
               <span className={badgeClass}>
                 <Mail className="h-4 w-4" />
-                Studio Booking
+                {t("Badge")}
               </span>
 
               <h1 className="mt-6 text-3xl font-semibold tracking-tight text-[#F8F5EF] md:text-5xl">
-                Build your perfect studio setup
+                {t("Title")}
               </h1>
 
               <p className="mt-4 max-w-xl text-sm leading-7 text-[#F6F1E8]/68 md:text-base">
-                A premium booking experience for creators and brands who want a
-                modern, elegant, and frictionless production flow.
+                {t("Subtitle")}
               </p>
             </div>
 
@@ -150,14 +152,14 @@ export function SelectStudioForm() {
                     htmlFor="first_name"
                     className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                   >
-                    First Name*
+                    {t("FirstName")}
                   </Label>
                   <div className="relative">
                     <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
                     <Input
                       id="first_name"
                       name="first_name"
-                      placeholder="Enter first name"
+                      placeholder={t("FirstNamePlaceholder")}
                       className={inputClass}
                       required
                     />
@@ -169,14 +171,14 @@ export function SelectStudioForm() {
                     htmlFor="last_name"
                     className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                   >
-                    Last Name*
+                    {t("LastName")}
                   </Label>
                   <div className="relative">
                     <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
                     <Input
                       id="last_name"
                       name="last_name"
-                      placeholder="Enter last name"
+                      placeholder={t("LastNamePlaceholder")}
                       className={inputClass}
                       required
                     />
@@ -189,7 +191,7 @@ export function SelectStudioForm() {
                   htmlFor="phone"
                   className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                 >
-                  Phone Number*
+                  {t("Phone")}
                 </Label>
                 <div className="relative">
                   <Phone className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
@@ -197,7 +199,7 @@ export function SelectStudioForm() {
                     id="phone"
                     name="phone"
                     type="tel"
-                    placeholder="Phone number"
+                    placeholder={t("PhonePlaceholder")}
                     className={inputClass}
                     required
                   />
@@ -209,7 +211,7 @@ export function SelectStudioForm() {
                   htmlFor="content_type"
                   className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                 >
-                  Content Type*
+                  {t("ContentType")}
                 </Label>
                 <div className="relative">
                   <Layers3 className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
@@ -221,16 +223,16 @@ export function SelectStudioForm() {
                     defaultValue=""
                   >
                     <option value="" disabled className="text-black">
-                      Select content type
+                      {t("SelectContentType")}
                     </option>
                     <option value="products" className="text-black">
-                      Products
+                      {t("Products")}
                     </option>
                     <option value="education" className="text-black">
-                      Education
+                      {t("Education")}
                     </option>
                     <option value="others" className="text-black">
-                      Others
+                      {t("Others")}
                     </option>
                   </select>
                   <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
@@ -242,7 +244,7 @@ export function SelectStudioForm() {
                   htmlFor="account_link"
                   className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                 >
-                  Account Link*
+                  {t("AccountLink")}
                 </Label>
                 <div className="relative">
                   <LinkIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
@@ -250,7 +252,7 @@ export function SelectStudioForm() {
                     id="account_link"
                     name="account_link"
                     type="url"
-                    placeholder="https://"
+                    placeholder={t("AccountLinkPlaceholder")}
                     className={inputClass}
                     required
                   />
@@ -263,7 +265,7 @@ export function SelectStudioForm() {
                     htmlFor="location"
                     className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                   >
-                    Location Type*
+                    {t("LocationType")}
                   </Label>
                   <div className="relative">
                     <MapPin className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
@@ -280,13 +282,13 @@ export function SelectStudioForm() {
                       required
                     >
                       <option value="" disabled className="text-black">
-                        Select location type
+                        {t("SelectLocationType")}
                       </option>
                       <option value="indoor" className="text-black">
-                        Indoor
+                        {t("Indoor")}
                       </option>
                       <option value="outdoor" className="text-black">
-                        Outdoor
+                        {t("Outdoor")}
                       </option>
                     </select>
                     <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
@@ -299,7 +301,7 @@ export function SelectStudioForm() {
                       htmlFor="service"
                       className="mb-2 block text-sm font-medium text-[#F8F5EF]"
                     >
-                      Select Service*
+                      {t("SelectService")}
                     </Label>
                     <div className="relative">
                       <Clapperboard className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
@@ -315,19 +317,19 @@ export function SelectStudioForm() {
                         required
                       >
                         <option value="" disabled className="text-black">
-                          Choose a service
+                          {t("ChooseService")}
                         </option>
                         <option value="reels" className="text-black">
-                          Reels
+                          {t("Reels")}
                         </option>
                         <option value="podcast" className="text-black">
-                          Podcast
+                          {t("Podcast")}
                         </option>
                         <option value="video-editing" className="text-black">
-                          Video editing
+                          {t("VideoEditing")}
                         </option>
                         <option value="photo-shoot" className="text-black">
-                          Photo shoot
+                          {t("PhotoShoot")}
                         </option>
                       </select>
                       <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
@@ -342,14 +344,13 @@ export function SelectStudioForm() {
                   <div className="rounded-[24px] border border-white/10 bg-white/[0.05] p-4 md:p-5">
                     <div className="mb-4">
                       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#E8CFA4]">
-                        Studio Selection
+                        {t("StudioSelection")}
                       </p>
                       <h3 className="mt-2 text-xl font-semibold text-[#F8F5EF]">
-                        Choose your preferred studio setup
+                        {t("ChooseStudio")}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-[#F6F1E8]/65">
-                        Select one or more studios that match your content style
-                        and production direction.
+                        {t("SelectOneOrMore")}
                       </p>
                     </div>
 
@@ -361,7 +362,7 @@ export function SelectStudioForm() {
 
                     {submitted && selectedStudios.length === 0 && (
                       <p className="mt-3 text-sm font-medium text-red-300">
-                        Please select at least one studio.
+                        {t("ErrorNoStudio")}
                       </p>
                     )}
                   </div>
@@ -375,7 +376,7 @@ export function SelectStudioForm() {
 
               {success && (
                 <div className="rounded-2xl border border-emerald-400/25 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-200">
-                  Thank you. Your booking has been submitted.
+                  {t("SuccessMessage")}
                 </div>
               )}
 
@@ -385,7 +386,7 @@ export function SelectStudioForm() {
                 className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-[linear-gradient(135deg,#B99458_0%,#D7BA84_100%)] px-6 text-sm font-semibold text-[#143B3F] shadow-[0_16px_40px_rgba(185,148,88,0.28)] transition duration-200 hover:translate-y-[-1px] hover:shadow-[0_22px_45px_rgba(185,148,88,0.34)] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 <Send className="h-4 w-4" />
-                {loading ? "Submitting..." : "Book Service"}
+                {loading ? t("Submitting") : t("BookService")}
               </button>
             </form>
           </div>

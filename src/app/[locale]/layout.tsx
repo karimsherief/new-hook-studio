@@ -50,7 +50,7 @@ export default async function RootLayout({ children, params }: Props) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_18%_50%,rgba(22,103,116,0.24),transparent_24%),radial-gradient(circle_at_82%_78%,rgba(6,26,31,0.22),transparent_26%),linear-gradient(90deg,#072A31_0%,#0B3F49_45%,#0E4B57_100%)]" />
+        <div className="fixed inset-0 -z-10 bg-[#021F39] bg-[radial-gradient(circle_at_18%_50%,rgba(22,103,116,0.15),transparent_24%),radial-gradient(circle_at_82%_78%,rgba(6,26,31,0.15),transparent_26%)]" />
         <div className="fixed inset-0 -z-10 opacity-[0.045] bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[22px_22px]" />
 
         <div className="fixed -z-10 left-[45%] top-[58%] h-24 w-24 rounded-full bg-[#166774]/25 blur-2xl" />

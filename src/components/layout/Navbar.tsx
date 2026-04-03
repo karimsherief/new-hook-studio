@@ -14,9 +14,10 @@ import {
 } from "lucide-react";
 import { useRef, useState } from "react";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Navbar({ user }: { user: User | null }) {
+  const t = useTranslations("Navbar");
   const pathname = usePathname();
   const prevPathnameRef = useRef(pathname);
   const [isAsideOpen, setAsideOpen] = useState(false);
@@ -73,7 +74,7 @@ export default function Navbar({ user }: { user: User | null }) {
                 isActive("/") ? "text-white" : "text-white/70 hover:text-white"
               }`}
             >
-              Home
+              {t("Home")}
               <span
                 className={`absolute bottom-0 left-0 h-0.5 w-full origin-left rounded-full bg-[#EAD8B7] transition-transform duration-300 ${
                   isActive("/") ? "scale-x-100" : "scale-x-0"
@@ -85,7 +86,7 @@ export default function Navbar({ user }: { user: User | null }) {
               href="/book-studio"
               className="rounded-full bg-[#0F3E47] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0c333a]"
             >
-              Book Studio
+              {t("BookStudio")}
             </Link>
             {user != null && (
               <>
@@ -97,14 +98,14 @@ export default function Navbar({ user }: { user: User | null }) {
                       : "text-white/70 hover:text-white"
                   }`}
                 >
-                  Dashboard
+                  {t("Dashboard")}
                 </Link>
 
                 <button
                   className="underline cursor-pointer text-white"
                   onClick={handleSignout}
                 >
-                  Logout
+                  {t("Logout")}
                 </button>
               </>
             )}
@@ -149,7 +150,7 @@ export default function Navbar({ user }: { user: User | null }) {
                 }`}
                 onClick={() => setAsideOpen(false)}
               >
-                <House /> Home
+                <House /> {t("Home")}
               </Link>
 
               <Link
@@ -161,7 +162,7 @@ export default function Navbar({ user }: { user: User | null }) {
                 }`}
                 onClick={() => setAsideOpen(false)}
               >
-                <Clapperboard /> Book Studio
+                <Clapperboard /> {t("BookStudio")}
               </Link>
               {user != null && (
                 <Link
@@ -173,7 +174,7 @@ export default function Navbar({ user }: { user: User | null }) {
                   }`}
                   onClick={() => setAsideOpen(false)}
                 >
-                  <LayoutDashboard /> Dashboard
+                  <LayoutDashboard /> {t("Dashboard")}
                 </Link>
               )}
             </div>
@@ -186,7 +187,7 @@ export default function Navbar({ user }: { user: User | null }) {
                 }}
               >
                 <LogOut />
-                Logout
+                {t("Logout")}
               </button>
             )}
           </div>

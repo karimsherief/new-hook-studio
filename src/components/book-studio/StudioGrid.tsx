@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Check } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 
 type Studio = {
   id: string;
@@ -24,6 +25,7 @@ export function StudioGrid({
   setSelectedStudios: (studios: string[]) => void;
   selectedService: string;
 }) {
+  const t = useTranslations("BookingForm");
   const [studios, setStudios] = useState<Studio[]>([]);
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
@@ -75,12 +77,12 @@ export function StudioGrid({
   console.log(studios);
   return (
     <div className="mt-12">
-      <p className="mb-4 text-sm text-zinc-600">Select one or more studios</p>
+      <p className="mb-4 text-sm text-zinc-600">{t("GridSelectOneOrMore")}</p>
 
       {/* Loading */}
       {loading ? (
         <div className="text-center text-sm text-zinc-500">
-          Loading studios...
+          {t("LoadingStudios")}
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">

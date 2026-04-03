@@ -40,5 +40,131 @@
     "ImageTitle": "A refined environment for standout visual content",
     "ImageDesc": "Designed to support podcasts, branded shoots, and social media production with a modern, professional feel."
   },
-  "Services": {}
+  "Services": {
+    "OurServicesBadge": "Our Services",
+    "Slider": {
+      "CreativeStudio": "Creative Studio",
+      "Title": "A premium environment built for standout content experiences",
+      "Desc": "Crafted for podcasts, videos, social content, and photography with modern styling, visual clarity, and a strong branded presence.",
+      "Tags": {
+        "Podcast": "Podcast",
+        "Video": "Video",
+        "Photography": "Photography"
+      },
+      "Badge1": "Hook Studio",
+      "Badge2": "Premium Production"
+    },
+    "WhatWeOffer": "What We Offer",
+    "ServicesSubtitle": "Services thoughtfully shaped to make every piece of content feel polished and professional",
+    "List": {
+      "Podcast": {
+        "title": "Professional podcast recording",
+        "desc": "Record in a fully equipped studio with high-end audio clarity and controlled acoustics — ensuring every conversation sounds polished and professional."
+      },
+      "VideoProduction": {
+        "title": "Video production",
+        "desc": "End-to-end video production using modern setups, cinematic framing, and precise execution — delivering content that looks refined and on-brand."
+      },
+      "CreativeDirection": {
+        "title": "Creative Direction",
+        "desc": "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market."
+      },
+      "SocialMedia": {
+        "title": "Social media content creation",
+        "desc": "Short-form content tailored for each platform — visually sharp, consistent, and designed to drive engagement."
+      },
+      "Photography": {
+        "title": "Photography sessions",
+        "desc": "Professional photography for brands, products, and campaigns — focused on clean visuals, balanced lighting, and a polished finish."
+      },
+      "VideoEditing": {
+        "title": "Video Editing",
+        "desc": "We transform raw footage into polished, cohesive videos through precise editing, color grading, and sound design — ensuring a smooth and professional final result."
+      }
+    },
+    "StudioExperienceText": "Our studio experience brings together lighting, audio, visual styling, and smooth production flow so your final content feels intentional, cohesive, and visually strong from start to finish.",
+    "Tags": {
+      "PodcastSetup": "Podcast Setup",
+      "VideoEditing": "Video Editing",
+      "BrandContent": "Brand Content",
+      "CreativeDirection": "Creative Direction"
+    },
+    "Stats": {
+      "4K": {
+        "value": "4K+",
+        "label": "Premium-ready visual quality"
+      },
+      "360": {
+        "value": "360°",
+        "label": "Creative production support"
+      },
+      "247": {
+        "value": "24/7",
+        "label": "Flexible brand-focused workflow"
+      }
+    },
+    "Experience": {
+      "Title": "Studio Experience",
+      "Heading": "From concept to final delivery, every detail is handled with style, clarity, and intention",
+      "Desc": "We create a smooth production flow that helps your content feel more confident, visually aligned, and ready to perform across digital platforms."
+    },
+    "CTA": {
+      "Title": "Let’s Work Together",
+      "Heading": "Ready to create media content that looks sharper, stronger, and more premium?",
+      "Desc": "Start your next project with a studio experience designed for quality, modern aesthetics, and meaningful brand impact.",
+      "Check1": "Book your recording session",
+      "Check2": "Plan a branded shoot",
+      "Check3": "Explore custom production packages",
+      "Button": "Book Service"
+    }
+  },
+  "Navbar": {
+    "Home": "Home",
+    "BookStudio": "Book Studio",
+    "Dashboard": "Dashboard",
+    "Logout": "Logout"
+  },
+  "Footer": {
+    "AllRightsReserved": "© {year} Hook Studio. All rights reserved."
+  },
+  "BookingForm": {
+    "Badge": "Studio Booking",
+    "Title": "Build your perfect studio setup",
+    "Subtitle": "A premium booking experience for creators and brands who want a modern, elegant, and frictionless production flow.",
+    "FirstName": "First Name*",
+    "FirstNamePlaceholder": "Enter first name",
+    "LastName": "Last Name*",
+    "LastNamePlaceholder": "Enter last name",
+    "Phone": "Phone Number*",
+    "PhonePlaceholder": "Phone number",
+    "ContentType": "Content Type*",
+    "SelectContentType": "Select content type",
+    "Products": "Products",
+    "Education": "Education",
+    "Others": "Others",
+    "AccountLink": "Account Link*",
+    "AccountLinkPlaceholder": "https://",
+    "LocationType": "Location Type*",
+    "SelectLocationType": "Select location type",
+    "Indoor": "Indoor",
+    "Outdoor": "Outdoor",
+    "SelectService": "Select Service*",
+    "ChooseService": "Choose a service",
+    "Reels": "Reels",
+    "Podcast": "Podcast",
+    "VideoEditing": "Video editing",
+    "PhotoShoot": "Photo shoot",
+    "StudioSelection": "Studio Selection",
+    "ChooseStudio": "Choose your preferred studio setup",
+    "SelectOneOrMore": "Select one or more studios that match your content style and production direction.",
+    "GridSelectOneOrMore": "Select one or more studios",
+    "LoadingStudios": "Loading studios...",
+    "ErrorNoLocation": "Please select a location type.",
+    "ErrorNoService": "Please select a service.",
+    "ErrorNoStudio": "Please select at least one studio.",
+    "FailedToSubmit": "Failed to submit",
+    "SuccessMessage": "Thank you. Your booking has been submitted.",
+    "Submitting": "Submitting...",
+    "BookService": "Book Service"
+  }
 }

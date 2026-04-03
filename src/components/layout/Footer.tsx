@@ -1,8 +1,10 @@
 import { Facebook, Instagram } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export function Footer() {
+  const t = useTranslations("Footer");
   return (
     <footer className="border-t border-[#166774] py-12">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 lg:flex-row lg:items-start lg:justify-between">
@@ -40,7 +42,7 @@ export function Footer() {
       </div>
       <div className="mx-auto mt-8 max-w-6xl border-t border-white/20 px-4 pt-8">
         <p className="text-center text-sm text-zinc-400">
-          © {new Date().getFullYear()} Hook Studio. All rights reserved.
+          {t("AllRightsReserved", { year: new Date().getFullYear() })}
         </p>
       </div>
     </footer>
