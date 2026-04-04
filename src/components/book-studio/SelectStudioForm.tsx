@@ -254,7 +254,6 @@ export function SelectStudioForm() {
                     type="url"
                     placeholder={t("AccountLinkPlaceholder")}
                     className={inputClass}
-                    required
                   />
                 </div>
               </div>

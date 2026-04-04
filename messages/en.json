@@ -142,7 +142,7 @@
     "Products": "Products",
     "Education": "Education",
     "Others": "Others",
-    "AccountLink": "Account Link*",
+    "AccountLink": "Account Link",
     "AccountLinkPlaceholder": "https://",
     "LocationType": "Location Type*",
     "SelectLocationType": "Select location type",
