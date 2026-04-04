@@ -91,7 +91,7 @@ export default function HookStudioHero({
       <div className="relative mx-auto min-h-screen max-w-7xl px-6 lg:px-10">
         <div className="grid min-h-screen items-center gap-12 py-12 lg:grid-cols-[0.95fr_1.05fr]">
           {/* left side */}
-          <div className="max-w-xl">
+          <div className="hidden md:block max-w-xl">
             {/* <div
               key={`badge-${activeSlide.id}`}
               className="inline-flex animate-[fadeUp_.7s_ease] items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-semibold text-white/78 backdrop-blur-md"
@@ -215,11 +215,40 @@ export default function HookStudioHero({
                           }`}
                         />
                         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,42,49,0.06)_0%,rgba(7,42,49,0.20)_38%,rgba(7,42,49,0.72)_100%)]" />
+
+                        <div className="absolute inset-x-0 bottom-0 p-4 md:hidden">
+                          <div className="rounded-[24px] bg-black/60 p-4 backdrop-blur-md">
+                            <p className="text-xs uppercase tracking-[0.24em] text-[#D8B277]">
+                              {slide.badge}
+                            </p>
+                            <h2 className="mt-3 text-2xl font-semibold text-white">
+                              {slide.title}
+                            </h2>
+                            <p className="mt-3 text-sm leading-6 text-white/80">
+                              {slide.desc}
+                            </p>
+                            <div className="mt-4 flex flex-wrap gap-3">
+                              <Link
+                                href="/book-studio"
+                                className="inline-flex items-center gap-2 rounded-full bg-[rgba(13,169,179,0.95)] px-4 py-3 text-xs font-semibold text-white shadow-lg shadow-[#0d5e67]/20 transition hover:-translate-y-0.5"
+                              >
+                                {t("BookNow")}
+                              </Link>
+                              <button
+                                onClick={scrollToSection}
+                                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-3 text-xs font-semibold text-white transition hover:bg-white/15"
+                              >
+                                <CirclePlay className="h-4 w-4" />
+                                <span>{t("ExploreServices")}</span>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
 
-                  <div className="absolute bottom-8 right-8 rounded-full border border-white/10 bg-[#0D3A43]/78 px-4 py-3 text-lg font-bold text-white shadow-[0_10px_25px_rgba(0,0,0,0.2)] backdrop-blur-md">
+                  <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-[#0D3A43]/78 px-4 py-3 text-lg font-bold text-white shadow-[0_10px_25px_rgba(0,0,0,0.2)] backdrop-blur-md md:right-8 md:top-auto md:bottom-8">
                     {activeSlide.count}
                   </div>
                 </div>
