@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { RefObject, useState } from "react";
 
-
 const containerVariants: Variants = {
   hidden: {},
   visible: {
@@ -67,74 +66,66 @@ export default function Services({
   sectionRef: RefObject<HTMLElement | null>;
 }) {
   const [current, setCurrent] = useState(0);
-  const t = useTranslations("Services");  
-const services = [
-  {
-    title: t("List.Podcast.title"),
-    desc: t("List.Podcast.desc"),
-    icon: "🎙️",
-    location: "",
-    services: "",
-  },
-  {
-    title: t("List.VideoProduction.title"),
-    desc: t("List.VideoProduction.desc"),
-    icon: "🎥",
-    location: "indoor",
-    services: "video-editing",
-  },
-  {
-    title: t("List.CreativeDirection.title"),
-    desc: t("List.CreativeDirection.desc"),
-    icon: "🎬",
-    location: "indoor",
-    services: "video-editing",
-  },
-  {
-    title: t("List.SocialMedia.title"),
-    desc: t("List.SocialMedia.desc"),
-    icon: "📱",
-    location: "",
-    services: "",
-  },
-  {
-    title: t("List.Photography.title"),
-    desc: t("List.Photography.desc"),
-    icon: "📸",
-    location: "",
-    services: "",
-  },
-  {
-    title: t("List.VideoEditing.title"),
-    desc: t("List.VideoEditing.desc"),
-    icon: "🎥",
-    location: "",
-    services: "",
-  },
-];
+  const t = useTranslations("Services");
+  const services = [
+    {
+      id: 1,
+      title: t("List.Podcast.title"),
+      name: "Photography Session",
+      desc: t("List.Podcast.desc"),
+      icon: "🎙️",
+      image: "/images/photography-sessions.webp",
+      location: "",
+      services: "podcast",
+    },
+    {
+      id: 2,
+      title: t("List.VideoProduction.title"),
+      desc: t("List.VideoProduction.desc"),
+      name: "Video Production",
+      icon: "🎥",
+      image: "/images/ContactSheet-003.webp",
+      location: "indoor",
+      services: "video-editing",
+    },
+    {
+      title: t("List.CreativeDirection.title"),
+      desc: t("List.CreativeDirection.desc"),
+      name: "Creative Direction",
+      image: "/images/creative-direction.webp",
+      icon: "🎬",
+      location: "indoor",
+      services: "video-editing",
+    },
+    {
+      title: t("List.SocialMedia.title"),
+      desc: t("List.SocialMedia.desc"),
+      image: "/images/content-creation-service.webp",
+      name: "Content Creation",
+      icon: "📱",
+      location: "",
+      services: "",
+    },
+    {
+      title: t("List.Photography.title"),
+      desc: t("List.Photography.desc"),
+      image: "/images/about-us.webp",
+      name: "Photography",
+      icon: "📸",
+      location: "",
+      services: "",
+    },
+    {
+      title: t("List.VideoEditing.title"),
+      desc: t("List.VideoEditing.desc"),
+      image: "/images/video-editing.webp",
+      name: "Video Editing",
+      icon: "🎥",
+      location: "indoor",
+      services: "video-editing",
+    },
+  ];
 
-const slides = [
-  {
-    id: 1,
-    image: "/images/content-creation-service.webp",
-    count: "01",
-  },
-  {
-    id: 2,    
-    image: "/images/creative-direction.webp",
-    count: "02",
-  },
-  {
-    id: 3,
-    image: "/images/video-editing.webp",
-    count: "03",
-  },
-  {
-    id: 4,
-    image: "/images/photography-sessions.webp",
-    count: "04",
-  },
-];
   return (
     <section
       className="relative overflow-hidden py-20 text-white md:py-28"
@@ -171,7 +162,7 @@ const slides = [
             viewport={{ once: false, amount: 0.2 }}
             className="relative max-lg:h-150 rounded-4xl border border-white/10 bg-white/4 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl"
           >
-            {slides.map((slide, index) => {
+            {services.map((service, index) => {
               const isActive = index === current;
               return (
                 <motion.div
@@ -200,8 +191,8 @@ const slides = [
                 >
                   <div className="overflow-hidden rounded-[28px] border border-white/8">
                     <Image
-                      src={slide.image}
-                      alt="Modern studio workspace"
+                      src={service.image}
+                      alt={service.name}
                       fill
                       quality={100}
                       objectFit="cover"
@@ -235,7 +226,11 @@ const slides = [
                         </p>
 
                         <div className="mt-5 flex flex-wrap gap-3">
-                          {[t("Slider.Tags.Podcast"), t("Slider.Tags.Video"), t("Slider.Tags.Photography")].map((item) => (
+                          {[
+                            t("Slider.Tags.Podcast"),
+                            t("Slider.Tags.Video"),
+                            t("Slider.Tags.Photography"),
+                          ].map((item) => (
                             <span
                               key={item}
                               className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur-md"
@@ -414,21 +409,19 @@ const slides = [
             </p>
 
             <div className="mt-8 space-y-3">
-              {[
-                t("CTA.Check1"),
-                t("CTA.Check2"),
-                t("CTA.Check3"),
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 rounded-2xl border border-white/8 bg-[#081B1F] px-4 py-3 text-sm text-white/78"
-                >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E0C28F]/18 text-xs font-bold text-[#F1DEB7]">
-                    ✓
-                  </span>
-                  <span>{item}</span>
-                </div>
-              ))}
+              {[t("CTA.Check1"), t("CTA.Check2"), t("CTA.Check3")].map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-3 rounded-2xl border border-white/8 bg-[#081B1F] px-4 py-3 text-sm text-white/78"
+                  >
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#E0C28F]/18 text-xs font-bold text-[#F1DEB7]">
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </div>
+                ),
+              )}
             </div>
 
             <Link
