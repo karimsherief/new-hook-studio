@@ -153,14 +153,14 @@ export default function Services({
           </motion.div>
 
           {/* Top grid */}
-          <div className="grid gap-6 items-stretch lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid items-stretch gap-4 md:gap-6 lg:grid-cols-[1.05fr_0.95fr]">
             {/* Left visual */}
             <motion.div
               variants={fadeLeft}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.2 }}
-              className="relative h-80 md:h-96 lg:h-full rounded-4xl border border-white/10 bg-white/4 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+              className="relative hidden h-80 rounded-4xl border border-white/10 bg-white/4 p-3 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-xl md:block md:h-96 lg:h-full"
             >
               {services.map((service, index) => {
                 const isActive = index === current;
@@ -253,7 +253,7 @@ export default function Services({
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              className="rounded-4xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-xl md:p-8 lg:p-10"
+              className="rounded-3xl border border-white/10 bg-white/5 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-xl md:rounded-4xl md:p-8 lg:p-10"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#E0C28F]">
                 {t("WhatWeOffer")}
@@ -268,32 +268,46 @@ export default function Services({
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
-                className="mt-6 grid gap-3 md:gap-4"
+                className="mt-4 grid gap-2.5 md:mt-6 md:gap-4"
               >
                 {services.map((service, index) => (
                   <motion.div
                     key={service.title}
                     variants={fadeUp}
-                    className={`group text-left cursor-pointer rounded-2xl border transition duration-300 bg-white/4 p-4 shadow-[0_8px_20px_rgba(0,0,0,0.10)] backdrop-blur-md md:rounded-3xl md:p-5
+                    className={`group cursor-pointer rounded-2xl border bg-white/4 p-3 text-left shadow-[0_8px_20px_rgba(0,0,0,0.10)] backdrop-blur-md transition duration-300 md:rounded-3xl md:p-5
                   ${
                     current === index
                       ? "border-white -translate-y-1 scale-[1.01]"
                       : "border-white/8 hover:border-white hover:-translate-y-1 hover:scale-[1.01]"
                   }`}
+                    onClick={() => setCurrent(index)}
                     onMouseEnter={() => setCurrent(index)}
                   >
                     <Link
                       href={`/book-studio?location=${service.location}&service=${service.services}`}
-                      className="flex items-start gap-3 md:gap-4"
+                      className="flex items-center gap-3 md:items-start md:gap-4"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#E0C28F]/18 text-lg shadow-sm transition md:h-12 md:w-12 md:text-xl">
+                      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-white/10 md:h-16 md:w-16">
+                        <Image
+                          src={service.image}
+                          alt={service.name}
+                          fill
+                          className="object-cover"
+                          sizes="64px"
+                        />
+                      </div>
+
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#E0C28F]/18 text-base shadow-sm transition md:h-12 md:w-12 md:text-xl">
                         {service.icon}
                       </div>
 
                       <div>
-                        <h4 className="text-base font-semibold text-white md:text-lg">
+                        <h4 className="text-sm font-semibold text-white md:text-lg">
                           {service.title}
                         </h4>
+                        <p className="mt-1 hidden text-sm text-white/70 md:block">
+                          {service.desc}
+                        </p>
                       </div>
                     </Link>
                   </motion.div>
