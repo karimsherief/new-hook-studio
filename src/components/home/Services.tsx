@@ -97,7 +97,7 @@ export default function Services({
       services: "video-editing",
     },
     {
-     id: 1,
+      id: 1,
       title: t("List.Podcast.title"),
       name: "Photography Session",
       desc: t("List.Podcast.desc"),
@@ -134,7 +134,7 @@ export default function Services({
       {/* Background */}
 
       <div className="relative mx-auto w-full px-4 sm:px-6 lg:px-10">
-        <div className="mx-auto w-full max-w-md overflow-hidden rounded-[36px] border border-white/10 bg-[#03171f]/90 p-4 shadow-[0_30px_80px_rgba(0,0,0,0.35)] ring-1 ring-white/5 backdrop-blur-xl lg:max-w-7xl lg:rounded-4xl lg:border-white/10 lg:bg-white/5 lg:p-0 lg:shadow-none lg:ring-0">
+        <div className="mx-auto w-full max-w-md overflow-hidden rounded-[36px] p-4 lg:max-w-7xl lg:rounded-4xl lg:p-0">
           {/* Heading */}
           <motion.div
             variants={containerVariants}

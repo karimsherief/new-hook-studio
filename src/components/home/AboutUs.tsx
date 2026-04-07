@@ -98,7 +98,7 @@ export default function AboutUs() {
             </motion.div>
 
             {/* Stats */}
-            <motion.div
+            {/* <motion.div
               variants={itemVariants}
               className="mt-12 grid gap-4 sm:grid-cols-3"
             >
@@ -119,7 +119,7 @@ export default function AboutUs() {
                   </p>
                 </div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </div>
 
           {/* Right visual */}

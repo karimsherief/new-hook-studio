@@ -17,14 +17,22 @@ export default function HookStudioHero({
 
   const slides = [
     {
-      id: 1,
-      badge: "PREMIUM CREATIVE STUDIO",
-      title: t("ImageSlider.ProfessionalPodcastRecording.title"),
-      desc: t("ImageSlider.ProfessionalPodcastRecording.description"),
-      image: "/images/content-creation-service.webp",
+      id: 3,
+      badge: "HOOK STUDIO EXPERIENCE",
+      title: t("ImageSlider.CreativeDirection.title"),
+      desc: t("ImageSlider.CreativeDirection.description"),
+      image: "/images/photography-sessions.webp",
       count: "0",
     },
-    {
+     {
+      id: 4,
+      badge: "HOOK STUDIO EXPERIENCE",
+      title: t("ImageSlider.SocialMediaContent.title"),
+      desc: t("ImageSlider.SocialMediaContent.description"),
+      image: "/images/video-editing.webp",
+      count: "01",
+    },
+      {
       id: 2,
       badge: "MODERN MEDIA PRODUCTION",
       title: t("ImageSlider.VideoProduction.title"),
@@ -33,20 +41,12 @@ export default function HookStudioHero({
       count: "02",
     },
     {
-      id: 3,
-      badge: "HOOK STUDIO EXPERIENCE",
-      title: t("ImageSlider.CreativeDirection.title"),
-      desc: t("ImageSlider.CreativeDirection.description"),
-      image: "/images/photography-sessions.webp",
-      count: "01",
-    },
-    {
-      id: 4,
-      badge: "HOOK STUDIO EXPERIENCE",
-      title: t("ImageSlider.SocialMediaContent.title"),
-      desc: t("ImageSlider.SocialMediaContent.description"),
-      image: "/images/video-editing.webp",
-      count: "04",
+      id: 1,
+      badge: "PREMIUM CREATIVE STUDIO",
+      title: t("ImageSlider.ProfessionalPodcastRecording.title"),
+      desc: t("ImageSlider.ProfessionalPodcastRecording.description"),
+      image: "/images/content-creation-service.webp",
+      count: "03",
     },
     {
       id: 5,
@@ -54,7 +54,7 @@ export default function HookStudioHero({
       title: t("ImageSlider.PhotographySessions.title"),
       desc: t("ImageSlider.PhotographySessions.description"),
       image: "/images/video-editing.webp",
-      count: "05",
+      count: "04",
     },
     {
       id: 6,
@@ -62,7 +62,7 @@ export default function HookStudioHero({
       title: t("ImageSlider.VideoEditing.title"),
       desc: t("ImageSlider.VideoEditing.description"),
       image: "/images/video-editing.webp",
-      count: "06",
+      count: "05",
     },
   ];
 
@@ -77,7 +77,7 @@ export default function HookStudioHero({
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(timer);
   }, []);
