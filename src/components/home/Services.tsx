@@ -69,26 +69,6 @@ export default function Services({
   const t = useTranslations("Services");
   const services = [
     {
-      id: 1,
-      title: t("List.Podcast.title"),
-      name: "Photography Session",
-      desc: t("List.Podcast.desc"),
-      icon: "🎙️",
-      image: "/images/photography-sessions.webp",
-      location: "",
-      services: "podcast",
-    },
-    {
-      id: 2,
-      title: t("List.VideoProduction.title"),
-      desc: t("List.VideoProduction.desc"),
-      name: "Video Production",
-      icon: "🎥",
-      image: "/images/ContactSheet-003.webp",
-      location: "indoor",
-      services: "video-editing",
-    },
-    {
       title: t("List.CreativeDirection.title"),
       desc: t("List.CreativeDirection.desc"),
       name: "Creative Direction",
@@ -105,6 +85,26 @@ export default function Services({
       icon: "📱",
       location: "",
       services: "",
+    },
+    {
+      id: 2,
+      title: t("List.VideoProduction.title"),
+      desc: t("List.VideoProduction.desc"),
+      name: "Video Production",
+      icon: "🎥",
+      image: "/images/ContactSheet-003.webp",
+      location: "indoor",
+      services: "video-editing",
+    },
+    {
+     id: 1,
+      title: t("List.Podcast.title"),
+      name: "Photography Session",
+      desc: t("List.Podcast.desc"),
+      icon: "🎙️",
+      image: "/images/photography-sessions.webp",
+      location: "",
+      services: "podcast",
     },
     {
       title: t("List.Photography.title"),

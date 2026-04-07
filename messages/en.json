@@ -8,7 +8,7 @@
     },
     "VideoProduction": {
       "title": "Video Production",
-      "description": "We produce high-quality videos tailored to your brand — from concept development and shooting to editing and final delivery. Every frame is designed to reflect your identity and communicate your message clearly."
+      "description": " We produce high-quality videos tailored to your brand — from concept development and shooting to editing and final delivery. Every frame is designed to reflect your identity and communicate your message clearly."
     },
     "CreativeDirection": {
       "title": "Creative Direction",
@@ -59,7 +59,7 @@
     "List": {
       "Podcast": {
         "title": "Professional podcast recording",
-        "desc": "Record in a fully equipped studio with high-end audio clarity and controlled acoustics — ensuring every conversation sounds polished and professional."
+        "desc": "Record your podcast in a controlled studio environment with high-end audio equipment. We handle sound clarity, setup, and technical details so you can focus on delivering a strong, professional conversation. "
       },
       "VideoProduction": {
         "title": "Video production",
@@ -70,16 +70,16 @@
         "desc": "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market."
       },
       "SocialMedia": {
-        "title": "Social media content creation",
-        "desc": "Short-form content tailored for each platform — visually sharp, consistent, and designed to drive engagement."
+        "title": "Social Media Content creation ",
+        "desc": "We create platform-specific content optimized for engagement and consistency, ensuring your brand maintains a strong and professional presence online."
       },
       "Photography": {
         "title": "Photography sessions",
-        "desc": "Professional photography for brands, products, and campaigns — focused on clean visuals, balanced lighting, and a polished finish."
+        "desc": "High-end photography for brands, products, and campaigns — crafted to highlight your identity with clean visuals, perfect lighting, and a premium finish that stands out. "
       },
       "VideoEditing": {
         "title": "Video Editing",
-        "desc": "We transform raw footage into polished, cohesive videos through precise editing, color grading, and sound design — ensuring a smooth and professional final result."
+        "desc": "We turn raw footage into smooth, polished videos with professional editing, color grading, and sound design — delivering a final result that feels cohesive and impactful. "
       }
     },
     "StudioExperienceText": "Our studio experience brings together lighting, audio, visual styling, and smooth production flow so your final content feels intentional, cohesive, and visually strong from start to finish.",

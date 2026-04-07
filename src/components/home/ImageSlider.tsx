@@ -22,7 +22,7 @@ export default function HookStudioHero({
       title: t("ImageSlider.ProfessionalPodcastRecording.title"),
       desc: t("ImageSlider.ProfessionalPodcastRecording.description"),
       image: "/images/content-creation-service.webp",
-      count: "01",
+      count: "0",
     },
     {
       id: 2,
@@ -38,7 +38,7 @@ export default function HookStudioHero({
       title: t("ImageSlider.CreativeDirection.title"),
       desc: t("ImageSlider.CreativeDirection.description"),
       image: "/images/photography-sessions.webp",
-      count: "03",
+      count: "01",
     },
     {
       id: 4,
