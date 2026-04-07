@@ -17,11 +17,11 @@ export default function VideoReels({ videos }: VideoReelsProps) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(224,194,143,0.12),transparent_36%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_100%,rgba(13,169,179,0.16),transparent_30%)]" />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto w-full max-w-[420px]">
           <div className="relative overflow-hidden rounded-[32px] border border-white/15 bg-white/[0.04] p-2 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-2xl md:p-3">
             <div className="relative overflow-hidden rounded-2xl border border-white/10">
               <video
-                className="h-[300px] w-full bg-black object-cover sm:h-[430px] md:h-[580px]"
+                className="aspect-[9/16] w-full bg-black object-cover"
                 {...(videoPoster ? { poster: videoPoster } : {})}
                 src={videoSrc}
                 controls
