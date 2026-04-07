@@ -21,7 +21,7 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.CreativeDirection.title"),
       desc: t("ImageSlider.CreativeDirection.description"),
-      image: "/images/photography-sessions.webp",
+      image: "/images/creative-direction.webp",
       count: "0",
     },
      {
@@ -37,7 +37,7 @@ export default function HookStudioHero({
       badge: "MODERN MEDIA PRODUCTION",
       title: t("ImageSlider.VideoProduction.title"),
       desc: t("ImageSlider.VideoProduction.description"),
-      image: "/images/creative-direction.webp",
+      image: "/images/ContactSheet-003.webp",
       count: "02",
     },
     {
@@ -45,7 +45,7 @@ export default function HookStudioHero({
       badge: "PREMIUM CREATIVE STUDIO",
       title: t("ImageSlider.ProfessionalPodcastRecording.title"),
       desc: t("ImageSlider.ProfessionalPodcastRecording.description"),
-      image: "/images/content-creation-service.webp",
+      image: "/images/photography-sessions.webp",
       count: "03",
     },
     {
