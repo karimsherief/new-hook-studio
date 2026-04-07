@@ -23,19 +23,10 @@ export default function VideoReels({ videos }: VideoReelsProps) {
   const swiperRef = useRef<any>(null);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
 
   // Handle video end - advance to next slide
   const handleVideoEnded = () => {
-    if (!isUserInteracting) {
-      swiperRef.current?.slideNext();
-    }
-  };
-
-  // Track user interaction
-  const handleUserInteraction = () => {
-    setIsUserInteracting(true);
-    setTimeout(() => setIsUserInteracting(false), 1000);
+    swiperRef.current?.slideNext();
   };
 
   // Manage video playback when slide changes
@@ -55,16 +46,21 @@ export default function VideoReels({ videos }: VideoReelsProps) {
       const activeVideo = videoRefs.current[activeVideoId];
       // Use timeout to ensure video is ready
       setTimeout(() => {
-        activeVideo?.play().catch(() => {
-          // Handle autoplay policy restriction gracefully
-          console.debug("Autoplay policy prevented video playback");
+        if (!activeVideo) return;
+        activeVideo.volume = 1;
+        activeVideo.muted = false;
+        activeVideo.play().catch(() => {
+          // Browser autoplay policy may block sound; fallback to muted autoplay.
+          activeVideo.muted = true;
+          activeVideo.play().catch(() => {
+            console.debug("Autoplay policy prevented video playback");
+          });
         });
       }, 100);
     }
   }, [currentSlideIndex, videos]);
 
   const togglePlay = (id: string) => {
-    handleUserInteraction();
     const video = videoRefs.current[id];
     if (!video) return;
     if (video.paused) {
@@ -95,7 +91,7 @@ export default function VideoReels({ videos }: VideoReelsProps) {
         </div>
 
         {/* Swiper Container */}
-        <div className="relative">
+        <div className="relative mx-auto max-w-6xl">
           <Swiper
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
@@ -104,9 +100,11 @@ export default function VideoReels({ videos }: VideoReelsProps) {
               setCurrentSlideIndex(swiper.realIndex);
             }}
             modules={[Navigation, Pagination]}
-            spaceBetween={1}
-            slidesPerView={2.4}
+            spaceBetween={12}
+            slidesPerView={1.05}
             centeredSlides={true}
+            centeredSlidesBounds={true}
+            watchOverflow={true}
             loop={true}
             pagination={{
               clickable: true,
@@ -118,16 +116,20 @@ export default function VideoReels({ videos }: VideoReelsProps) {
             }}
             breakpoints={{
               640: {
-                slidesPerView: 1.1,
-                spaceBetween: 1,
+                slidesPerView: 1.35,
+                spaceBetween: 12,
+              },
+              768: {
+                slidesPerView: 1.9,
+                spaceBetween: 14,
               },
               1024: {
-                slidesPerView: 2.2,
-                spaceBetween: 1,
+                slidesPerView: 2.4,
+                spaceBetween: 16,
               },
               1280: {
-                slidesPerView: 3.2,
-                spaceBetween: 1,
+                slidesPerView: 3,
+                spaceBetween: 18,
               },
             }}
             className="pb-16"
@@ -135,7 +137,7 @@ export default function VideoReels({ videos }: VideoReelsProps) {
             {videos.map((video) => (
               <SwiperSlide key={video.id}>
                 <div
-                  className="group relative aspect-9/16 h-96 overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.30)] backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_30px_80px_rgba(0,0,0,0.40)]"
+                  className="group relative mx-auto aspect-9/16 h-96 max-w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.30)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_30px_80px_rgba(0,0,0,0.40)]"
                   onClick={() => togglePlay(video.id)}
                 >
                   <video
@@ -183,13 +185,11 @@ export default function VideoReels({ videos }: VideoReelsProps) {
           {/* Custom Navigation Buttons */}
           <button
             className="swiper-button-prev-custom absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:scale-110 md:left-8"
-            onClick={() => handleUserInteraction()}
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
           <button
             className="swiper-button-next-custom absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:scale-110 md:right-8"
-            onClick={() => handleUserInteraction()}
           >
             <ChevronRight className="h-6 w-6" />
           </button>
