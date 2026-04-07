@@ -4,7 +4,7 @@ export default function Whatsapp() {
   return (
     <div className="fixed z-50 bottom-10 left-10">
       <a
-        href="https://wa.me/1234567890"
+        href="https://wa.me/+201031106811"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"

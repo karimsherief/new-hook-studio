@@ -4,27 +4,45 @@
   "ImageSlider": {
      "CreativeDirection": {
       "title": "Creative Direction",
-      "description": "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market."
+      "description": "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market.",
+      "point1": "Moodboards & visual references",
+      "point2": "Styling & art direction",
+      "point3": "Storytelling & content flow"
     },
      "SocialMediaContent": {
       "title": "Social Media Content",
-      "description": "We create platform-specific content optimized for engagement and consistency, ensuring your brand maintains a strong and professional presence online."
+      "description": "We create platform-specific content optimized for engagement and consistency, ensuring your brand maintains a strong and professional presence online.",
+      "point1": "tailored Content for each platform",
+      "point2": "Consistent brand look and tone",
+      "point3": " Built to increase engagement"
     },
     "VideoProduction": {
       "title": "Video Production",
-      "description": " We produce high-quality videos tailored to your brand — from concept development and shooting to editing and final delivery. Every frame is designed to reflect your identity and communicate your message clearly."
+      "description": " We produce high-quality videos tailored to your brand — from concept development and shooting to editing and final delivery. Every frame is designed to reflect your identity and communicate your message clearly.",
+      "point1": "Concept development & planning",
+      "point2": "Filming with professional setups",
+      "point3": " Editing, color, and final delivery"
     },
     "ProfessionalPodcastRecording": {
       "title": "Professional Podcast Recording",
-      "description": "Record your podcast in a controlled studio environment with high-end audio equipment. We handle sound clarity, setup, and technical details so you can focus on delivering a strong, professional conversation. "
+      "description": "Record your podcast in a controlled studio environment with high-end audio equipment. We handle sound clarity, setup, and technical details so you can focus on delivering a strong, professional conversation. ",
+      "point1": " top-tier studio microphones",
+      "point2": "Precise sound engineering for clear, balanced, and noise-free audio",
+      "point3": "End-to-end technical handling "
     },
     "PhotographySessions": {
       "title": "Photography Sessions",
-      "description": "Professional photography tailored for brands, products, and campaigns — focused on clean visuals, proper lighting, and a polished final look."
+      "description": "Professional photography tailored for brands, products, and campaigns — focused on clean visuals, proper lighting, and a polished final look.",
+      "point1": " Clean, high-quality visuals",
+      "point2": "Perfect lighting & composition",
+      "point3": "Ready-to-use, polished results"
     },
     "VideoEditing": {
       "title": "Video Editing",
-      "description": "We transform raw footage into polished, cohesive videos through precise editing, color grading, and sound design — ensuring a smooth and professional final result."
+      "description": "We transform raw footage into polished, cohesive videos through precise editing, color grading, and sound design — ensuring a smooth and professional final result.",
+      "point1": "️ Smooth, professional cuts",
+      "point2": "Color grading for a polished look",
+      "point3": "Clean sound for a better experience"
     }
   },
   "About": {

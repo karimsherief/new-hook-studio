@@ -20,7 +20,7 @@ export function Footer() {
 
           <nav className="flex items-center gap-1" aria-label="Social links">
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/hookstudio.eg?igsh=MWN0NXk3amI5MnU3Yg%3D%3D&utm_source=qr"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
@@ -29,7 +29,23 @@ export function Footer() {
               <Instagram />
             </a>
             <a
-              href="https://www.facebook.com"
+              href="https://www.tiktok.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg p-2 text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
+              aria-label="TikTok"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="h-6 w-6"
+                aria-hidden="true"
+              >
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.28V2h-3.2v13.02a2.89 2.89 0 1 1-2.89-2.89 2.9 2.9 0 0 1 .72.09V8.96a6.1 6.1 0 0 0-.72-.04A6.09 6.09 0 1 0 15.82 15V8.74a8 8 0 0 0 4.68 1.5V7.05a4.8 4.8 0 0 1-.91-.36Z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/share/1JBhnqrJpE/?mibextid=wwXIfr"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-lg p-2 text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"

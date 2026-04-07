@@ -21,6 +21,11 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.CreativeDirection.title"),
       desc: t("ImageSlider.CreativeDirection.description"),
+      points: [
+        t("ImageSlider.CreativeDirection.point1"),
+        t("ImageSlider.CreativeDirection.point2"),
+        t("ImageSlider.CreativeDirection.point3"),
+      ],
       image: "/images/creative-direction.webp",
       count: "0",
     },
@@ -29,6 +34,11 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.SocialMediaContent.title"),
       desc: t("ImageSlider.SocialMediaContent.description"),
+      points: [
+        t("ImageSlider.SocialMediaContent.point1"),
+        t("ImageSlider.SocialMediaContent.point2"),
+        t("ImageSlider.SocialMediaContent.point3"),
+      ],
       image: "/images/content-creation-service.webp",
       count: "01",
     },
@@ -37,6 +47,11 @@ export default function HookStudioHero({
       badge: "MODERN MEDIA PRODUCTION",
       title: t("ImageSlider.VideoProduction.title"),
       desc: t("ImageSlider.VideoProduction.description"),
+      points: [
+        t("ImageSlider.VideoProduction.point1"),
+        t("ImageSlider.VideoProduction.point2"),
+        t("ImageSlider.VideoProduction.point3"),
+      ],
       image: "/images/ContactSheet-003.webp",
       count: "02",
     },
@@ -45,6 +60,11 @@ export default function HookStudioHero({
       badge: "PREMIUM CREATIVE STUDIO",
       title: t("ImageSlider.ProfessionalPodcastRecording.title"),
       desc: t("ImageSlider.ProfessionalPodcastRecording.description"),
+      points: [
+        t("ImageSlider.ProfessionalPodcastRecording.point1"),
+        t("ImageSlider.ProfessionalPodcastRecording.point2"),
+        t("ImageSlider.ProfessionalPodcastRecording.point3"),
+      ],
       image: "/images/photography-sessions.webp",
       count: "03",
     },
@@ -53,6 +73,11 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.PhotographySessions.title"),
       desc: t("ImageSlider.PhotographySessions.description"),
+      points: [
+        t("ImageSlider.PhotographySessions.point1"),
+        t("ImageSlider.PhotographySessions.point2"),
+        t("ImageSlider.PhotographySessions.point3"),
+      ],
       image: "/images/about-us.webp",
       count: "04",
     },
@@ -61,6 +86,11 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.VideoEditing.title"),
       desc: t("ImageSlider.VideoEditing.description"),
+      points: [
+        t("ImageSlider.VideoEditing.point1"),
+        t("ImageSlider.VideoEditing.point2"),
+        t("ImageSlider.VideoEditing.point3"),
+      ],
       image: "/images/video-editing.webp",
       count: "05",
     },
@@ -118,6 +148,22 @@ export default function HookStudioHero({
               >
                 {activeSlide.desc}
               </p>
+              {activeSlide.points?.length > 0 && (
+                <ul className="mt-4 space-y-2 text-base text-white/85">
+                  {activeSlide.points.map((point: string, index: number) => (
+                    <li
+                      key={`${activeSlide.id}-${point}-${index}`}
+                      className="animate-[fadeUp_.55s_ease] opacity-0"
+                      style={{
+                        animationDelay: `${0.35 + index * 0.08}s`,
+                        animationFillMode: "forwards",
+                      }}
+                    >
+                      • {point}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </article>
 
             {/* <p
@@ -186,12 +232,12 @@ export default function HookStudioHero({
 
           {/* right side */}
           <div className="relative">
-            <div className="relative ml-auto w-full max-w-[620px]">
+            <div className="relative ml-auto h-[460px] w-full max-w-[620px] sm:h-[520px] lg:h-[560px]">
               <div className="absolute -left-8 bottom-[-36px] h-24 w-24 rounded-full bg-[#1B6674]/30 blur-md" />
               <div className="absolute -right-4 top-20 h-18 w-18 rounded-full bg-[#2A7280]/25 blur-sm" />
 
-              <div className="relative overflow-hidden rounded-[28px] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-3 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-                <div className="relative h-[520px] overflow-hidden rounded-[24px]">
+              <div className="relative h-full overflow-hidden rounded-[28px] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] p-3 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+                <div className="relative h-full overflow-hidden rounded-[24px]">
                   {slides.map((slide, i) => {
                     const isActive = i === current;
 
@@ -210,7 +256,7 @@ export default function HookStudioHero({
                           fill
                           priority={i === 0}
                           unoptimized
-                          className={`object-cover transition-transform duration-2200 ease-out ${
+                          className={`h-full w-full object-cover transition-transform duration-2200 ease-out ${
                             isActive ? "scale-100" : "scale-110"
                           }`}
                         />
