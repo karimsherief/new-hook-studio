@@ -45,7 +45,7 @@
     "Slider": {
       "CreativeStudio": "Creative Studio",
       "Title": "A premium environment built for standout content experiences",
-      "Desc": "Crafted for podcasts, videos, social content, and photography with modern styling, visual clarity, and a strong branded presence.",
+      "Desc": "",
       "Tags": {
         "Podcast": "Podcast",
         "Video": "Video",
@@ -59,27 +59,27 @@
     "List": {
       "Podcast": {
         "title": "Professional podcast recording",
-        "desc": "Record your podcast in a controlled studio environment with high-end audio equipment. We handle sound clarity, setup, and technical details so you can focus on delivering a strong, professional conversation. "
+        "desc": ""
       },
       "VideoProduction": {
         "title": "Video production",
-        "desc": "End-to-end video production using modern setups, cinematic framing, and precise execution — delivering content that looks refined and on-brand."
+        "desc": ""
       },
       "CreativeDirection": {
         "title": "Creative Direction",
-        "desc": "We develop clear visual and creative concepts that guide your content. From moodboards to storytelling, we ensure everything aligns with your brand image and stands out in a crowded market."
+        "desc": ""
       },
       "SocialMedia": {
         "title": "Social Media Content creation ",
-        "desc": "We create platform-specific content optimized for engagement and consistency, ensuring your brand maintains a strong and professional presence online."
+        "desc": ""
       },
       "Photography": {
         "title": "Photography sessions",
-        "desc": "High-end photography for brands, products, and campaigns — crafted to highlight your identity with clean visuals, perfect lighting, and a premium finish that stands out. "
+        "desc": ""
       },
       "VideoEditing": {
         "title": "Video Editing",
-        "desc": "We turn raw footage into smooth, polished videos with professional editing, color grading, and sound design — delivering a final result that feels cohesive and impactful. "
+        "desc": ""
       }
     },
     "StudioExperienceText": "Our studio experience brings together lighting, audio, visual styling, and smooth production flow so your final content feels intentional, cohesive, and visually strong from start to finish.",
