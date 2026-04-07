@@ -225,20 +225,6 @@ export default function Services({
                             {t("Slider.Desc")}
                           </p>
 
-                          <div className="mt-5 flex flex-wrap gap-3">
-                            {[
-                              t("Slider.Tags.Podcast"),
-                              t("Slider.Tags.Video"),
-                              t("Slider.Tags.Photography"),
-                            ].map((item) => (
-                              <span
-                                key={item}
-                                className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-medium text-white/85 backdrop-blur-md"
-                              >
-                                {item}
-                              </span>
-                            ))}
-                          </div>
                         </div>
                       </div>
                     </div>

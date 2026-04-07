@@ -13,8 +13,6 @@ import {
   Phone,
   MapPin,
   User,
-  Link as LinkIcon,
-  Layers3,
   Clapperboard,
   Send,
 } from "lucide-react";
@@ -202,58 +200,6 @@ export function SelectStudioForm() {
                     placeholder={t("PhonePlaceholder")}
                     className={inputClass}
                     required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label
-                  htmlFor="content_type"
-                  className="mb-2 block text-sm font-medium text-[#F8F5EF]"
-                >
-                  {t("ContentType")}
-                </Label>
-                <div className="relative">
-                  <Layers3 className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
-                  <select
-                    id="content_type"
-                    name="content_type"
-                    className={selectClass}
-                    required
-                    defaultValue=""
-                  >
-                    <option value="" disabled className="text-black">
-                      {t("SelectContentType")}
-                    </option>
-                    <option value="products" className="text-black">
-                      {t("Products")}
-                    </option>
-                    <option value="education" className="text-black">
-                      {t("Education")}
-                    </option>
-                    <option value="others" className="text-black">
-                      {t("Others")}
-                    </option>
-                  </select>
-                  <div className="pointer-events-none absolute right-4 top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-[#E8CFA4]" />
-                </div>
-              </div>
-
-              <div>
-                <Label
-                  htmlFor="account_link"
-                  className="mb-2 block text-sm font-medium text-[#F8F5EF]"
-                >
-                  {t("AccountLink")}
-                </Label>
-                <div className="relative">
-                  <LinkIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#E8CFA4]/85" />
-                  <Input
-                    id="account_link"
-                    name="account_link"
-                    type="url"
-                    placeholder={t("AccountLinkPlaceholder")}
-                    className={inputClass}
                   />
                 </div>
               </div>

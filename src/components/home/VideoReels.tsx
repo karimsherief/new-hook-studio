@@ -1,17 +1,9 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { PlayCircle } from "lucide-react";
 
 interface VideoReelsProps {
-  videos: Array<{
+  videos?: Array<{
     id: string;
     src: string;
     title: string;
@@ -20,64 +12,14 @@ interface VideoReelsProps {
 }
 
 export default function VideoReels({ videos }: VideoReelsProps) {
-  const swiperRef = useRef<any>(null);
-  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-
-  // Handle video end - advance to next slide
-  const handleVideoEnded = () => {
-    swiperRef.current?.slideNext();
-  };
-
-  // Manage video playback when slide changes
-  useEffect(() => {
-    const activeVideoId = videos[currentSlideIndex]?.id;
-
-    // Pause all videos first
-    Object.entries(videoRefs.current).forEach(([id, video]) => {
-      if (video && id !== activeVideoId) {
-        video.pause();
-        video.currentTime = 0;
-      }
-    });
-
-    // Play active video
-    if (activeVideoId && videoRefs.current[activeVideoId]) {
-      const activeVideo = videoRefs.current[activeVideoId];
-      // Use timeout to ensure video is ready
-      setTimeout(() => {
-        if (!activeVideo) return;
-        activeVideo.volume = 1;
-        activeVideo.muted = false;
-        activeVideo.play().catch(() => {
-          // Browser autoplay policy may block sound; fallback to muted autoplay.
-          activeVideo.muted = true;
-          activeVideo.play().catch(() => {
-            console.debug("Autoplay policy prevented video playback");
-          });
-        });
-      }, 100);
-    }
-  }, [currentSlideIndex, videos]);
-
-  const togglePlay = (id: string) => {
-    const video = videoRefs.current[id];
-    if (!video) return;
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
-  };
-
+  const videoSrc = "/videos/rels 10.mp4";
+  const videoTitle = videos?.[0]?.title ?? "Featured Reel";
+  const videoPoster = videos?.[0]?.thumbnail;
   return (
-    <section className="relative overflow-hidden py-16 text-white md:py-24 lg:py-32">
-      {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-b from-black/20 via-transparent to-black/20" />
-
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        {/* Header */}
-        <div className="mb-12 text-center md:mb-16">
+    <section className="relative overflow-hidden py-14 text-white md:py-20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(224,194,143,0.10),transparent_38%)]" />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 text-center md:mb-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#E0C28F]/20 bg-[#E0C28F]/8 px-4 py-2 text-sm font-semibold text-[#E0C28F] backdrop-blur-md">
             <span className="h-2 w-2 rounded-full bg-[#E0C28F]" />
             Our Work
@@ -90,117 +32,38 @@ export default function VideoReels({ videos }: VideoReelsProps) {
           </p>
         </div>
 
-        {/* Swiper Container */}
-        <div className="relative mx-auto max-w-6xl">
-          <Swiper
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            onSlideChange={(swiper) => {
-              setCurrentSlideIndex(swiper.realIndex);
-            }}
-            modules={[Navigation, Pagination]}
-            spaceBetween={12}
-            slidesPerView={1.05}
-            centeredSlides={true}
-            centeredSlidesBounds={true}
-            watchOverflow={true}
-            loop={true}
-            pagination={{
-              clickable: true,
-              dynamicBullets: true,
-            }}
-            navigation={{
-              nextEl: ".swiper-button-next-custom",
-              prevEl: ".swiper-button-prev-custom",
-            }}
-            breakpoints={{
-              640: {
-                slidesPerView: 1.35,
-                spaceBetween: 12,
-              },
-              768: {
-                slidesPerView: 1.9,
-                spaceBetween: 14,
-              },
-              1024: {
-                slidesPerView: 2.4,
-                spaceBetween: 16,
-              },
-              1280: {
-                slidesPerView: 3,
-                spaceBetween: 18,
-              },
-            }}
-            className="pb-16"
-          >
-            {videos.map((video) => (
-              <SwiperSlide key={video.id}>
-                <div
-                  className="group relative mx-auto aspect-9/16 h-96 max-w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-[0_20px_60px_rgba(0,0,0,0.30)] backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_30px_80px_rgba(0,0,0,0.40)]"
-                  onClick={() => togglePlay(video.id)}
-                >
-                  <video
-                    ref={(el) => {
-                      videoRefs.current[video.id] = el;
-                    }}
-                    className="h-full w-full object-cover"
-                    {...(video.thumbnail && { poster: video.thumbnail })}
-                    preload="auto"
-                    controls
-                    playsInline
-                    loop={false}
-                    onLoadedMetadata={(e) => {
-                      e.currentTarget.volume = 1.0;
-                    }}
-                    onEnded={handleVideoEnded}
-                  >
-                    <source src={video.src} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-
-                  {/* Overlay */}
-                  <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                  {/* Play Button Overlay */}
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="rounded-full bg-white/20 p-4 backdrop-blur-md">
-                      <div className="h-8 w-8 rounded-full bg-white/30 flex items-center justify-center">
-                        <div className="h-0 w-0 border-l-4 border-l-white border-t-2 border-t-transparent border-b-2 border-b-transparent ml-1" />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Title Overlay */}
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <h3 className="text-lg font-semibold text-white drop-shadow-lg">
-                      {video.title}
-                    </h3>
-                  </div>
+        <div className="mx-auto max-w-4xl">
+          <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-white/5 p-2 shadow-[0_24px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-2xl border border-white/10">
+              <video
+                className="h-[280px] w-full bg-black object-cover sm:h-[380px] md:h-[520px]"
+                {...(videoPoster ? { poster: videoPoster } : {})}
+                src={videoSrc}
+                controls
+                playsInline
+                preload="auto"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0)_55%,rgba(0,0,0,0.75)_100%)]" />
+              <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-center justify-between p-4 sm:p-6">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[#E0C28F]">
+                    Featured
+                  </p>
+                  <h3 className="mt-1 text-lg font-semibold text-white sm:text-2xl">
+                    {videoTitle}
+                  </h3>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          {/* Custom Navigation Buttons */}
-          <button
-            className="swiper-button-prev-custom absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:scale-110 md:left-8"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
-            className="swiper-button-next-custom absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:scale-110 md:right-8"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
+                <div className="hidden items-center gap-2 rounded-full border border-white/20 bg-black/35 px-3 py-2 text-sm text-white/90 backdrop-blur-sm sm:flex">
+                  <PlayCircle className="h-4 w-4 text-[#E0C28F]" />
+                  Play
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* View More Button */}
-        <div className="mt-12 text-center">
-          <button className="inline-flex items-center gap-2 rounded-full border border-[#E0C28F]/30 bg-[#E0C28F]/10 px-8 py-3 text-sm font-semibold text-[#E0C28F] transition-all duration-300 hover:bg-[#E0C28F]/20 hover:scale-105">
-            View All Work
-            <ChevronRight className="h-4 w-4" />
-          </button>
+        <div className="mt-6 text-center text-sm text-white/65">
+          Tap play to preview our latest production.
         </div>
       </div>
     </section>
