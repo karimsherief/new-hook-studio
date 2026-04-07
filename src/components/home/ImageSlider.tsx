@@ -29,7 +29,7 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.SocialMediaContent.title"),
       desc: t("ImageSlider.SocialMediaContent.description"),
-      image: "/images/video-editing.webp",
+      image: "/images/content-creation-service.webp",
       count: "01",
     },
       {
@@ -53,7 +53,7 @@ export default function HookStudioHero({
       badge: "HOOK STUDIO EXPERIENCE",
       title: t("ImageSlider.PhotographySessions.title"),
       desc: t("ImageSlider.PhotographySessions.description"),
-      image: "/images/video-editing.webp",
+      image: "/images/about-us.webp",
       count: "04",
     },
     {
