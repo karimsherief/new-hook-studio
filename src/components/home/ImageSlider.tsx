@@ -107,7 +107,7 @@ export default function HookStudioHero({
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 10000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, []);
